@@ -84,6 +84,11 @@ export const Styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'Raleway-SemiBold'
   },
+  blackMedium18: {
+    color: AppColors.BLACK_COLOR,
+    fontSize: 18,
+    fontFamily: 'Raleway-Medium'
+  },
   blueSemiBold12: {
     color: AppColors.STEEL_BLUE_COLOR,
     fontSize: 12,

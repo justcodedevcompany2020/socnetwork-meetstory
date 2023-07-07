@@ -13,6 +13,11 @@ import PersonalInformation from '../screens/applicationForm/PersonalInformation'
 import AboutMeScreen from '../screens/applicationForm/AboutMeScreen';
 import PreferencesScreen from '../screens/applicationForm/PreferencesScreen';
 import AppearanceScreen from '../screens/applicationForm/AppearanceScreen';
+import { SettingScreen } from '../screens/settings/SettingScreen';
+import { AboutAs } from '../screens/settings/AboutAs';
+import { NotificationScreen } from '../screens/settings/NotificationScreen';
+import { ChnagePasswordScreen } from '../screens/settings/ChnagePasswordScreen';
+import { PrivacyScreen } from '../screens/settings/PrivacyScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -121,6 +126,42 @@ export const ProfileNavigator = () => {
                     headerShown: false
                 }}
             />
+            <Stack.Screen
+                name="SettingScreen"
+                component={SettingScreen}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="AboutAs"
+                component={AboutAs}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="NotificationScreen"
+                component={NotificationScreen}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="ChnagePasswordScreen"
+                component={ChnagePasswordScreen}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="PrivacyScreen"
+                component={PrivacyScreen}
+                options={{
+                    headerShown: false
+                }}
+            />
+
         </Stack.Navigator>
     );
 };
