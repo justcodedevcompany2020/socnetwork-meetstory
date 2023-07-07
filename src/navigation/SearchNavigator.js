@@ -4,6 +4,8 @@ import SearchScreen from '../screens/search/SearchScreen';
 import { UserScreen } from '../screens/User/userScreen';
 import Header from './Header';
 import { UserPostsScreen } from '../screens/User/UserPostsScreen';
+import { UserPhotoScreen } from '../screens/User/UserPhotoScreen';
+import { UserFriends } from '../screens/User/UserFriends';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,6 +42,24 @@ export const SearchNavigator = () => {
                         <Header navigation={navigation} title={route.params.username} backIcon />
                     ),
                 })}
+            />
+            <Stack.Screen
+                name="UserPhotoScreen"
+                component={UserPhotoScreen}
+                options={({ navigation,route }) => ({
+                    title: '',
+                    headerTransparent: true,
+                    header: () => (
+                        <Header navigation={navigation} title={route.params.username} backIcon />
+                    ),
+                })}
+            />
+            <Stack.Screen
+                name="UserFriends"
+                component={UserFriends}
+                options={{
+                    headerShown: false
+                }}
             />
         </Stack.Navigator>
     );

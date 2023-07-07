@@ -2,7 +2,7 @@ import {View,Text,StyleSheet} from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { Shadow } from 'react-native-shadow-2'
 import { BlueHeart18, BrokenHeart18 } from '../../assets/svgs/HomeSvgs'
-import { WallSvg } from '../../assets/svgs/UserSvgs'
+import { Friends, PhotoSvg, WallSvg } from '../../assets/svgs/UserSvgs'
 import Container from '../../components/Container'
 import HorizontalBlock from '../../components/HorizontalBlock'
 import { UserNameBlock } from '../../components/UserNameBlock'
@@ -32,17 +32,17 @@ export const UserScreen = ({navigation}) =>{
             />
             <HorizontalBlock
                 backImagePath={require('../../assets/pngs/BlockBack9.png')}
-                Icon={WallSvg}
-                text={'Стена'}
-                // onPress = {()=>navigation.navigate('BalanceCongrats1')}
+                Icon={PhotoSvg}
+                text={'Фотоальбом'}
+                onPress = {()=>navigation.navigate('UserPhotoScreen',{username:'Harper Anderson'})}
             />
             <View style = {Styles.flexRowJustifyBetween}>
                 <HorizontalBlock
                     backImagePath={require('../../assets/pngs/BlockBack11.png')}
-                    Icon={WallSvg}
-                    text={'Стена'}
+                    Icon={Friends}
+                    text={'Друзья'}
                     width = {'49%'}
-                    // onPress = {()=>navigation.navigate('BalanceCongrats1')}
+                    onPress = {()=>navigation.navigate('UserFriends')}
                 />
                 <HorizontalBlock
                     backImagePath={require('../../assets/pngs/BlockBack12.png')}
