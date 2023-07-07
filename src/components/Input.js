@@ -26,6 +26,7 @@ export default function Input({ labelText, inputType, value, setValue, minLength
                 onBlur={() => setOpen(false)}
                 onFocus={() => setOpen(true)}
                 onSelect={(selectedItem, index) => {
+                    console.log(selectedItem, index)
                     setValue(selectedItem)
                 }}
                 defaultValue={value}

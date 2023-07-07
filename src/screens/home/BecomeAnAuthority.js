@@ -7,7 +7,7 @@ import { Styles } from "../../styles/Styles";
 import UserBlock from "../../components/UserBlock";
 import Button from "../../components/Button";
 
-export default function BecomeAnAuthority() {
+export default function BecomeAnAuthority({navigation}) {
     return <View style={Styles.containerTopPadding}>
         <ScrollView>
             <View style={Styles.blockContainer}>
@@ -83,7 +83,7 @@ export default function BecomeAnAuthority() {
                     <Text style={Styles.darkMedium14}>- </Text>
                     <YellowStarIcon />
                 </View>
-                <Button text={'Купить авторитет'} height={40} />
+                <Button text={'Купить авторитет'} height={40} onPress={() => navigation.navigate('BuyingAuthority')}/>
             </View>
 
         </ScrollView>

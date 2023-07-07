@@ -1,5 +1,5 @@
 import React from 'react';
-import { Rect, Svg, Path } from 'react-native-svg';
+import { Rect, Svg, Path, G, ClipPath, Defs, Circle } from 'react-native-svg';
 import { View } from "react-native";
 
 export const UncheckedIcon = () => {
@@ -169,5 +169,61 @@ export const BlackBackIcon = () => {
       d="M11.724 17.663a.937.937 0 01-1.325 0L5.087 12.35a.937.937 0 010-1.325l5.312-5.312a.939.939 0 011.325 1.325L8.012 10.75h9.3a.938.938 0 010 1.875h-9.3l3.712 3.712a.938.938 0 010 1.326z"
       fill="#333"
     />
+  </Svg>
+}
+
+export const FilterIcon = () => {
+  return <Svg
+    width={24}
+    height={24}
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <G clipPath="url(#clip0_48_5057)">
+      <Path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M16 15c1.306 0 2.418.835 2.83 2H20a1 1 0 010 2h-1.17a3 3 0 01-5.66 0H4a1 1 0 010-2h9.17A3.001 3.001 0 0116 15zm0 2a1 1 0 100 2 1 1 0 000-2zM8 9a3 3 0 012.762 1.828l.067.172H20a1 1 0 01.117 1.993L20 13h-9.17a3 3 0 01-5.592.172L5.17 13H4a1 1 0 01-.117-1.993L4 11h1.17A3 3 0 018 9zm0 2a1 1 0 100 2 1 1 0 000-2zm8-8c1.306 0 2.418.835 2.83 2H20a1 1 0 110 2h-1.17a3 3 0 01-5.66 0H4a1 1 0 010-2h9.17A3.001 3.001 0 0116 3zm0 2a1 1 0 100 2 1 1 0 000-2z"
+        fill="#fff"
+      />
+    </G>
+    <Defs>
+      <ClipPath id="clip0_48_5057">
+        <Path fill="#fff" d="M0 0H24V24H0z" />
+      </ClipPath>
+    </Defs>
+  </Svg>
+}
+
+export const SearchIcon = () => {
+  return <Svg
+    width={20}
+    height={20}
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <Path
+      d="M17.5 17.5l-3.619-3.62m0 0A6.665 6.665 0 009.167 2.5a6.667 6.667 0 104.714 11.38z"
+      stroke="#333"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+}
+
+export const MoreIcon = () => {
+  return <Svg
+    width={21}
+    height={5}
+    viewBox="0 0 21 5"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <Circle cx={2.5} cy={2.5} r={2.5} fill="#5691C8" />
+    <Circle cx={10.5} cy={2.5} r={2.5} fill="#5691C8" />
+    <Circle cx={18.5} cy={2.5} r={2.5} fill="#5691C8" />
   </Svg>
 }

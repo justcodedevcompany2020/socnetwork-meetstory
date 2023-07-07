@@ -44,7 +44,7 @@ export default function GiftsScreen({navigation}) {
             <View style={[styles.itemsWrap, { paddingHorizontal: 5, marginBottom: 50,  }]}>
                 {items.map((item, i) => <GiftBlock key={i} item={item} selectedGift={selectedGift} onPress={() => setSelectedGift(item.id)} />)}
             </View>
-            <Button text={'Подарить себе'} marginBottom={15} backgroundColor={AppColors.LOCHMARA_COLOR}/>
+            <Button text={'Подарить себе'} marginBottom={15} backgroundColor={AppColors.LOCHMARA_COLOR} onPress={() => navigation.navigate('GiftYourself')}/>
             <Button text={'Подарить пользователю'} onPress={() => navigation.navigate('ChooseFriendScreen')}/>
         </ScrollView>
     </View>

@@ -89,7 +89,26 @@ export const Styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: 'Raleway-SemiBold'
   },
-
+  whiteSemiBold16:{
+    color: AppColors.WHITE_COLOR,
+    fontSize: 16,
+    fontFamily: 'Raleway-SemiBold'
+  },
+  whiteRegular12:{
+    color: AppColors.WHITE_COLOR,
+    fontSize: 12,
+    fontFamily: 'Raleway-Regular'
+  },
+  whiteRegular13:{
+    color: AppColors.WHITE_COLOR,
+    fontSize: 13,
+    fontFamily: 'Raleway-Regular'
+  },
+  whiteSemiBold13:{
+    color: AppColors.WHITE_COLOR,
+    fontSize: 13,
+    fontFamily: 'Raleway-SemiBold'
+  },
   blueSemiBold15: {
     color: AppColors.STEEL_BLUE_COLOR,
     fontSize: 15,
@@ -165,11 +184,6 @@ export const Styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: 'Raleway-Regular'
   },
-  whiteRegular12:{
-    color: AppColors.WHITE_COLOR,
-    fontSize: 12,
-    fontFamily: 'Raleway-Regular'
-  },
   blackRegular14: {
     color: AppColors.BLACK_COLOR,
     fontSize: 14,
@@ -180,18 +194,8 @@ export const Styles = StyleSheet.create({
     fontSize: 10,
     fontFamily: 'Raleway-SemiBold'
   },
-  whiteSemiBold16:{
-    color: AppColors.WHITE_COLOR,
-    fontSize: 16,
-    fontFamily: 'Raleway-SemiBold'
-  },
   balanceText:{
     color:AppColors.WHITE_COLOR,
     fontSize:30,
   },
-  bittersweetSemiBold12:{
-    color:AppColors.BITTERSWEET_COLOR,
-    fontSize:12
-  }
-  
 });

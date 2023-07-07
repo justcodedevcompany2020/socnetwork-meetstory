@@ -16,14 +16,14 @@ export default function FriendRequestBlock({ requestInfo }) {
             </View>
             <View style={[Styles.flexRowJustifyBetween, { marginTop: 15 }]}>
                 <TouchableOpacity style={[styles.button, { backgroundColor: AppColors.STEEL_BLUE_COLOR }]}>
-                    <Text style={[Styles.whiteSemiBold10, {marginBottom: 3}]}>Принять</Text>
+                    <Text style={[Styles.whiteSemiBold10, { marginBottom: 3 }]}>Принять</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.button, { backgroundColor: AppColors.BITTERSWEET_COLOR }]}>
-                    <Text style={[Styles.whiteSemiBold10, {marginBottom: 3}]}>Отказаться</Text>
+                    <Text style={[Styles.whiteSemiBold10, { marginBottom: 3 }]}>Отказаться</Text>
                 </TouchableOpacity>
             </View>
         </TouchableOpacity>
-    </Shadow>
+    </Shadow> 
 }
 
 const styles = StyleSheet.create({

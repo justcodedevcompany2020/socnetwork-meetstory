@@ -37,7 +37,7 @@ export default function HomeScreen({ navigation }) {
             </View>
 
             <View style={Styles.blockContainer}>
-                <HorizontalBlock Icon={SortIcon} text={'Поднять анкету наверх'} backImagePath={require('../../assets/pngs/BlockBack3.png')} thin />
+                <HorizontalBlock Icon={SortIcon} text={'Поднять анкету наверх'} backImagePath={require('../../assets/pngs/BlockBack3.png')} thin onPress={() => navigation.navigate('RaisingProfile')}/>
                 <HorizontalBlock Icon={GiftIcon} text={'Подарки'} backImagePath={require('../../assets/pngs/BlockBack4.png')} onPress={() => navigation.navigate('GiftsScreen')} thin />
                 <HorizontalBlock Icon={StarIcon} text={'ТОП 100'} backImagePath={require('../../assets/pngs/BlockBack5.png')} onPress={() => navigation.navigate('Top100Screen')} thin />
             </View>

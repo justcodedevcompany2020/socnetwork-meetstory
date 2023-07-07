@@ -4,13 +4,13 @@ import Input from '../../components/Input';
 import {Styles} from '../../styles/Styles';
 import BalanceBlock from './BalanceBlock';
 
-export default function BalanceSell({navigation}) {
+export default function BuyingAuthority({navigation}) {
   return (
-    <BalanceBlock title = {'Баланс'} goBack headerTitle="Баланс">
+    <BalanceBlock title = {'Покупка авторитета'} goBack headerTitle="Баланс">
       <Text style={Styles.DarkSemiBold20}>На сколько вы хотите купить авторитета?</Text>
-      <Input placeholder={'Введите сумму'} />
+      <Input placeholder={'Введите сумму'} /> 
       <View style={{marginTop: 20}}>
-        <Button onPress={()=>navigation.navigate('PaymentMetod')} text={'Купить'} margin={20} />
+        <Button text={'Купить'} margin={20} onPress={() => navigation.navigate('BalanceCongrats')}/>
       </View>
     </BalanceBlock>
   );

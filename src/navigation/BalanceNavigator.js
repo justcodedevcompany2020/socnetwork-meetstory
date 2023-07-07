@@ -4,11 +4,11 @@ import BalanceScreen from '../screens/Balance/BalanceScreen';
 import AddBalanceScreen from '../screens/Balance/AddBalanceScreen';
 import PaymentMetod from '../screens/Balance/PaymentMetod';
 import { BalanceHistory } from '../screens/Balance/BalanceHistory';
-import BalanceSell from '../screens/Balance/BalanceSell';
-import { BalanceGiftBlock } from '../screens/Balance/BalanceGiftBlock';
+import BuyingAuthority from '../screens/Balance/BuyingAuthority';
+import { RaisingProfile } from '../screens/Balance/RaisingProfile';
 import { BalanceCongrats } from '../screens/Balance/BalanceCongrats';
 import { BalanceCongrats1 } from '../screens/Balance/BalanceCongrats1';
-import { NoBalance } from '../screens/Balance/NoBalance';
+import { NoBalance } from '../screens/Balance/NoBalance'; 
 
 const Stack = createNativeStackNavigator();
 
@@ -49,15 +49,15 @@ export const BalanceNavigator = () => {
                 }}
             />
             <Stack.Screen
-                name="BalanceSell"
-                component={BalanceSell}
+                name="BuyingAuthority"
+                component={BuyingAuthority}
                 options={{
                     headerShown: false
                 }}
             />
             <Stack.Screen
-                name="BalanceGiftBlock"
-                component={BalanceGiftBlock}
+                name="RaisingProfile"
+                component={RaisingProfile}
                 options={{
                     headerShown: false
                 }}

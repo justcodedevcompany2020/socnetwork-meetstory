@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         paddingTop: 5,
         height: 78,
-        minWidth:'38.5%',
+        // minWidth:'38.5%',
     },
     thinBlockContainer: {
         alignItems: 'center',

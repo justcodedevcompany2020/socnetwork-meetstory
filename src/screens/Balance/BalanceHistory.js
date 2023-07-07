@@ -3,8 +3,11 @@ import DateHorizontalBlock from '../../components/DateHorizontalBlock';
 import {HistoryBlock} from '../../components/HistoryBlock';
 import {Styles} from '../../styles/Styles';
 import BalanceBlock from './BalanceBlock';
+import { useState } from 'react';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export const BalanceHistory = () => {
+  const [activeDate,setActiveDate] = useState(0)
   const data = ['Все', 'Июнь 2023', 'Июнь 2023', 'Июнь 2023'];
   const data1 = [
     {
@@ -12,7 +15,7 @@ export const BalanceHistory = () => {
       item: [
         {
           img: require('../../assets/pngs/sell.png'),
-          title: 'Покупки в приложении',
+          title: 'Покупки в приложении', 
           type: 'Авторитет',
           price: '-₽9.99',
         },
@@ -53,17 +56,21 @@ export const BalanceHistory = () => {
         ],
     },
   ];
+
+
   return (
     <BalanceBlock goBack title="История транзакций" add>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {data.map((elm, i) => (
-          <DateHorizontalBlock text={elm} key={i} />
+          <TouchableOpacity onPress={()=>setActiveDate(i)} key={i}>
+            <DateHorizontalBlock selected = {i === activeDate} text={elm} />
+          </TouchableOpacity>
         ))}
       </ScrollView>
-      <ScrollView showsVerticalScrollIndicator={false} style = {{marginBottom:5}}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{marginVertical: 10}}>
         {data1.map((elm, index) => (
-          <View style={{marginVertical: 10}}>
-            <Text key={index} style={Styles.darkMedium15}>
+          <View key={index}>
+            <Text style={Styles.darkMedium15}>
               {elm.date}
             </Text>
             {elm.item.map((e, i) => (

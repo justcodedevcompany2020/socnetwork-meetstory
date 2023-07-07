@@ -6,7 +6,7 @@ import BalanceBlock from './BalanceBlock';
 
 export default function AddBalanceScreen({navigation}) {
   return (
-    <BalanceBlock goBack headerTitle="Баланс">
+    <BalanceBlock goBack title="Пополнить баланс">
       <Text style={Styles.DarkSemiBold20}>Сколько вы хотите пополнить?</Text>
       <Input placeholder={'Введите сумму'} />
       <View style={{marginTop: 20}}>
