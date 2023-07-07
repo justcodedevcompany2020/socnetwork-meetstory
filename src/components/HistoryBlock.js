@@ -1,0 +1,40 @@
+import {View, StyleSheet, Image, Text} from 'react-native';
+import {Shadow} from 'react-native-shadow-2';
+import {Styles} from '../styles/Styles';
+
+export const HistoryBlock = ({img, title, type, price}) => {
+  return (
+    <Shadow
+      distance={2}
+      containerStyle={{marginTop: 10, marginHorizontal: 5,}}
+      style={styles.block}>
+      <View style={Styles.flexRow}>
+        <Image style={styles.img} source={img} />
+        <View style={styles.titleBlocK}>
+          <Text style = {Styles.darkMedium14}>{title}</Text>
+          <Text style = {Styles.darkBlueMedium12}>{type}</Text>
+        </View>
+      </View>
+      <View style = {{alignItems:'flex-start',justifyContent:'flex-start'}}>
+        <Text style = {[price[0] === '-'?Styles.bittersweetSemiBold12:Styles.darkBlueMedium12]}>{price}</Text>
+      </View>
+    </Shadow>
+  );
+};
+
+const styles = StyleSheet.create({
+  block: {
+    width: '100%',
+    padding:7,
+    justifyContent:'space-between',
+    flexDirection:'row',
+    borderRadius:6,
+  },
+  img: {
+    width: 50,
+    height: 50,
+  },
+  titleBlocK: {
+    marginHorizontal: 20,
+  },
+});
