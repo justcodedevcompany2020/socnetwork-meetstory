@@ -8,6 +8,12 @@ import AddPostScreen from '../screens/profile/AddPostScreen';
 import MyPhotosScreen from '../screens/profile/MyPhotosScreen';
 import AddPhotoScreen from '../screens/profile/AddPhotoScreen';
 import MyGiftsScreen from '../screens/profile/MyGiftsScreen';
+import { SettingScreen } from '../screens/settings/SettingScreen';
+import { AboutAs } from '../screens/settings/AboutAs';
+import { BalanceCongrats } from '../screens/Balance/BalanceCongrats';
+import { NotificationScreen } from '../screens/settings/NotificationScreen';
+import { ChnagePasswordScreen } from '../screens/settings/ChnagePasswordScreen';
+import { PrivacyScreen } from '../screens/settings/PrivacyScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -80,7 +86,50 @@ export const ProfileNavigator = () => {
                     ),
                 })}
             />
-
+            <Stack.Screen
+                name="BalanceCongrats"
+                component={BalanceCongrats}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="SettingScreen"
+                component={SettingScreen}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="AboutAs"
+                component={AboutAs}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="NotificationScreen"
+                component={NotificationScreen}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="ChnagePasswordScreen"
+                component={ChnagePasswordScreen}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="PrivacyScreen"
+                component={PrivacyScreen}
+                options={{
+                    headerShown: false
+                }}
+            />
         </Stack.Navigator>
     );
 };
+// ChnagePasswordScreen
+// PrivacyScreen

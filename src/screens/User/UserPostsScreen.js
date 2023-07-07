@@ -66,7 +66,7 @@ export const UserPostsScreen = ({navigation}) => {
       <ScrollView  showsVerticalScrollIndicator = {false}>
           {data.map((elm, i) => {
             if(elm.type === 'forum'){
-              return <ForumBlock moveDown forumInfo={elm} />
+              return <ForumBlock key={i} moveDown forumInfo={elm} />
             }
             return <PostComponent key={i} postInfo={elm} navigation={navigation} />
           })}
@@ -74,4 +74,3 @@ export const UserPostsScreen = ({navigation}) => {
     </View>
   );
 };
-// ForumBlock

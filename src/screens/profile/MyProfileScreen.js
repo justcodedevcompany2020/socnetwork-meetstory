@@ -33,7 +33,7 @@ export default function MyProfileScreen({ navigation }) {
                 <HorizontalBlock text={'Мои фотографии'} backImagePath={require('../../assets/pngs/BlockBack9.png')} Icon={PhotoIcon} onPress={() => navigation.navigate('MyPhotosScreen')}/>
                 <View style={Styles.flexRowJustifyBetween}>
                     <HorizontalBlock text={'Мои подарки'} backImagePath={require('../../assets/pngs/BlockBack11.png')} Icon={GiftIcon} width={'49%'} onPress={() => navigation.navigate('MyGiftsScreen')}/>
-                    <HorizontalBlock text={'Настройки'} backImagePath={require('../../assets/pngs/BlockBack12.png')} Icon={SettingsIcon} width={'49%'} />
+                    <HorizontalBlock text={'Настройки'} backImagePath={require('../../assets/pngs/BlockBack12.png')} Icon={SettingsIcon} width={'49%'} onPress = {()=>navigation.navigate('SettingScreen')} />
                 </View>
                 <View style={{ marginVertical: 20 }}>
                     <Button text={'Выйти'} margin noFill />
