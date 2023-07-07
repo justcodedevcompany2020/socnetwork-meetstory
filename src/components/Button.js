@@ -3,10 +3,10 @@ import { ActivityIndicator, StyleSheet, Text, TouchableOpacity } from "react-nat
 import { AppColors } from "../styles/AppColors";
 import { Styles } from "../styles/Styles";
 
-export default function Button({ text, onPress, loading, margin, height, marginBottom, backgroundColor }) {
-    return <TouchableOpacity style={[styles.buttonContainer, margin && {marginHorizontal: 25}, height && {height: height}, backgroundColor && {backgroundColor: backgroundColor}, marginBottom && {marginBottom: marginBottom}, ]} onPress={onPress}>
-        {loading ? <ActivityIndicator color={AppColors.WHITE_COLOR} size={'large'} /> : <Text style={[Styles.whiteSemiBold18, {marginBottom: 5}]}>{text}</Text>}
-    </TouchableOpacity>
+export default function Button({ text, onPress, loading, margin, height, marginBottom, backgroundColor, noFill }) {
+    return <TouchableOpacity style={[styles.buttonContainer, margin && {marginHorizontal: 25}, height && {height: height}, backgroundColor && {backgroundColor: backgroundColor}, marginBottom && {marginBottom: marginBottom}, noFill && {backgroundColor: AppColors.WHITE_COLOR, borderWidth: 2, borderColor: AppColors.STEEL_BLUE_COLOR}]} onPress={onPress}>
+        {loading ? <ActivityIndicator color={AppColors.WHITE_COLOR} size={'large'} /> : <Text style={[Styles.whiteSemiBold18, {marginBottom: 5}, noFill && {color: AppColors.STEEL_BLUE_COLOR}]}>{text}</Text>}
+    </TouchableOpacity> 
 }
 
 const styles = StyleSheet.create({

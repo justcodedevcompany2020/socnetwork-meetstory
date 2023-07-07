@@ -12,6 +12,7 @@ import NotificationsScreen from '../screens/notifications/NotificationsScreen';
 import Header from './Header';
 import { SearchNavigator } from './SearchNavigator';
 import { BalanceNavigator } from './BalanceNavigator';
+import { ProfileNavigator } from './ProfileNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -63,8 +64,8 @@ export default function NavigationMenu() {
         })}
       />
       <Tab.Screen
-        name="BalanceNavigator"
-        component={BalanceNavigator}
+        name="Profile"
+        component={ProfileNavigator}
         options={{
           title: '',
           headerShown: false,

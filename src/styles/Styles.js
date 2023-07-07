@@ -49,12 +49,12 @@ export const Styles = StyleSheet.create({
     fontFamily: 'Raleway-SemiBold',
     color: AppColors.DARK_CHARCOAL_COLOR
   },
-  darkSemiBold14:{
+  darkSemiBold14: {
     fontSize: 14,
     fontFamily: 'Raleway-SemiBold',
     color: AppColors.DARK_CHARCOAL_COLOR
   },
-  darkSemiBold12:{
+  darkSemiBold12: {
     fontSize: 12,
     fontFamily: 'Raleway-SemiBold',
     color: AppColors.DARK_CHARCOAL_COLOR
@@ -89,22 +89,22 @@ export const Styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: 'Raleway-SemiBold'
   },
-  whiteSemiBold16:{
+  whiteSemiBold16: {
     color: AppColors.WHITE_COLOR,
     fontSize: 16,
     fontFamily: 'Raleway-SemiBold'
   },
-  whiteRegular12:{
+  whiteRegular12: {
     color: AppColors.WHITE_COLOR,
     fontSize: 12,
     fontFamily: 'Raleway-Regular'
   },
-  whiteRegular13:{
+  whiteRegular13: {
     color: AppColors.WHITE_COLOR,
     fontSize: 13,
     fontFamily: 'Raleway-Regular'
   },
-  whiteSemiBold13:{
+  whiteSemiBold13: {
     color: AppColors.WHITE_COLOR,
     fontSize: 13,
     fontFamily: 'Raleway-SemiBold'
@@ -139,6 +139,11 @@ export const Styles = StyleSheet.create({
     fontSize: 10,
     fontFamily: 'Raleway-SemiBold'
   },
+  darkBlueSemiBold12: {
+    color: AppColors.LOCHMARA_COLOR,
+    fontSize: 12,
+    fontFamily: 'Raleway-SemiBold'
+  },
   darkBlueSemiBold20: {
     color: AppColors.LOCHMARA_COLOR,
     fontSize: 20,
@@ -154,22 +159,27 @@ export const Styles = StyleSheet.create({
     fontSize: 15,
     fontFamily: 'Raleway-SemiBold'
   },
-  whiteMedium15:{
+  whiteMedium15: {
     color: AppColors.WHITE_COLOR,
     fontSize: 15,
     fontFamily: 'Raleway-Medium'
   },
-  whiteSemiBold20:{
+  whiteMedium13: {
+    color: AppColors.WHITE_COLOR,
+    fontSize: 13,
+    fontFamily: 'Raleway-Medium'
+  },
+  whiteSemiBold20: {
     color: AppColors.WHITE_COLOR,
     fontSize: 20,
     fontFamily: 'Raleway-SemiBold'
   },
-  whiteMedium20:{
+  whiteMedium20: {
     color: AppColors.WHITE_COLOR,
     fontSize: 20,
     // fontWeight:500,
   },
-  DarkSemiBold20:{
+  DarkSemiBold20: {
     color: AppColors.DARK_CHARCOAL_COLOR,
     fontSize: 20,
     fontFamily: 'Raleway-SemiBold'
@@ -179,7 +189,7 @@ export const Styles = StyleSheet.create({
     padding: 20,
     borderColor: AppColors.SOLITUDE_COLOR
   },
-  blackRegular12:{
+  blackRegular12: {
     color: AppColors.BLACK_COLOR,
     fontSize: 12,
     fontFamily: 'Raleway-Regular'
@@ -189,13 +199,13 @@ export const Styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: 'Raleway-Regular'
   },
-  whiteSemiBold10:{
+  whiteSemiBold10: {
     color: AppColors.WHITE_COLOR,
     fontSize: 10,
     fontFamily: 'Raleway-SemiBold'
   },
-  balanceText:{
-    color:AppColors.WHITE_COLOR,
-    fontSize:30,
+  balanceText: {
+    color: AppColors.WHITE_COLOR,
+    fontSize: 30,
   },
 });

@@ -4,7 +4,7 @@ import { BlackBackIcon, BlueBackIcon, PlusIcon } from "../assets/svgs/AuthSvgs";
 import { AppColors } from "../styles/AppColors";
 import { Styles } from "../styles/Styles";
 
-export default function Header({ title, navigation, backIcon, plusIcon, blackBackIcon }) {
+export default function Header({ title, navigation, backIcon, plusIcon, blackBackIcon, onPressPlus }) {
     return <View style={styles.container}>
         <Text style={[Styles.blueSemiBold20, styles.title]} numberOfLines={1}>{title}</Text>
         {backIcon && <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backIcon}>
@@ -13,7 +13,7 @@ export default function Header({ title, navigation, backIcon, plusIcon, blackBac
         {blackBackIcon && <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backIcon}>
             <BlackBackIcon />
         </TouchableOpacity>}
-        {plusIcon && <TouchableOpacity style={styles.plusIcon}>
+        {plusIcon && <TouchableOpacity style={styles.plusIcon} onPress={onPressPlus}>
             <PlusIcon />
         </TouchableOpacity>}
     </View>

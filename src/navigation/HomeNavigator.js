@@ -34,7 +34,7 @@ export const HomeNavigator = () => {
                 component={HomeScreen}
                 options={{
                     headerShown: false
-                }}
+                }} 
             />
             <Stack.Screen
                 name="BecomeAnAuthority"
