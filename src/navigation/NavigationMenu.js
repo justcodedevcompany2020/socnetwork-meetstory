@@ -11,6 +11,7 @@ import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import NotificationsScreen from '../screens/notifications/NotificationsScreen';
 import Header from './Header';
 import { BalanceNavigator } from './BalanceNavigator';
+import { SearchNavigation } from './SearchNavigation';
 
 const Tab = createBottomTabNavigator();
 const PayScreenComponent = () => {
@@ -26,7 +27,6 @@ export default function NavigationMenu() {
         // tabBarStyle:  { height: 80, borderTopWidth: 0, elevation: 0 },
         tabBarStyle: (() => {
           const routeName = getFocusedRouteNameFromRoute(route) ?? '';
-          console.log(routeName);
           if (routeName === 'CommentsScreen' || routeName === 'ForumSingle') {
             return {
               display: 'none',
@@ -39,7 +39,7 @@ export default function NavigationMenu() {
     >
       <Tab.Screen
         name="Search"
-        component={PayScreenComponent}
+        component={SearchNavigation}
         options={({ route }) => ({
           headerShown: false,
           tabBarIcon: ({ focused }) => <SearchIcon focused={focused} />

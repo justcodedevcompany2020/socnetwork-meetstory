@@ -91,7 +91,6 @@ export const HomeNavigator = () => {
                 name="Top100OfSmth"
                 component={Top100OfSmth}
                 options={({ navigation, route }) => {
-                    console.log(route.params.title)
                     return {
                         title: '',
                         headerTransparent: true,

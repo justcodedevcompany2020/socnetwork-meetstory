@@ -165,6 +165,11 @@ export const Styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: 'Raleway-Regular'
   },
+  whiteRegular12:{
+    color: AppColors.WHITE_COLOR,
+    fontSize: 12,
+    fontFamily: 'Raleway-Regular'
+  },
   blackRegular14: {
     color: AppColors.BLACK_COLOR,
     fontSize: 14,
@@ -173,6 +178,11 @@ export const Styles = StyleSheet.create({
   whiteSemiBold10:{
     color: AppColors.WHITE_COLOR,
     fontSize: 10,
+    fontFamily: 'Raleway-SemiBold'
+  },
+  whiteSemiBold16:{
+    color: AppColors.WHITE_COLOR,
+    fontSize: 16,
     fontFamily: 'Raleway-SemiBold'
   },
   balanceText:{
