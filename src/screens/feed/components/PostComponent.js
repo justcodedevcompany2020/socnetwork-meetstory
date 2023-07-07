@@ -1,5 +1,5 @@
 import React from "react";
-import { Dimensions, Image, StyleSheet, View,Text } from "react-native";
+import { Dimensions, Image, StyleSheet, View, Text } from "react-native";
 import { Shadow } from "react-native-shadow-2";
 import { Styles } from "../../../styles/Styles";
 import InfoAboutPostBlock from "./InfoAboutPostBlock";
@@ -10,17 +10,17 @@ const { width } = Dimensions.get('screen')
 export default function PostComponent({ postInfo, navigation }) {
     return <View style={styles.container}>
         {postInfo.img ?
-            <Image source={postInfo.img} style={styles.postImg} />:
-            <TextPostComponent text = {postInfo.text} />
+            <Image source={postInfo.img} style={styles.postImg} /> :
+            postInfo.text && <TextPostComponent text={postInfo.text} />
         }
-        <InfoAboutPostBlock postInfo={postInfo} onPressComment={() => navigation.navigate('CommentsScreen', { postInfo })}/>
+        <InfoAboutPostBlock postInfo={postInfo} onPressComment={() => navigation.navigate('CommentsScreen', { postInfo })} />
     </View>
 }
 
 const styles = StyleSheet.create({
     container: {
         marginBottom: 20,
-        alignItems:'center',
+        alignItems: 'center',
     },
     postImg: {
         width: '100%',
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         borderRadius: 80,
         marginRight: 8
     },
-    
+
     numbers: {
         ...Styles.darkRegular12,
         marginBottom: 5,

@@ -29,11 +29,11 @@ export default function Input({ labelText, inputType, value, setValue, minLength
                     console.log(selectedItem, index)
                     setValue(selectedItem)
                 }}
+                defaultButtonText={placeholder}
                 defaultValue={value}
                 buttonStyle={[styles.inputContainer, { paddingHorizontal: 5, width: '100%' }, error && { borderColor: 'red' }, open && { borderRadius: 0 }]}
                 dropdownStyle={{ marginTop: -26, backgroundColor: AppColors.FIRST_SNOW_COLOR }}
                 buttonTextStyle={[Styles.darkRegular15, { textAlign: 'left' }]}
-                defaultButtonText={' '}
                 rowTextStyle={[Styles.darkRegular15, { textAlign: 'left' }]}
                 renderDropdownIcon={BlackArrowDown}
             />
@@ -41,7 +41,8 @@ export default function Input({ labelText, inputType, value, setValue, minLength
                 <TouchableOpacity
                     style={[
                         styles.container,
-                        styles.inputContainer
+                        styles.inputContainer,
+                        {marginBottom: 0}
                     ]} onPress={() => setOpenDatePicker(true)}>
                     <Text style={styles.input}>{value ? moment(date).format('D.M.YYYY') : 'Неограниченно'}</Text>
                     <DatePicker

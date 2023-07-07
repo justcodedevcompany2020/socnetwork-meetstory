@@ -213,4 +213,13 @@ export const Styles = StyleSheet.create({
     color: AppColors.WHITE_COLOR,
     fontSize: 30,
   },
+  input: {
+    backgroundColor: AppColors.FIRST_SNOW_COLOR,
+    marginBottom: 50,
+    borderRadius: 6,
+    marginTop: 10,
+    height: 150,
+    paddingHorizontal: 15,
+    textAlignVertical: "top"
+  }
 });

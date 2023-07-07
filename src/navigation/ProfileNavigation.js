@@ -8,6 +8,11 @@ import AddPostScreen from '../screens/profile/AddPostScreen';
 import MyPhotosScreen from '../screens/profile/MyPhotosScreen';
 import AddPhotoScreen from '../screens/profile/AddPhotoScreen';
 import MyGiftsScreen from '../screens/profile/MyGiftsScreen';
+import ApplicationFormScreen from '../screens/applicationForm/ApplicationForm';
+import PersonalInformation from '../screens/applicationForm/PersonalInformation';
+import AboutMeScreen from '../screens/applicationForm/AboutMeScreen';
+import PreferencesScreen from '../screens/applicationForm/PreferencesScreen';
+import AppearanceScreen from '../screens/applicationForm/AppearanceScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -69,7 +74,7 @@ export const ProfileNavigator = () => {
                     headerShown: false
                 }}
             />
-             <Stack.Screen
+            <Stack.Screen
                 name="MyGiftsScreen"
                 component={MyGiftsScreen}
                 options={({ navigation }) => ({
@@ -80,7 +85,42 @@ export const ProfileNavigator = () => {
                     ),
                 })}
             />
+            <Stack.Screen
+                name="ApplicationFormScreen"
+                component={ApplicationFormScreen}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="PersonalInformation"
+                component={PersonalInformation}
+                options={{
+                    headerShown: false
+                }}
+            />
 
+            <Stack.Screen
+                name="AboutMeScreen"
+                component={AboutMeScreen}
+                options={{
+                    headerShown: false
+                }}
+            />
+             <Stack.Screen
+                name="PreferencesScreen"
+                component={PreferencesScreen}
+                options={{
+                    headerShown: false
+                }}
+            />
+             <Stack.Screen
+                name="AppearanceScreen"
+                component={AppearanceScreen}
+                options={{
+                    headerShown: false
+                }}
+            />
         </Stack.Navigator>
     );
 };

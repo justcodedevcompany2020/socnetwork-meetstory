@@ -7,7 +7,7 @@ import { AppColors } from "../../../styles/AppColors";
 
 
 export default function InfoAboutPostBlock({ postInfo, onPressComment }) {
-    return <View style={[Styles.flexRowJustifyBetween, {width: '100%'}]}>
+    return <View style={[Styles.flexRowJustifyBetween, {width: '100%', marginBottom: 10 }]}>
         <View style={[Styles.flexRow, { width: '40%' }]}>
             <Image source={postInfo.profileImg} style={styles.profileImg} />
             <View style={{ flexShrink: 1 }}>
