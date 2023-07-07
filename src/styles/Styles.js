@@ -129,6 +129,11 @@ export const Styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: 'Raleway-Medium'
   },
+  darkBlueMedium16: {
+    color: AppColors.LOCHMARA_COLOR,
+    fontSize: 16,
+    fontFamily: 'Raleway-Medium'
+  },
   darkBlueSemiBold14: {
     color: AppColors.LOCHMARA_COLOR,
     fontSize: 14,

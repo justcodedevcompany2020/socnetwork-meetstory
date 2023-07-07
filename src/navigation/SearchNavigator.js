@@ -2,6 +2,8 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SearchScreen from '../screens/search/SearchScreen';
 import { UserScreen } from '../screens/User/userScreen';
+import Header from './Header';
+import { UserPostsScreen } from '../screens/User/UserPostsScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +28,18 @@ export const SearchNavigator = () => {
                 options={{
                     headerShown: false
                 }}
+            />
+            <Stack.Screen
+                name="UserPostsScreen"
+                component={UserPostsScreen}
+                options={({ navigation,route }) => ({
+
+                    title: '',
+                    headerTransparent: true,
+                    header: () => (
+                        <Header navigation={navigation} title={route.params.username} backIcon />
+                    ),
+                })}
             />
         </Stack.Navigator>
     );

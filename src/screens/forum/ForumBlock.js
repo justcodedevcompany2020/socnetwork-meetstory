@@ -7,9 +7,9 @@ import { AppColors } from "../../styles/AppColors";
 
 const { width } = Dimensions.get('screen')
 
-export default function ForumBlock({ forumInfo, onPressForum }) {
+export default function ForumBlock({ forumInfo, onPressForum, moveDown}) {
     return <View style={{ marginBottom: 25 }}>
-        <InfoAboutPostBlock postInfo={forumInfo} />
+        {!moveDown && <InfoAboutPostBlock postInfo={forumInfo} />}
 
         <TouchableOpacity onPress={onPressForum}>
             <Shadow distance={3} containerStyle={[, { marginHorizontal: 3, marginTop: 10, }]} style={[{ width: '100%', padding: 10, borderRadius: 6 }, Styles.flexRow,]} >
@@ -17,6 +17,11 @@ export default function ForumBlock({ forumInfo, onPressForum }) {
                 <Text style={[{ flexShrink: 1, marginLeft: 10 }, Styles.blackRegular12]}>Есть над чем задуматься: активно развивающиеся страны третьего мира лишь добавляют фракционны</Text>
             </Shadow>
         </TouchableOpacity>
+        {moveDown && <View style = {{marginTop:10}}>
+            <InfoAboutPostBlock postInfo={forumInfo} />
+        </View>
+        }
+
     </View>
 }
 
