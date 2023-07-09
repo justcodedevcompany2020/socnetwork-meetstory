@@ -1,11 +1,12 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SearchScreen from '../screens/search/SearchScreen';
-import { UserScreen } from '../screens/User/userScreen';
+import { UserScreen } from '../screens/user/UserScreen';
 import Header from './Header';
-import { UserPostsScreen } from '../screens/User/UserPostsScreen';
-import { UserPhotoScreen } from '../screens/User/UserPhotoScreen';
-import { UserFriends } from '../screens/User/UserFriends';
+import { UserPostsScreen } from '../screens/user/UserPostsScreen';
+import { UserPhotoScreen } from '../screens/user/UserPhotoScreen';
+import { UserFriends } from '../screens/user/UserFriends';
+import AdvancedSearchScreen from '../screens/search/AdvancedSearchScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -57,6 +58,13 @@ export const SearchNavigator = () => {
             <Stack.Screen
                 name="UserFriends"
                 component={UserFriends}
+                options={{
+                    headerShown: false
+                }}
+            />
+             <Stack.Screen
+                name="AdvancedSearchScreen"
+                component={AdvancedSearchScreen}
                 options={{
                     headerShown: false
                 }}

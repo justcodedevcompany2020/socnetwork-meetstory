@@ -21,7 +21,7 @@ export default function PersonalInformation() {
                 <Input labelText={'Имя'} value={name} setValue={setName} />
                 <Input labelText={'Пол'} value={selectedGender} setValue={setSelectedGender} inputType={'dropdown'} data={genders} />
                 <Input labelText={'Дата рождения'} value={birthDate} setValue={setBirthDate} inputType={'date'} />
-                <Input labelText={'Место жительства'} value={selectedCountry} setValue={setSelectedGender} inputType={'dropdown'} data={countries} placeholder={'Выберите страну'} />
+                <Input labelText={'Место жительства'} value={selectedCountry} setValue={setSelectedCountry} inputType={'dropdown'} data={countries} placeholder={'Выберите страну'} />
                 <Input labelText={'Семейное положение'} value={familyStatus} setValue={setFamilyStatus} />
                 <Input labelText={'Дети'} setValue={setSelectedGender} inputType={'dropdown'} data={genders} placeholder={'Выбрать вариант'}/>
                 <Input labelText={'Образование'} setValue={setSelectedGender} inputType={'dropdown'} data={genders} placeholder={'Выбрать вариант'}/>

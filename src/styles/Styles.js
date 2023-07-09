@@ -44,6 +44,11 @@ export const Styles = StyleSheet.create({
     fontFamily: 'Raleway-Medium',
     color: AppColors.DARK_CHARCOAL_COLOR
   },
+  darkMedium20: {
+    fontSize: 20,
+    fontFamily: 'Raleway-Medium',
+    color: AppColors.DARK_CHARCOAL_COLOR
+  },
   darkSemiBold16: {
     fontSize: 16,
     fontFamily: 'Raleway-SemiBold',
@@ -61,6 +66,11 @@ export const Styles = StyleSheet.create({
   },
   darkMedium12: {
     fontSize: 12,
+    fontFamily: 'Raleway-Medium',
+    color: AppColors.DARK_CHARCOAL_COLOR
+  },
+  darkMedium13: {
+    fontSize: 13,
     fontFamily: 'Raleway-Medium',
     color: AppColors.DARK_CHARCOAL_COLOR
   },
@@ -87,6 +97,11 @@ export const Styles = StyleSheet.create({
   blackMedium18: {
     color: AppColors.BLACK_COLOR,
     fontSize: 18,
+    fontFamily: 'Raleway-Medium'
+  },
+  blackMedium12: {
+    color: AppColors.BLACK_COLOR,
+    fontSize: 12,
     fontFamily: 'Raleway-Medium'
   },
   blueSemiBold12: {
