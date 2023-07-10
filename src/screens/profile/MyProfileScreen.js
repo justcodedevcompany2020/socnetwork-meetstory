@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "../../components/Container";
 import { UserNameBlock } from "../../components/UserNameBlock";
 import { ScrollView, Text, View } from "react-native";
@@ -8,9 +8,13 @@ import { MessageIcon, MyFeedIcon, MyFriendsIcon, PhotoIcon, SettingsIcon, UserIc
 import { GiftIcon } from "../../assets/svgs/HomeSvgs";
 import Button from "../../components/Button";
 import { WallSvg } from "../../assets/svgs/UserSvgs";
+import Popup from "../../components/Popup";
+import { AppColors } from "../../styles/AppColors";
 
 
 export default function MyProfileScreen({ navigation }) {
+    const [showPopup, setShowPopup] = useState(false)
+
     return <Container headerTitle={'Мой профиль'} settingsIcon >
         <UserNameBlock myProfile />
         <View style={{ width: '100%', paddingLeft: 20, marginVertical: 20 }}>
@@ -27,13 +31,17 @@ export default function MyProfileScreen({ navigation }) {
                 </View>
                 <HorizontalBlock text={'Мои фотографии'} backImagePath={require('../../assets/pngs/BlockBack9.png')} Icon={PhotoIcon} onPress={() => navigation.navigate('MyPhotosScreen')} />
                 <View style={Styles.flexRowJustifyBetween}>
-                    <HorizontalBlock text={'Мои подарки'} backImagePath={require('../../assets/pngs/BlockBack11.png')} Icon={GiftIcon} width={'49%'} onPress={() => navigation.navigate('MyGiftsScreen')}/>
-                    <HorizontalBlock text={'Настройки'} backImagePath={require('../../assets/pngs/BlockBack12.png')} Icon={SettingsIcon} width={'49%'} onPress = {()=>navigation.navigate('SettingScreen')} />
+                    <HorizontalBlock text={'Мои подарки'} backImagePath={require('../../assets/pngs/BlockBack11.png')} Icon={GiftIcon} width={'49%'} onPress={() => navigation.navigate('MyGiftsScreen')} />
+                    <HorizontalBlock text={'Настройки'} backImagePath={require('../../assets/pngs/BlockBack12.png')} Icon={SettingsIcon} width={'49%'} onPress={() => navigation.navigate('SettingScreen')} />
                 </View>
                 <View style={{ marginVertical: 20 }}>
-                    <Button text={'Выйти'} margin noFill />
+                    <Button text={'Выйти'} margin noFill onPress={() => setShowPopup(true)} />
                 </View>
             </ScrollView>
+            <Popup showModal={showPopup} setShowModal={setShowPopup} title={'Вы действительно хотите выйти из аккаунта?'}>
+                <Button text={'Да'} margin marginBottom={8} onPress={() => navigation.navigate('LoginScreen')} />
+                <Button text={'Нет'} margin marginBottom={30} backgroundColor={AppColors .BITTERSWEET_COLOR} onPress={() => setShowPopup(false)} />
+            </Popup>
         </View>
     </Container>
 }
