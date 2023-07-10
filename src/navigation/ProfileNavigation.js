@@ -20,6 +20,7 @@ import { ChnagePasswordScreen } from '../screens/settings/ChnagePasswordScreen';
 import { PrivacyScreen } from '../screens/settings/PrivacyScreen';
 import { ChangeTemaScreen } from '../screens/settings/ChangeTemaScreen';
 import { AccountAndSecurityScreen } from '../screens/settings/AccountAndSecurityScreen';
+import { UserScreen } from '../screens/user/UserScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -173,6 +174,13 @@ export const ProfileNavigator = () => {
             <Stack.Screen
                 name="ChangeTemaScreen"
                 component={ChangeTemaScreen}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="UserScreen"
+                component={UserScreen}
                 options={{
                     headerShown: false
                 }}

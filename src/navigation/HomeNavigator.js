@@ -20,6 +20,7 @@ import { GiftYourself } from '../screens/Balance/GiftYourself';
 import { BalanceCongrats } from '../screens/Balance/BalanceCongrats';
 import MessagesScreen from '../screens/chat/MessagesScreen';
 import ChatScreen from '../screens/chat/Chat';
+import { UserScreen } from '../screens/user/UserScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -212,6 +213,13 @@ export const HomeNavigator = () => {
                             <Header navigation={navigation} backIcon chatHeader={route.params}/>
                         ),
                     }
+                }}
+            />
+            <Stack.Screen
+                name="UserScreen"
+                component={UserScreen}
+                options={{
+                    headerShown: false
                 }}
             />
         </Stack.Navigator>
