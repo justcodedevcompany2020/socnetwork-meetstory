@@ -24,7 +24,7 @@ const AppNavigation = () => {
         backgroundColor={'transparent'}
       />
       <Stack.Navigator
-        initialRouteName={'Menu'}
+        initialRouteName={'LoginScreen'}
         screenOptions={({ route }) => ({
           tabBarShowLabel: false,
         })}>
