@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Image, StyleSheet, TouchableOpacity, View, Text } from "react-native";
 import { Styles } from "../styles/Styles";
 import { AppColors } from "../styles/AppColors";
 import { Shadow } from 'react-native-shadow-2';
 import { BlueCommentIcon, BlueHeart14, BrokenHeart14 } from "../assets/svgs/HomeSvgs";
 import { MoreIcon } from "../assets/svgs/AuthSvgs";
+import Popup from "./Popup";
+import Button from "./Button";
+import { useNavigation } from "@react-navigation/native";
 
-export default function UserBlock({ authorityMode, activityStatus, chatIcon, selected, rating, moveEnd, moreIcon, onPress, lastActionInfo  }) {
+export default function UserBlock({ authorityMode, activityStatus, chatIcon, selected, rating, moveEnd, moreIcon, onPress, lastActionInfo ,onPresMore }) {
+  const [openPopUp,setOpenPopUp] = useState(false)
+    const navigation = useNavigation()
     return <Shadow distance={3} containerStyle={{ marginBottom: 10, marginHorizontal: 5, marginTop: 3 }} style={{ width: '100%' }}>
         <TouchableOpacity onPress={onPress} style={[styles.container, Styles.flexRowJustifyBetween, selected && { borderWidth: 2, borderColor: AppColors.GOLD_COLOR, backgroundColor: AppColors.LEMON_COLOR }]}>
             <View style={[Styles.flexRowJustifyBetween, { width: '100%', alignItems: 'flex-start' }]}>
@@ -40,7 +45,7 @@ export default function UserBlock({ authorityMode, activityStatus, chatIcon, sel
                 </View> : activityStatus ?
                     <View style={[styles.activityBlock, moveEnd && { justifyContent: 'flex-end' }, {position: 'absolute', right: 0}]}>
                         {chatIcon && <BlueCommentIcon />}
-                        {moreIcon && <MoreIcon />}
+                        {moreIcon && <TouchableOpacity style = {{padding:5}} onPress={()=>setOpenPopUp(true)}><MoreIcon /></TouchableOpacity>}
                         <Text style={Styles.darkBlueSemiBold10}>Cегодня в 13:44</Text>
                     </View> : rating ?
                         <Text style={Styles.darkBlueSemiBold10}>
@@ -49,6 +54,11 @@ export default function UserBlock({ authorityMode, activityStatus, chatIcon, sel
                         : null}
             </View>
         </TouchableOpacity>
+        <Popup setShowModal = {setOpenPopUp} title={'Выберите действие'} showModal = {openPopUp} >
+            <Button margin marginBottom={10} onPress={()=>navigation.navigate('UserScreen')} backgroundColor={AppColors.LOCHMARA_COLOR} text={'Открыть профиль'}/>
+            <Button marginBottom={10} margin onPress={()=>navigation.navigate('ChatScreen',{username:'sdsdsd',img:require('../assets/pngs/ProfileDefault.png')})} text={'Отправить сообщение'}/>
+            <Button backgroundColor={AppColors.SKY_BLUE_COLOR} text={'Добавить в друзья'} marginBottom = {30} margin/>
+        </Popup>
     </Shadow>
 }
 

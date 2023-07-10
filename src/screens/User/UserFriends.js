@@ -12,7 +12,6 @@ export const UserFriends = ({navigation}) => {
    {},
    {},
    {},
-
   ];
   return (
     <Container headerTitle="Друзья пользователя" goBack>
@@ -20,7 +19,7 @@ export const UserFriends = ({navigation}) => {
         <View style = {Styles.whiteContainer}>
             <ScrollView showsVerticalScrollIndicator = {false} style = {{marginVertical:20}}>
                 {data.map((elm,i)=>(
-                    <UserBlock  moreIcon activityStatus  onPress = {()=>navigation.navigate('UserScreen')} key={i}/>
+                    <UserBlock  moreIcon activityStatus  onPress = {()=>console.log(599)} key={i}/>
                 ))}
             </ScrollView>
         </View>

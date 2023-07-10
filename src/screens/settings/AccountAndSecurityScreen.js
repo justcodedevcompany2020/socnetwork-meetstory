@@ -6,6 +6,7 @@ import Button from "../../components/Button"
 import Container from "../../components/Container"
 import { Styles } from "../../styles/Styles"
 import {AppColors} from '../../styles/AppColors'
+import Popup from "../../components/Popup"
 
 export const AccountAndSecurityScreen = ({navigation}) =>{
     const [data,setData] = useState([
@@ -15,6 +16,7 @@ export const AccountAndSecurityScreen = ({navigation}) =>{
         {value:'Изменить пароль',label:'Пароль',type:'button',onPress:()=>{navigation.navigate('ChnagePasswordScreen')}},
 
     ])
+    const [openPopup,setOpenPopUp] = useState(false)
     return <Container headerTitle = {'Аккаунт и безопастность'} goBack>
         <View style = {[Styles.whiteContainer,{marginTop:30,paddingVertical:20}]}>
             <ScrollView showsVerticalScrollIndicator = {false}>
@@ -22,10 +24,14 @@ export const AccountAndSecurityScreen = ({navigation}) =>{
                 <BlueInput onPress = {elm?.onPress} type={elm.type} key={i} labelText = {elm.label} value = {elm.value}/>
             ))}
             <View style = {{marginTop:40}}>
-                <Button backgroundColor={AppColors.BITTERSWEET_COLOR} text = 'Удалить аккаунт' />
+                <Button onPress={()=>setOpenPopUp(true)} backgroundColor={AppColors.BITTERSWEET_COLOR} text = 'Удалить аккаунт' />
             </View>
             </ScrollView>
         </View>
+        <Popup title={'Вы действительно хотите удалить аккаунт?'} showModal={openPopup} setShowModal = {setOpenPopUp}>
+            <Button text={'Да'}  backgroundColor = {AppColors.BITTERSWEET_COLOR} margin marginBottom={10}/>
+            <Button outLineColor={AppColors.BITTERSWEET_COLOR} text={'Нет'}  backgroundColor = {AppColors.WHITE_COLOR} margin onPress={()=>setOpenPopUp(false)} marginBottom = {20}/>
+        </Popup>
     </Container>
 }
 
