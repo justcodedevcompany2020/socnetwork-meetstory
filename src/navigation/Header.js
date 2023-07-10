@@ -8,9 +8,9 @@ export default function Header({ title, chatHeader, navigation, backIcon, plusIc
     return <View style={styles.container}>
 
         { chatHeader ? 
-            <View style={[Styles.flexRow, {backgroundColor: 'red', alignSelf: 'center', justifyContent: 'center'}]}> 
-                <Image source={chatHeader.img} style={{width: 25, height: 25, borderRadius: 50}}/>
-                <Text style={[Styles.darkMedium20, styles.title]} numberOfLines={1}>{chatHeader.username}</Text>      
+            <View style={Styles.flexRow}> 
+                <Image source={chatHeader.img} style={{width: 25, height: 25, borderRadius: 50, backgroundColor: 'blue'}}/>
+                <Text style={[Styles.darkMedium20, {height: 80, textAlignVertical: 'center', marginLeft: 10 }]} numberOfLines={1}>{chatHeader.username}</Text>      
             </View>
         : <Text style={[Styles.blueSemiBold20, styles.title]} numberOfLines={1}>{title}</Text>}
         {backIcon && <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backIcon}>
@@ -54,10 +54,7 @@ const styles = StyleSheet.create({
         height: 80,
         alignSelf: 'center',
         textAlign: 'center',
-        // marginBottom: 3
-        // backgroundColor: 'red',
         lineHeight: 20
-        
     },
 
 })

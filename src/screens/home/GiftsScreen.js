@@ -6,6 +6,7 @@ import { AppColors } from "../../styles/AppColors";
 import { DiamondIcon75 } from "../../assets/svgs/HomeSvgs";
 import { Shadow } from "react-native-shadow-2";
 import Button from "../../components/Button";
+import Popup from "../../components/Popup";
 
 const { width } = Dimensions.get('window');
 const windowWidth = width;
@@ -34,6 +35,7 @@ export default function GiftsScreen({navigation}) {
         { id: 10, },
         { id: 11, },
     ];
+    const [showModal, setShowModal] = useState(false)
 
     return <View style={Styles.containerTopPadding}>
         <ScrollView style={{ paddingHorizontal: 20 }}>
@@ -45,8 +47,13 @@ export default function GiftsScreen({navigation}) {
                 {items.map((item, i) => <GiftBlock key={i} item={item} selectedGift={selectedGift} onPress={() => setSelectedGift(item.id)} />)}
             </View>
             <Button text={'Подарить себе'} marginBottom={15} backgroundColor={AppColors.LOCHMARA_COLOR} onPress={() => navigation.navigate('GiftYourself')}/>
-            <Button text={'Подарить пользователю'} onPress={() => navigation.navigate('ChooseFriendScreen')}/>
+            <Button text={'Подарить пользователю'} onPress={() => setShowModal(true)}/>
         </ScrollView>
+        <Popup showModal={showModal} setShowModal={setShowModal} title={'Подарить пользователю'}>
+            <Button text={'Подарить'} margin marginBottom={10}/>
+            <Button text={'Выбрать из друзей'} noFill margin marginBottom={20}/>
+        </Popup>
+        {/* () => navigation.navigate('ChooseFriendScreen') */}
     </View>
 }
 

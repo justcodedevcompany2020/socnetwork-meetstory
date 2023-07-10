@@ -2,20 +2,20 @@ import React, { useRef, useState } from "react";
 import { Styles } from "../../styles/Styles";
 import { ScrollView, StyleSheet, Text, View, TextInput, TouchableOpacity } from "react-native";
 import { AppColors } from "../../styles/AppColors";
-import { SeenIcon } from "../../assets/svgs/HomeSvgs";
+import { ImageIcon, MicrophoneIcon, SeenIcon, SendIcon } from "../../assets/svgs/HomeSvgs";
 
 
-export default function ChatScreen(){
+export default function ChatScreen() {
     const [message, setMessage] = useState('')
     const scrollViewRef = useRef()
     const [chatInfo, setChatInfo] = useState([
         { author: 'me', message: 'Здравствуйте', time: '10:19', seen: true },
-        { author: 'me', message: 'Подскажите, как я могу воспользоваться накопленными баллами?', time: '10:20' },
+        { author: 'me', message: 'Подскажите, как я могу воспользоваться накопленными баллами?', time: '10:20', seen: true },
         { author: 'John Smith', message: 'Вы можете тратить накопленные баллы ', time: '10:20' },
     ])
 
     function onSendMessage() {
-        if(!message){
+        if (!message) {
             return
         }
         let myChatInfo = chatInfo;
@@ -30,7 +30,7 @@ export default function ChatScreen(){
 
 
     return <View style={Styles.containerTopPadding}>
-         <ScrollView
+        <ScrollView
             ref={scrollViewRef}
             onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}
             style={{ paddingHorizontal: 15 }}
@@ -39,38 +39,55 @@ export default function ChatScreen(){
             <View style={{ flex: 1, justifyContent: 'flex-end' }}>
                 {chatInfo.map((item, i) => {
                     return item.author === 'me' ?
-                        <View style={[ { marginBottom: 20, alignSelf: 'flex-end' }]} key={i}>
+                        <View style={[{ marginBottom: 15, alignSelf: 'flex-end' }]} key={i}>
                             <View style={styles.myMessageContainer}>
                                 <Text style={Styles.whiteMedium13}>{item.message}</Text>
                             </View>
-                            <Text style={[Styles.blackMedium12, ]}>Вы {item.time} {item.seen && <SeenIcon/>} </Text>
+                            <View style={[Styles.flexRow, { justifyContent: 'flex-end' }]}>
+                                <Text style={[Styles.blackMedium12, { textAlign: 'right' }]}>Вы</Text>
+                                <Text style={{ color: AppColors.DARK_CHARCOAL_COLOR, fontSize: 12 }}> {item.time}  </Text>
+                                {item.seen && <SeenIcon />}
+                            </View>
                         </View>
                         :
-                        <View style={[ { marginBottom: 20, alignSelf: 'flex-start'}]} key={i}>
+                        <View style={[{ marginBottom: 15, alignSelf: 'flex-start' }]} key={i}>
                             <View style={styles.messageContainer}>
                                 <Text style={Styles.darkMedium13}>{item.message}</Text>
                             </View>
-                            <Text style={[{textAlign: 'right', }, Styles.blackMedium12]}>{item.author} {item.time}</Text>
+                            <View style={[Styles.flexRow, { justifyContent: 'flex-end' }]}>
+                                <Text style={[{ textAlign: 'right', }, Styles.blackMedium12]}>{item.author}</Text>
+                                <Text style={{ color: AppColors.DARK_CHARCOAL_COLOR, fontSize: 12 }}> {item.time}</Text>
+                            </View>
                         </View>
                 })}
             </View>
         </ScrollView>
-        <View style={styles.inputContainer}>
-            <TextInput
-                value={message}
-                onChangeText={setMessage}
-                style={styles.input}
-                placeholder={'Сообщение'}
-                // placeholderTextColor={AppColors.ALUMINIUM_COLOR}
-                onBlur={() => {
-                }}
-            />
-            <TouchableOpacity style={{ width: 32, height: 32, backgroundColor: AppColors.FIRST_SNOW_COLOR, borderRadius: 38, alignItems: 'center', justifyContent: 'center' }} onPress={onSendMessage}>
-                <Text>Send</Text>
+        <View style={[Styles.flexRowJustifyBetween, { padding: 20 }]}>
+            <View style={styles.inputContainer}>
+                <TextInput
+                    value={message}
+                    onChangeText={setMessage}
+                    style={[styles.input, message && {}]}
+                    placeholder={'Введите сообщение...'}
+                    placeholderTextColor={AppColors.DARK_CHARCOAL_COLOR}
+                    multiline
+                />
+                {<View style={[Styles.flexRow, { position: 'absolute', right: 0 }]}>
+                    <TouchableOpacity>
+                        <MicrophoneIcon />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <ImageIcon />
+                    </TouchableOpacity>
+                </View>}
+            </View>
+            <TouchableOpacity onPress={onSendMessage}>
+                <SendIcon />
             </TouchableOpacity>
         </View>
     </View>
 }
+
 const styles = StyleSheet.create({
     myMessageContainer: {
         backgroundColor: AppColors.STEEL_BLUE_COLOR,
@@ -98,17 +115,17 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         backgroundColor: AppColors.FIRST_SNOW_COLOR,
-        borderRadius: 70,
-        paddingRight: 5,
-        marginHorizontal: 25,
+        borderRadius: 10,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        width: '85%'
     },
     input: {
-        width: '87%',
-        paddingHorizontal: 15,
+        width: '100%',
+        paddingLeft: 20,
+        paddingRight: 50,
         color: AppColors.BLACK_COLOR,
-        fontFamily: 'Inter-Regular',
+        fontFamily: 'Raleway-Regular',
     }
 })
