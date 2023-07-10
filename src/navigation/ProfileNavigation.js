@@ -18,8 +18,8 @@ import { AboutAs } from '../screens/settings/AboutAs';
 import { NotificationScreen } from '../screens/settings/NotificationScreen';
 import { ChnagePasswordScreen } from '../screens/settings/ChnagePasswordScreen';
 import { PrivacyScreen } from '../screens/settings/PrivacyScreen';
-import { AccountAndSecurityScreen } from '../screens/settings/accountAndSecurityScreen';
 import { ChangeTemaScreen } from '../screens/settings/ChangeTemaScreen';
+import { AccountAndSecurityScreen } from '../screens/settings/AccountAndSecurityScreen';
 
 const Stack = createNativeStackNavigator();
 

@@ -2,9 +2,9 @@ import { useState } from 'react'
 import {View,Text,TouchableOpacity} from 'react-native'
 import Container from "../../components/Container"
 import Input from '../../components/Input'
-import CustomSwitch from 'react-native-custom-switch';
 import { Styles } from '../../styles/Styles'
 import { Arrow } from '../../assets/svgs/SettingsSvg';
+import CustomSwitch from '../../components/CustomSwitch'
 export const PrivacyScreen = () =>{
     const [pass, setPass] = useState()
     const [confirmPass, setConfirmPass] = useState()

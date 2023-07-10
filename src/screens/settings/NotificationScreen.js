@@ -2,8 +2,8 @@ import { useState } from 'react';
 import {View ,StyleSheet ,Text} from 'react-native'
 import Container from "../../components/Container"
 import { Styles } from '../../styles/Styles'
-import CustomSwitch from 'react-native-custom-switch';
 import { SoundSvg,VibrateSvg,MailSvg } from '../../assets/svgs/SettingsSvg';
+import CustomSwitch from '../../components/CustomSwitch';
 
 export const NotificationScreen = () =>{
     const [active,Setactive] = useState(false)

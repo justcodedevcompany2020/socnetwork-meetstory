@@ -2,8 +2,10 @@ import { useState } from "react"
 import { StyleSheet, View } from "react-native"
 import { ScrollView } from "react-native-gesture-handler"
 import BlueInput from "../../components/BlueInput"
+import Button from "../../components/Button"
 import Container from "../../components/Container"
 import { Styles } from "../../styles/Styles"
+import {AppColors} from '../../styles/AppColors'
 
 export const AccountAndSecurityScreen = ({navigation}) =>{
     const [data,setData] = useState([
@@ -19,6 +21,9 @@ export const AccountAndSecurityScreen = ({navigation}) =>{
             {data.map((elm,i)=>(
                 <BlueInput onPress = {elm?.onPress} type={elm.type} key={i} labelText = {elm.label} value = {elm.value}/>
             ))}
+            <View style = {{marginTop:40}}>
+                <Button backgroundColor={AppColors.BITTERSWEET_COLOR} text = 'Удалить аккаунт' />
+            </View>
             </ScrollView>
         </View>
     </Container>
