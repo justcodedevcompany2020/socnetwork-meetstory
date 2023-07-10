@@ -8,7 +8,7 @@ export const ChnagePasswordScreen = () =>{
     const [confirmPass, setConfirmPass] = useState()
     const [oldPass, setOldPass] = useState()
 
-    return <Container >
+    return <Container goBack >
     <View style = {[Styles.whiteContainer,{marginTop:30}]}>
         <View style = {{marginVertical:25}}>
             <Text style = {Styles.blackSemiBold28}>Изменение пароля</Text>

@@ -9,6 +9,7 @@ export const SettingScreen = ({navigation}) =>{
         <View style = {[Styles.whiteContainer,{marginTop:30}]}>
         <ScrollView style = {{marginVertical:25}}>
             <HorizontalBlock
+                onPress={() => navigation.navigate('AccountAndSecurityScreen')}
                 text={'Аккаунт и безопастность'}
                 Icon={UserSvg}
                 backImagePath={require('../../assets/pngs/BlockBack23.png')}
@@ -27,6 +28,7 @@ export const SettingScreen = ({navigation}) =>{
             />
             <View style = {Styles.flexRowJustifyBetween}>
                 <HorizontalBlock
+                    onPress={() => navigation.navigate('ChangeTemaScreen')}
                     text={'Сменить тему'}
                     Icon={MoonSvg}
                     backImagePath={require('../../assets/pngs/BlockBack11.png')}

@@ -217,3 +217,46 @@ export const Diamond30Icon = () => {
     />
   </Svg>
 }
+
+export const Arrow = () =>{
+    return <Svg
+    width={18}
+    height={18}
+    viewBox="0 0 18 18"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <Path
+      d="M5.954 16.16a1.125 1.125 0 010-1.591L11.524 9l-5.57-5.569a1.125 1.125 0 011.591-1.59l6.364 6.364a1.125 1.125 0 010 1.59L7.545 16.16a1.125 1.125 0 01-1.59 0z"
+      fill="#fff"
+    />
+  </Svg>
+}
+
+export const CheckBox = () =>{
+    return <Svg
+    width={20}
+    height={20}
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <Rect width={20} height={20} rx={4} fill="#E2ECF6" />
+  </Svg>
+}
+
+export const Checked = () =>{
+    return <Svg
+    width={20}
+    height={20}
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <Rect width={20} height={20} rx={4} fill="#5691C8" />
+    <Path
+      d="M8.022 13.105L5.31 10.322a.762.762 0 00-.542-.232.744.744 0 00-.543.232.784.784 0 00-.226.557.801.801 0 00.226.556l3.246 3.332c.302.31.79.31 1.092 0l8.21-8.421A.783.783 0 0017 5.789a.8.8 0 00-.475-.729.745.745 0 00-.836.173l-7.667 7.872z"
+      fill="#fff"
+    />
+  </Svg>
+}
