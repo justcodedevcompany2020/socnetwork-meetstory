@@ -14,6 +14,8 @@ import { BalanceCongrats } from '../screens/Balance/BalanceCongrats';
 import { NotificationScreen } from '../screens/settings/NotificationScreen';
 import { ChnagePasswordScreen } from '../screens/settings/ChnagePasswordScreen';
 import { PrivacyScreen } from '../screens/settings/PrivacyScreen';
+import { AccountAndSecurityScreen } from '../screens/settings/accountAndSecurityScreen';
+import { ChangeTemaScreen } from '../screens/settings/ChangeTemaScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -128,8 +130,20 @@ export const ProfileNavigator = () => {
                     headerShown: false
                 }}
             />
+            <Stack.Screen
+                name="AccountAndSecurityScreen"
+                component={AccountAndSecurityScreen}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="ChangeTemaScreen"
+                component={ChangeTemaScreen}
+                options={{
+                    headerShown: false
+                }}
+            />
         </Stack.Navigator>
     );
 };
-// ChnagePasswordScreen
-// PrivacyScreen

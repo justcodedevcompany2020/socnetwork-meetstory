@@ -25,7 +25,7 @@ export default function NavigationMenu() {
         // tabBarStyle:  { height: 80, borderTopWidth: 0, elevation: 0 },
         tabBarStyle: (() => {
           const routeName = getFocusedRouteNameFromRoute(route) ?? '';
-          if (routeName === 'CommentsScreen' || routeName === 'ForumSingle' ||routeName === 'SettingScreen'||routeName === 'AboutAs'|| routeName === 'ChnagePasswordScreen' ||routeName === 'NotificationScreen') {
+          if (routeName === 'CommentsScreen' || routeName === 'ForumSingle'|| routeName === 'ChangeTemaScreen' ||routeName === 'accountAndSecurityScreen' ||routeName === 'SettingScreen'||routeName === 'AboutAs'|| routeName === 'ChnagePasswordScreen' ||routeName === 'NotificationScreen') {
             return {
               display: 'none',
               height: 0
