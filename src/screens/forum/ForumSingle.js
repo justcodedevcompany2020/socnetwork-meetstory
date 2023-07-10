@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, View, StyleSheet, Text, Image, SafeAreaView } from "react-native";
+import { ScrollView, View, StyleSheet, Text, Image, SafeAreaView, Dimensions } from "react-native";
 import { Styles } from "../../styles/Styles";
 import { AppColors } from "../../styles/AppColors";
 import InfoAboutPostBlock from "../feed/components/InfoAboutPostBlock";
@@ -8,6 +8,7 @@ import CommentsBlock from "../feed/components/CommentsBlock";
 import AddCommentBlock from "../../components/AddCommentBlock";
 
 
+const {width} = Dimensions.get('screen')
 export default function ForumSingle({ route }) {
 
     const { forumInfo } = route.params
@@ -15,14 +16,11 @@ export default function ForumSingle({ route }) {
     return <View style={Styles.containerTopPadding}>
         <ScrollView>
             <View style={{ paddingHorizontal: 20 }}>
-                <View style={[Styles.flexRow, { alignItems: 'flex-start' }]}>
-                    <Image
-                        style={styles.img}
-                        source={require('../../assets/pngs/ForumSingle.png')}
-                    />
-                    <Text style={[Styles.blackRegular14, { flexShrink: 1 }]}>А ещё непосредственные участники технического прогресса освещают чрезвычайно интересные особенности картины в целом, однако конкретные выводы, </Text>
-                </View>
-                <Text style={Styles.blackRegular14}>
+                <Image
+                    style={styles.img}
+                    source={require('../../assets/pngs/ForumSingle.png')}
+                />
+                <Text style={Styles.blackRegular15}>
                     Предварительные выводы неутешительны: современная методология разработки напрямую зависит от существующих финансовых и административных условий. Наше дело не так однозначно, как может показаться: синтетическое тестирование требует определения и уточнения существующих финансовых и административных условий. Современные технологии достигли такого уровня, что убеждённость некоторых оппонентов не даёт нам иного выбора, кроме определения укрепления моральных ценностей.
                 </Text>
             </View>
@@ -37,8 +35,8 @@ export default function ForumSingle({ route }) {
 
 const styles = StyleSheet.create({
     img: {
-        height: 105,
-        width: 105,
+        // height: 105,
+        width: width-40,
         borderWidth: 1,
         borderColor: AppColors.LAVENDER_COLOR,
         borderRadius: 4,

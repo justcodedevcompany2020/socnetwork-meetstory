@@ -21,6 +21,7 @@ import { PrivacyScreen } from '../screens/settings/PrivacyScreen';
 import { ChangeTemaScreen } from '../screens/settings/ChangeTemaScreen';
 import { AccountAndSecurityScreen } from '../screens/settings/AccountAndSecurityScreen';
 import { UserScreen } from '../screens/user/UserScreen';
+import ViewsPerDay from '../screens/profile/ViewsPerDay';
 
 const Stack = createNativeStackNavigator();
 
@@ -184,6 +185,17 @@ export const ProfileNavigator = () => {
                 options={{
                     headerShown: false
                 }}
+            />
+            <Stack.Screen
+                name="ViewsPerDay"
+                component={ViewsPerDay}
+                options={({ navigation }) => ({
+                    title: '',
+                    headerTransparent: true,
+                    header: () => (
+                        <Header navigation={navigation} title={'Просмотры за день'} backIcon />
+                    ),
+                })}
             />
         </Stack.Navigator>
     );

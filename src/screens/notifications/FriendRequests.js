@@ -20,7 +20,7 @@ export default function FriendRequests(){
         },
     ]
 
-    return <ScrollView style={{marginTop: 20, paddingHorizontal: 20}}>
+    return <ScrollView style={{marginTop: 20, paddingHorizontal: 15}}>
         {requests.map((item, i) => <FriendRequestBlock requestInfo={item} key={i}/>)}
     </ScrollView>
 }

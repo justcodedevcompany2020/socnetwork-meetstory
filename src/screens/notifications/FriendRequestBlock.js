@@ -5,7 +5,7 @@ import { Styles } from "../../styles/Styles";
 import { AppColors } from "../../styles/AppColors";
 
 export default function FriendRequestBlock({ requestInfo }) {
-    return <Shadow distance={3} containerStyle={{ marginBottom: 10, marginHorizontal: 5, marginTop: 3 }} style={{ width: '100%' }}>
+    return <Shadow distance={3} containerStyle={{ marginBottom: 15, marginHorizontal: 5, marginTop: 3 }} style={{ width: '100%' }}>
         <TouchableOpacity style={styles.container}>
             <View style={[Styles.flexRow, { width: '100%', alignItems: 'flex-start' }]}>
                 <Image source={requestInfo.image} style={styles.image} />
@@ -33,13 +33,13 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
     image: {
-        width: 50,
-        height: 50,
+        width: 55,
+        height: 55,
         borderRadius: 4,
         marginRight: 15
     },
     button: {
-        height: 20,
+        height: 25,
         borderRadius: 4,
         width: '48%',
         justifyContent: 'center',

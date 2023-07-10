@@ -11,7 +11,7 @@ export default function NotificationBlock({notificationInfo}){
         <View style={[Styles.flexRow, { width: '100%', alignItems: 'flex-start'}]}>
             <Image source={notificationInfo.image} style={styles.image}/>
             <View style={{flexShrink: 1}}>
-                <Text style={[Styles.darkSemiBold12, {marginBottom: 4}]}>{notificationInfo.notificationText}</Text>
+                <Text style={[{marginBottom: 4}, notificationInfo.new ? Styles.darkSemiBold12 : Styles.darkMedium12]}>{notificationInfo.notificationText}</Text>
                 <Text style={Styles.darkBlueSemiBold10}>{notificationInfo.date}</Text>
             </View>
         </View>
@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
     image: {
-        width: 50,
-        height: 50,
+        width: 55,
+        height: 55,
         borderRadius: 4,
         marginRight: 15
     }

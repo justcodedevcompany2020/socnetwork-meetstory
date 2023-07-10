@@ -216,29 +216,29 @@ export const SearchIcon = () => {
 
 export const MoreIcon = () => {
   return <Svg
-    width={21}
-    height={8}
-    viewBox="0 0 21 5"
+    width={25}
+    height={10}
+    viewBox="0 0 20 10"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <Circle cx={2.5} cy={3} r={3} fill="#5691C8" />
-    <Circle cx={10.5} cy={3} r={3} fill="#5691C8" />
-    <Circle cx={18.5} cy={3} r={3} fill="#5691C8" />
+    <Circle cx={2.5} cy={2.8} r={2.8} fill="#5691C8" />
+    <Circle cx={10.5} cy={2.8} r={2.8} fill="#5691C8" />
+    <Circle cx={18.5} cy={2.8} r={2.8} fill="#5691C8" />
   </Svg>
 }
 
 export const CrossIcon = () => {
-  return     <Svg
-  width={20}
-  height={20}
-  viewBox="0 0 20 20"
-  fill="none"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <Path
-    d="M16.067 15.183a.625.625 0 11-.884.884L10 10.884l-5.182 5.183a.626.626 0 01-.885-.884L9.117 10 3.933 4.817a.625.625 0 01.885-.884L10 9.116l5.183-5.183a.625.625 0 11.884.884L10.884 10l5.183 5.183z"
-    fill="#333"
-  />
-</Svg>
+  return <Svg
+    width={20}
+    height={20}
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <Path
+      d="M16.067 15.183a.625.625 0 11-.884.884L10 10.884l-5.182 5.183a.626.626 0 01-.885-.884L9.117 10 3.933 4.817a.625.625 0 01.885-.884L10 9.116l5.183-5.183a.625.625 0 11.884.884L10.884 10l5.183 5.183z"
+      fill="#333"
+    />
+  </Svg>
 }

@@ -10,8 +10,8 @@ export default function Popup({ showModal, setShowModal, title, hidePadding, chi
     return <Modal visible={showModal} animationType="fade" transparent={true} >
         <BlurView
             style={styles.absolute}
-            blurType="light"
-            blurAmount={10}
+            reducedTransparencyFallbackColor={AppColors.WHITE_COLOR}
+            overlayColor={'#C0C0C050'}
         />
         <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
             <View style={[styles.container, hidePadding && {paddingHorizontal: 5}]}>

@@ -6,11 +6,10 @@ import { Styles } from "../styles/Styles";
 
 export default function Header({ title, chatHeader, navigation, backIcon, plusIcon, blackBackIcon, onPressPlus }) {
     return <View style={styles.container}>
-
         { chatHeader ? 
             <View style={Styles.flexRow}> 
                 <Image source={chatHeader.img} style={{width: 25, height: 25, borderRadius: 50, backgroundColor: 'blue'}}/>
-                <Text style={[Styles.darkMedium20, {height: 80, textAlignVertical: 'center', marginLeft: 10 }]} numberOfLines={1}>{chatHeader.username}</Text>      
+                <Text style={[Styles.darkMedium20, {height: 100, textAlignVertical: 'center', marginLeft: 10 }]} numberOfLines={1}>{chatHeader.username}</Text>      
             </View>
         : <Text style={[Styles.blueSemiBold20, styles.title]} numberOfLines={1}>{title}</Text>}
         {backIcon && <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backIcon}>
@@ -28,13 +27,13 @@ export default function Header({ title, chatHeader, navigation, backIcon, plusIc
 const styles = StyleSheet.create({
     container: {
         backgroundColor: AppColors.WHITE_COLOR,
-        height: 80,
+        height: 100,
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
     backIcon: {
         position: 'absolute',
-        height: 80,
+        height: 100,
         paddingLeft: 20,
         left: 0,
         alignItems: 'center',
@@ -42,7 +41,7 @@ const styles = StyleSheet.create({
     },
     plusIcon: {
         position: 'absolute',
-        height: 80,
+        height: 100,
         paddingRight: 20,
         right: 0,
         alignItems: 'center',
@@ -51,7 +50,7 @@ const styles = StyleSheet.create({
     title: {
         textAlignVertical: 'center',
         width: '58%',
-        height: 80,
+        height: 100,
         alignSelf: 'center',
         textAlign: 'center',
         lineHeight: 20

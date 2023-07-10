@@ -43,7 +43,7 @@ export default function GiftsScreen({ navigation }) {
 
     return <View style={Styles.containerTopPadding}>
         <ScrollView style={{ paddingHorizontal: 20 }}>
-            <Text style={[Styles.darkSemiBold16, { marginBottom: 20, }]}>
+            <Text style={[Styles.darkSemiBold16, { marginBottom: 20 }]}>
                 Подарить подарок- любому пользователю можно преподнести подарок, который обойдётся в 1 – 2$. Говоря о подарках необходимо упомянуть, что подарить можно ещё и VIP статус.
             </Text>
             <TitleBlock text={'Список подарков'} />

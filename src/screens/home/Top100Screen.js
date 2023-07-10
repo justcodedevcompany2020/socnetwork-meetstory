@@ -4,7 +4,7 @@ import { Styles } from "../../styles/Styles";
 import HorizontalBlock from "../../components/HorizontalBlock";
 
 export default function Top100Screen({navigation}) {
-    return <View style={[Styles.containerTopPadding, {paddingHorizontal: 10}]}>
+    return <View style={[Styles.containerTopPadding, {paddingHorizontal: 20}]}>
         <Text style={[Styles.darkRegular15, {marginBottom: 20}]}>
             <Text style={Styles.darkSemiBold16}>
                 Топ 100 

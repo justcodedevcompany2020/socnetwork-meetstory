@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Container from "../../components/Container";
 import { UserNameBlock } from "../../components/UserNameBlock";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { Styles } from "../../styles/Styles";
 import HorizontalBlock from "../../components/HorizontalBlock";
 import { MessageIcon, MyFeedIcon, MyFriendsIcon, PhotoIcon, SettingsIcon, UserIcon } from "../../assets/svgs/ProfileSvgs";
@@ -18,11 +18,21 @@ export default function MyProfileScreen({ navigation }) {
     return <Container headerTitle={'Мой профиль'} settingsIcon >
         <UserNameBlock myProfile />
         <View style={{ width: '100%', paddingLeft: 20, marginVertical: 20 }}>
-            <Text style={Styles.whiteMedium13}>Просмотров за день 6</Text>
-            <Text style={Styles.whiteMedium13}>Просмотров за месяц 234</Text>
+            <View style={Styles.flexRow}>
+                <Text style={Styles.whiteMedium15}>Просмотров за день  </Text>
+                <TouchableOpacity onPress={() => navigation.navigate('ViewsPerDay')}>
+                    <Text style={{ fontSize: 15, color: AppColors.WHITE_COLOR, textDecorationLine: 'underline' }}>6</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={Styles.flexRow}>
+                <Text style={Styles.whiteMedium15}>Просмотров за месяц  </Text>
+                <TouchableOpacity>
+                    <Text style={{ fontSize: 15, color: AppColors.WHITE_COLOR, textDecorationLine: 'underline' }}>234</Text>
+                </TouchableOpacity>
+            </View>
         </View>
         <View style={Styles.whiteContainer}>
-            <ScrollView style={{ marginTop: 20 }} showsVerticalScrollIndicator={false}>
+            <ScrollView style={{ marginTop: 30 }} showsVerticalScrollIndicator={false}>
                 <HorizontalBlock text={'Анкета'} backImagePath={require('../../assets/pngs/BlockBack18.png')} Icon={UserIcon} onPress={() => navigation.navigate('ApplicationFormScreen')} />
                 <HorizontalBlock text={'Моя стена'} backImagePath={require('../../assets/pngs/BlockBack23.png')} Icon={WallSvg} onPress={() => navigation.navigate('MyFeedScreen')} />
                 <View style={Styles.flexRowJustifyBetween}>
@@ -40,7 +50,7 @@ export default function MyProfileScreen({ navigation }) {
             </ScrollView>
             <Popup showModal={showPopup} setShowModal={setShowPopup} title={'Вы действительно хотите выйти из аккаунта?'}>
                 <Button text={'Да'} margin marginBottom={8} onPress={() => navigation.navigate('LoginScreen')} />
-                <Button text={'Нет'} margin marginBottom={30} backgroundColor={AppColors .BITTERSWEET_COLOR} onPress={() => setShowPopup(false)} />
+                <Button text={'Нет'} margin marginBottom={30} backgroundColor={AppColors.BITTERSWEET_COLOR} onPress={() => setShowPopup(false)} />
             </Popup>
         </View>
     </Container>

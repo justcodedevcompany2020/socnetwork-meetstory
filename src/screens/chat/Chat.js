@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Styles } from "../../styles/Styles";
-import { ScrollView, StyleSheet, Text, View, TextInput, TouchableOpacity } from "react-native";
+import { ScrollView, StyleSheet, Text, View, TextInput, TouchableOpacity, Dimensions } from "react-native";
 import { AppColors } from "../../styles/AppColors";
 import { ImageIcon, MicrophoneIcon, SeenIcon, SendIcon } from "../../assets/svgs/HomeSvgs";
 
@@ -67,7 +67,7 @@ export default function ChatScreen() {
                 <TextInput
                     value={message}
                     onChangeText={setMessage}
-                    style={[styles.input, message && {}]}
+                    style={styles.input}
                     placeholder={'Введите сообщение...'}
                     placeholderTextColor={AppColors.DARK_CHARCOAL_COLOR}
                     multiline
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 20,
         borderBottomRightRadius: 20,
         borderBottomLeftRadius: 20,
-        maxWidth: 350,
+        maxWidth: 320,
     },
     myMessage: {
         color: AppColors.WHITE_COLOR,
@@ -119,12 +119,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        width: '85%'
+        width: Dimensions.get('screen').width - 80
     },
     input: {
         width: '100%',
         paddingLeft: 20,
-        paddingRight: 50,
+        paddingRight: 60,
         color: AppColors.BLACK_COLOR,
         fontFamily: 'Raleway-Regular',
     }

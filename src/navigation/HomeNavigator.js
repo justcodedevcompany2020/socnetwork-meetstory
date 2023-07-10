@@ -37,7 +37,7 @@ export const HomeNavigator = () => {
                 component={HomeScreen}
                 options={{
                     headerShown: false
-                }} 
+                }}
             />
             <Stack.Screen
                 name="BecomeAnAuthority"
@@ -195,24 +195,11 @@ export const HomeNavigator = () => {
                     headerShown: false
                 }}
             />
-             <Stack.Screen
+            <Stack.Screen
                 name="MessagesScreen"
                 component={MessagesScreen}
                 options={{
                     headerShown: false
-                }} 
-            />
-               <Stack.Screen
-                name="ChatScreen"
-                component={ChatScreen}
-                options={({ navigation, route }) => {
-                    return {
-                        title: '',
-                        headerTransparent: true,
-                        header: () => (
-                            <Header navigation={navigation} backIcon chatHeader={route.params}/>
-                        ),
-                    }
                 }}
             />
             <Stack.Screen

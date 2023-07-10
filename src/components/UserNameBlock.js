@@ -12,14 +12,14 @@ export const UserNameBlock = ({ userInfo, myProfile }) => {
             </View>
             {myProfile ?
                 <View>
-                    <Text style={Styles.whiteSemiBold16}>John Smith</Text>
-                    <Text style={Styles.whiteRegular12}>@jsmith1</Text>
+                    <Text style={Styles.whiteSemiBold18}>John Smith</Text>
+                    <Text style={Styles.whiteRegular13}>@jsmith1</Text>
                 </View>
                 :
                 <View>
-                    <Text style={Styles.whiteSemiBold16}>Harper Anderson</Text>
-                    <Text style={Styles.whiteRegular12}>Мосвка, Россия </Text>
-                    <Text style={Styles.whiteRegular12}>ID: 45778899</Text>
+                    <Text style={Styles.whiteSemiBold18}>Harper Anderson</Text>
+                    <Text style={Styles.whiteRegular13}>Мосвка, Россия </Text>
+                    <Text style={Styles.whiteRegular13}>ID: 45778899</Text>
                 </View>}
         </View>
         {myProfile ?
@@ -35,16 +35,16 @@ export const UserNameBlock = ({ userInfo, myProfile }) => {
 const styles = StyleSheet.create({
     imgContainer: {
         marginRight: 15,
-        width: 60,
-        height: 60,
+        width: 70,
+        height: 70,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 50,
         backgroundColor: AppColors.CORNFLOWER_COLOR
     },
     img: {
-        width: 50,
-        height: 50,
+        width: 60,
+        height: 60,
         borderRadius: 50
     }
 })

@@ -11,7 +11,7 @@ export const Styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   containerTopPadding: {
-    paddingTop: 85,
+    paddingTop: 105,
     flex: 1,
     backgroundColor: AppColors.WHITE_COLOR
   },
@@ -169,6 +169,11 @@ export const Styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: 'Raleway-SemiBold'
   },
+  darkBlueSemiBold16: {
+    color: AppColors.LOCHMARA_COLOR,
+    fontSize: 16,
+    fontFamily: 'Raleway-SemiBold'
+  },
   darkBlueSemiBold20: {
     color: AppColors.LOCHMARA_COLOR,
     fontSize: 20,
@@ -224,6 +229,11 @@ export const Styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: 'Raleway-Regular'
   },
+  blackRegular15: {
+    color: AppColors.BLACK_COLOR,
+    fontSize: 15,
+    fontFamily: 'Raleway-Regular'
+  },
   whiteSemiBold10: {
     color: AppColors.WHITE_COLOR,
     fontSize: 10,
@@ -240,6 +250,6 @@ export const Styles = StyleSheet.create({
     marginTop: 10,
     height: 150,
     paddingHorizontal: 15,
-    textAlignVertical: "top"
+    textAlignVertical: "top",
   }
 });

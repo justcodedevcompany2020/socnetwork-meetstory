@@ -7,10 +7,11 @@ import { AppColors } from "../styles/AppColors";
 
 export default function AddCommentBlock() {
     return <View style={[styles.container]}>
-        <View style={[Styles.flexRowJustifyBetween, {width: '80%', alignSelf: 'center'}]}>
+        <View style={[Styles.flexRowJustifyBetween, {width: '90%', alignSelf: 'center'}]}>
             <TextInput
                 style={styles.input}
                 placeholder="Добавить комментарий"
+                multiline
             />
             <TouchableOpacity>
                 <SendIcon />
@@ -30,10 +31,12 @@ const styles = StyleSheet.create({
     },
     input: {
         backgroundColor: AppColors.FIRST_SNOW_COLOR,
-        width: '85%',
+        width: '88%',
         borderRadius: 10,
-        paddingHorizontal: 15,
-        ...Styles.darkMedium14,
+        paddingHorizontal: 12,
+        fontSize: 14,
+        fontFamily: 'Raleway-Medium',
+        color: AppColors.BLACK_COLOR,
         height: 40,
     }
 })

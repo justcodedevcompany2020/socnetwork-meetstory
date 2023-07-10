@@ -88,7 +88,7 @@ export default function CommentsBlock() {
                 {comments.map((item, i) => <CommentItem key={i} commentInfo={item} />)}
             </View>
         </ScrollView>
-       
+
     </View>
 }
 
@@ -144,8 +144,8 @@ const styles = StyleSheet.create({
         backgroundColor: AppColors.ALICE_BLUE_COLOR
     },
     numbers: {
-        ...Styles.darkMedium12,
-        marginBottom: 5,
+        fontSize: 12,
+        color: AppColors.DARK_CHARCOAL_COLOR,
         marginRight: 15
     },
 })

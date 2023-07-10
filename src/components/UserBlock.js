@@ -13,16 +13,15 @@ export default function ({ authorityMode, activityStatus, chatIcon, selected, ra
     const [openPopUp, setOpenPopUp] = useState(false)
     const [showDeletePopup, setShowDeletePopup] = useState(false)
     const navigation = useNavigation()
-    return <Shadow distance={3} containerStyle={{ marginBottom: 10, marginHorizontal: 5, marginTop: 3 }} style={{ width: '100%' }}>
+    return <Shadow distance={3} containerStyle={{ marginBottom: 10, marginHorizontal: 5, marginTop: 3 }} style={{ width: '100%', borderRadius: 6 }}>
         <TouchableOpacity onPress={onPress} style={[styles.container, Styles.flexRowJustifyBetween, selected && { borderWidth: 2, borderColor: AppColors.GOLD_COLOR, backgroundColor: AppColors.LEMON_COLOR }]}>
             <View style={[Styles.flexRowJustifyBetween, { width: '100%', alignItems: 'flex-start' }]}>
                 <View style={[Styles.flexRow]}>
-                    <Image source={require('../assets/pngs/ProfileDefault.png')} style={{ width: 50, height: 50 }} resizeMode='stretch' />
+                    <Image source={require('../assets/pngs/ProfileDefault.png')} style={{ width: 60, height: 60 }} resizeMode='stretch' />
                     <View style={{ marginLeft: 15, height: 50, justifyContent: 'space-between', flexShrink: 1, }}>
                         <Text style={[Styles.darkMedium15, { lineHeight: 17 }]}>John Smith</Text>
                         {lastActionInfo ?
-
-                            <Text style={[Styles.darkRegular10,]}>Пользователь Lilly отправил запрос на добавления в друзья</Text>
+                            <Text style={Styles.darkRegular10}>Пользователь Lilly отправил запрос на добавления в друзья</Text>
                             :
                             <>
                                 <Text style={Styles.darkBlueMedium12}>Мосвка, Россия </Text>
@@ -59,11 +58,11 @@ export default function ({ authorityMode, activityStatus, chatIcon, selected, ra
             <Button margin marginBottom={10} onPress={() => { navigation.navigate('UserScreen'); setOpenPopUp(false) }} backgroundColor={AppColors.LOCHMARA_COLOR} text={'Открыть профиль'} />
             <Button marginBottom={10} margin onPress={() => { navigation.navigate('ChatScreen', { username: 'sdsdsd', img: require('../assets/pngs/ProfileDefault.png') }); setOpenPopUp(false) }} text={'Отправить сообщение'} />
             {friend
-                ? <Button backgroundColor={AppColors.BITTERSWEET_COLOR} text={'Удалить из друзей'} marginBottom={30} margin />
+                ? <Button backgroundColor={AppColors.BITTERSWEET_COLOR} text={'Удалить из друзей'} marginBottom={30} margin onPress={() => { setShowDeletePopup(true); setOpenPopUp(false) }} />
                 : <Button backgroundColor={AppColors.SKY_BLUE_COLOR} text={'Добавить в друзья'} marginBottom={30} margin />}
         </Popup>
         <Popup title={'Вы действительно хотите удалить John Smith из друзей?'} showModal={showDeletePopup} setShowModal={setShowDeletePopup}>
-            <Button text={'Да'} backgroundColor={AppColors.BITTERSWEET_COLOR} margin marginBottom={10} />
+            <Button text={'Да'} backgroundColor={AppColors.BITTERSWEET_COLOR} margin marginBottom={10} onPress={() => setShowDeletePopup(false)}/>
             <Button outLineColor={AppColors.BITTERSWEET_COLOR} text={'Нет'} backgroundColor={AppColors.WHITE_COLOR} margin onPress={() => setShowDeletePopup(false)} marginBottom={20} />
         </Popup>
     </Shadow>

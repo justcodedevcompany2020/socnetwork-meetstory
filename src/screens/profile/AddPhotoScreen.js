@@ -4,7 +4,7 @@ import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "rea
 import Button from "../../components/Button";
 import { Styles } from "../../styles/Styles";
 
-export default function AddPhotoScreen(){
+export default function AddPhotoScreen({navigation}){
    return  <Container  goBack headerTitle={'Добавить фотографию'}>
         <View style={[Styles.whiteContainer, { marginTop: 20, paddingTop: 20 }]}>
             <ScrollView showsVerticalScrollIndicator={false}>
@@ -12,8 +12,8 @@ export default function AddPhotoScreen(){
                 <TouchableOpacity>
                     <Image source={require('../../assets/pngs/AddPhoto.png')} style={styles.image} />
                 </TouchableOpacity>
-                <Button text={'Добавить фотографию'} marginBottom={10} onPress={() => navigation.navigate('MyFeedScreen')} margin/>
-                <Button text={'Отмена'} noFill onPress={() => navigation.navigate('MyFeedScreen')} margin />
+                <Button text={'Добавить фотографию'} marginBottom={10} onPress={() => navigation.navigate('MyPhotosScreen')} margin/>
+                <Button text={'Отмена'} noFill onPress={() => navigation.navigate('MyPhotosScreen')} margin />
             </ScrollView>
         </View> 
     </Container>

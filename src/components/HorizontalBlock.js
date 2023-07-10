@@ -9,7 +9,7 @@ export default function HorizontalBlock({ Icon, text, backImagePath, onPress, th
         <ImageBackground source={backImagePath} style={[Styles.flexRowJustifyBetween, thin ? styles.thinBlockContainer : styles.blockContainer,]} borderRadius={15}>
             <View style={thin ? Styles.flexRow : !Icon ? {alignSelf: 'flex-end', paddingBottom: 10} : { alignSelf: 'center' }}>
                 {Icon && <Icon />}
-                <Text style={[Styles.whiteSemiBold15, thin && { marginLeft: 10 }, {marginBottom: 5}]}>{text}</Text>
+                <Text style={[Styles.whiteSemiBold16, thin && { marginLeft: 10 }, {marginBottom: 5}]}>{text}</Text>
             </View>
             <WhiteArrowRight />
         </ImageBackground>

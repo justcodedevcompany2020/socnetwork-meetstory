@@ -67,7 +67,7 @@ export default function GeneralNotifications() {
         }
     ]
 
-    return <ScrollView style={{marginTop: 20, paddingHorizontal: 20}}>
+    return <ScrollView style={{marginTop: 20, paddingHorizontal: 15}}>
         {notifications.map((item, i) => <NotificationBlock notificationInfo={item} key={i}/>)}
 
     </ScrollView>

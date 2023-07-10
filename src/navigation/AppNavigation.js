@@ -12,6 +12,8 @@ import AddInfoScreen from '../screens/auth/AddInfoScreen';
 import AddProfilePhoto from '../screens/auth/AddProfilePhoto';
 import CongratulationsScreen from '../screens/auth/CongratulationsScreen';
 import NavigationMenu from './NavigationMenu';
+import ChatScreen from '../screens/chat/Chat';
+import Header from './Header';
 
 const Stack = createStackNavigator();
 
@@ -84,7 +86,7 @@ const AppNavigation = () => {
             headerShown: false,
           }}
         />
-         <Stack.Screen
+        <Stack.Screen
           name="CongratulationsScreen"
           component={CongratulationsScreen}
           options={{
@@ -96,6 +98,19 @@ const AppNavigation = () => {
           component={NavigationMenu}
           options={{
             headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="ChatScreen"
+          component={ChatScreen}
+          options={({ navigation, route }) => {
+            return {
+              title: '',
+              headerTransparent: true,
+              header: () => (
+                <Header navigation={navigation} backIcon chatHeader={route.params} />
+              ),
+            }
           }}
         />
       </Stack.Navigator>

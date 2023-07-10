@@ -15,7 +15,7 @@ export default function AddPostScreen({ navigation }) {
                     <Image source={require('../../assets/pngs/AddPhoto.png')} style={styles.image} />
                 </TouchableOpacity>
                 <Text style={Styles.darkMedium15}>Описание</Text>
-                <TextInput multiline style={Styles.input} numberOfLines={10} placeholder="Текст вашей публикации" />
+                <TextInput multiline style={Styles.input} numberOfLines={10} placeholder="Текст вашей публикации" placeholderTextColor={AppColors.DARK_CHARCOAL_COLOR } />
                 <Button text={'Добавить публикацию'} marginBottom={10} onPress={() => navigation.navigate('MyFeedScreen')} margin/>
                 <Button text={'Отмена'} noFill onPress={() => navigation.navigate('MyFeedScreen')} margin/>
             </ScrollView>
