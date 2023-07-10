@@ -7,7 +7,7 @@ import { WhiteArrowRight } from "../assets/svgs/HomeSvgs";
 export default function HorizontalBlock({ Icon, text, backImagePath, onPress, thin, width }) {
     return <TouchableOpacity onPress={onPress} style={width && { width: width }}>
         <ImageBackground source={backImagePath} style={[Styles.flexRowJustifyBetween, thin ? styles.thinBlockContainer : styles.blockContainer,]} borderRadius={15}>
-            <View style={thin ? Styles.flexRow : { alignSelf: 'center' }}>
+            <View style={thin ? Styles.flexRow : !Icon ? {alignSelf: 'flex-end', paddingBottom: 10} : { alignSelf: 'center' }}>
                 {Icon && <Icon />}
                 <Text style={[Styles.whiteSemiBold15, thin && { marginLeft: 10 }, {marginBottom: 5}]}>{text}</Text>
             </View>

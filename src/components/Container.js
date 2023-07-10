@@ -18,7 +18,7 @@ export default function Container(props) {
         }
         {props.headerTitle && <Text style={Styles.whiteSemiBold20}>{props.headerTitle}</Text>}
         {!props.headerTitle && <Image source={require('../assets/pngs/Logo.png')} style={{ width: 155, height: 34, marginBottom: 20 }} />}
-        {props.filterIcon && <TouchableOpacity style={{position: 'absolute', width: 35, height: 35, right: 10, top: 50, alignItems: 'center', justifyContent: 'center'}}>
+        {props.filterIcon && <TouchableOpacity style={{position: 'absolute', width: 35, height: 35, right: 10, top: 50, alignItems: 'center', justifyContent: 'center'}} onPress={props.onPressFilter}>
             <FilterIcon/>
         </TouchableOpacity> }
         {props.settingsIcon && <TouchableOpacity style={{position: 'absolute', width: 35, height: 35, right: 10, top: 50, alignItems: 'center', justifyContent: 'center'}}>

@@ -1,12 +1,18 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import { BlackBackIcon, BlueBackIcon, PlusIcon } from "../assets/svgs/AuthSvgs";
 import { AppColors } from "../styles/AppColors";
 import { Styles } from "../styles/Styles";
 
-export default function Header({ title, navigation, backIcon, plusIcon, blackBackIcon, onPressPlus }) {
+export default function Header({ title, chatHeader, navigation, backIcon, plusIcon, blackBackIcon, onPressPlus }) {
     return <View style={styles.container}>
-        <Text style={[Styles.blueSemiBold20, styles.title]} numberOfLines={1}>{title}</Text>
+
+        { chatHeader ? 
+            <View style={[Styles.flexRow, {backgroundColor: 'red', alignSelf: 'center', justifyContent: 'center'}]}> 
+                <Image source={chatHeader.img} style={{width: 25, height: 25, borderRadius: 50}}/>
+                <Text style={[Styles.darkMedium20, styles.title]} numberOfLines={1}>{chatHeader.username}</Text>      
+            </View>
+        : <Text style={[Styles.blueSemiBold20, styles.title]} numberOfLines={1}>{title}</Text>}
         {backIcon && <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backIcon}>
             <BlueBackIcon />
         </TouchableOpacity>}

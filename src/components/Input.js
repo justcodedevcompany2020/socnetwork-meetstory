@@ -16,10 +16,10 @@ export default function Input({ labelText, inputType, value, setValue, minLength
     const [isOpenEye, setIsOpenEye] = useState(false)
 
     return <View style={styles.container}>
-        <View style={Styles.flexRowJustifyBetween}>
+        {labelText && <View style={Styles.flexRowJustifyBetween}>
             <Text style={Styles.darkMedium15}>{labelText}</Text>
             {minLengthPass && <Text style={Styles.blueSemiBold12}>Минимум 8 символов</Text>}
-        </View>
+        </View>}
         {inputType == 'dropdown' ?
             <SelectDropdown
                 data={data}
@@ -29,11 +29,11 @@ export default function Input({ labelText, inputType, value, setValue, minLength
                     console.log(selectedItem, index)
                     setValue(selectedItem)
                 }}
+                defaultButtonText={placeholder}
                 defaultValue={value}
-                buttonStyle={[styles.inputContainer, { paddingHorizontal: 5, width: '100%' }, error && { borderColor: 'red' }, open && { borderRadius: 0 }]}
-                dropdownStyle={{ marginTop: -26, backgroundColor: AppColors.FIRST_SNOW_COLOR }}
+                buttonStyle={[styles.inputContainer, { paddingHorizontal: 5, width: '100%', marginBottom: 10 }, error && { borderColor: 'red' }, open && { borderRadius: 0 }]}
+                dropdownStyle={{ marginTop: -26, backgroundColor: AppColors.FIRST_SNOW_COLOR, }}
                 buttonTextStyle={[Styles.darkRegular15, { textAlign: 'left' }]}
-                defaultButtonText={' '}
                 rowTextStyle={[Styles.darkRegular15, { textAlign: 'left' }]}
                 renderDropdownIcon={BlackArrowDown}
             />
@@ -41,7 +41,8 @@ export default function Input({ labelText, inputType, value, setValue, minLength
                 <TouchableOpacity
                     style={[
                         styles.container,
-                        styles.inputContainer
+                        styles.inputContainer,
+                        {marginBottom: 0}
                     ]} onPress={() => setOpenDatePicker(true)}>
                     <Text style={styles.input}>{value ? moment(date).format('D.M.YYYY') : 'Неограниченно'}</Text>
                     <DatePicker
@@ -63,14 +64,14 @@ export default function Input({ labelText, inputType, value, setValue, minLength
                         }}
                     />
                 </TouchableOpacity>
-                : <View style={[Styles.flexRow, { backgroundColor: 'red', }, styles.inputContainer]}>
+                : <View style={[Styles.flexRow, styles.inputContainer, !labelText && {marginTop: 0}]}>
                     <TextInput
                         style={[styles.input, inputType == 'pass' && { width: '88%' }]}
                         value={value}
                         onChangeText={setValue}
                         maxLength={inputType == 'code' ? 6 : 50}
                         secureTextEntry={inputType === 'pass' && !isOpenEye ? true : false}
-                        keyboardType={inputType == 'phone' || inputType == 'code' ? 'phone-pad' : 'ascii-capable'}
+                        keyboardType={inputType == 'phone' || inputType == 'code' || inputType == 'age' ? 'numeric' : 'ascii-capable'}
                         placeholder ={placeholder}
                     />
                     {inputType === 'pass' && (isOpenEye ?
@@ -88,7 +89,7 @@ export default function Input({ labelText, inputType, value, setValue, minLength
 
 const styles = StyleSheet.create({
     container: {
-        marginBottom: 15
+        marginBottom: 15,
     },
     inputContainer: {
         backgroundColor: AppColors.FIRST_SNOW_COLOR,

@@ -65,8 +65,8 @@ export const UserPostsScreen = ({navigation}) => {
     <View style = {[Styles.containerTopPadding,{paddingHorizontal: 20,}]}>
       <ScrollView  showsVerticalScrollIndicator = {false}>
           {data.map((elm, i) => {
-            if(elm.type === 'forum'){
-              return <ForumBlock key={i} moveDown forumInfo={elm} />
+            if(elm.type === 'forum'){ 
+              return <ForumBlock moveDown forumInfo={elm} key={i}/>
             }
             return <PostComponent key={i} postInfo={elm} navigation={navigation} />
           })}

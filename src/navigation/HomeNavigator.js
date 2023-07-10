@@ -18,6 +18,8 @@ import BuyingAuthority from '../screens/Balance/BuyingAuthority';
 import { RaisingProfile } from '../screens/Balance/RaisingProfile';
 import { GiftYourself } from '../screens/Balance/GiftYourself';
 import { BalanceCongrats } from '../screens/Balance/BalanceCongrats';
+import MessagesScreen from '../screens/chat/MessagesScreen';
+import ChatScreen from '../screens/chat/Chat';
 
 const Stack = createNativeStackNavigator();
 
@@ -190,6 +192,26 @@ export const HomeNavigator = () => {
                 component={BalanceCongrats}
                 options={{
                     headerShown: false
+                }}
+            />
+             <Stack.Screen
+                name="MessagesScreen"
+                component={MessagesScreen}
+                options={{
+                    headerShown: false
+                }} 
+            />
+               <Stack.Screen
+                name="ChatScreen"
+                component={ChatScreen}
+                options={({ navigation, route }) => {
+                    return {
+                        title: '',
+                        headerTransparent: true,
+                        header: () => (
+                            <Header navigation={navigation} backIcon chatHeader={route.params}/>
+                        ),
+                    }
                 }}
             />
         </Stack.Navigator>

@@ -12,7 +12,7 @@ export default function HomeScreen({ navigation }) {
     return <View style={{ flex: 1, backgroundColor: AppColors.WHITE_COLOR, paddingTop: 45 }}>
         <View style={[Styles.flexRowJustifyBetween, { padding: 20, }]}>
             <Image source={require('../../assets/pngs/BlueLogo.png')} style={{ width: 138, height: 30 }} />
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('MessagesScreen')}>
                 <ChatIcon />
             </TouchableOpacity>
         </View>

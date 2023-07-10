@@ -6,16 +6,23 @@ import { Shadow } from 'react-native-shadow-2';
 import { BlueCommentIcon, BlueHeart14, BrokenHeart14 } from "../assets/svgs/HomeSvgs";
 import { MoreIcon } from "../assets/svgs/AuthSvgs";
 
-export default function UserBlock({ authorityMode, activityStatus, chatIcon, selected, rating, moveEnd, moreIcon, onPress }) {
+export default function UserBlock({ authorityMode, activityStatus, chatIcon, selected, rating, moveEnd, moreIcon, onPress, lastActionInfo  }) {
     return <Shadow distance={3} containerStyle={{ marginBottom: 10, marginHorizontal: 5, marginTop: 3 }} style={{ width: '100%' }}>
         <TouchableOpacity onPress={onPress} style={[styles.container, Styles.flexRowJustifyBetween, selected && { borderWidth: 2, borderColor: AppColors.GOLD_COLOR, backgroundColor: AppColors.LEMON_COLOR }]}>
             <View style={[Styles.flexRowJustifyBetween, { width: '100%', alignItems: 'flex-start' }]}>
                 <View style={[Styles.flexRow]}>
                     <Image source={require('../assets/pngs/ProfileDefault.png')} style={{ width: 50, height: 50 }} resizeMode='stretch' />
-                    <View style={{ marginLeft: 15, height: 50, justifyContent: 'space-between', }}>
+                    <View style={{ marginLeft: 15, height: 50, justifyContent: 'space-between', flexShrink: 1,}}>
                         <Text style={[Styles.darkMedium15, { lineHeight: 17 }]}>John Smith</Text>
-                        <Text style={Styles.darkBlueMedium12}>Мосвка, Россия </Text>
+                        { lastActionInfo  ?
+
+                        <Text style={[Styles.darkRegular10, ]}>Пользователь Lilly отправил запрос на добавления в друзья</Text>
+                        :
+                            <>
+                            <Text style={Styles.darkBlueMedium12}>Мосвка, Россия </Text>
                         <Text style={{ fontSize: 10, color: AppColors.DARK_CHARCOAL_COLOR }}>31<Text style={Styles.darkRegular10}> год</Text></Text>
+                            </>
+                        }
                     </View>
                 </View>
 
@@ -31,7 +38,7 @@ export default function UserBlock({ authorityMode, activityStatus, chatIcon, sel
                         <BlueHeart14 />
                     </View>
                 </View> : activityStatus ?
-                    <View style={[styles.activityBlock, moveEnd && { justifyContent: 'flex-end' }]}>
+                    <View style={[styles.activityBlock, moveEnd && { justifyContent: 'flex-end' }, {position: 'absolute', right: 0}]}>
                         {chatIcon && <BlueCommentIcon />}
                         {moreIcon && <MoreIcon />}
                         <Text style={Styles.darkBlueSemiBold10}>Cегодня в 13:44</Text>

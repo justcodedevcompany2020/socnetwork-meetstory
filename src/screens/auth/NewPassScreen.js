@@ -16,8 +16,8 @@ export default function NewPassScreen({navigation}) {
                 <Text style={[Styles.darkRegular15, {marginTop: 15}]}>Введите новый пароль для вашего аккаунта</Text>
             </View>
             <Input labelText={'Новый пароль'} value={pass} setValue={setPass} inputType={'pass'} minLengthPass />
-            <Input labelText={'Новый пароль'} value={confirmPass} setValue={setConfirmPass} inputType={'pass'} />
-            <View style={{ marginVertical: 45 }}>
+            <Input labelText={'Подтвердите пароль'} value={confirmPass} setValue={setConfirmPass} inputType={'pass'} />
+            <View style={{ marginVertical: 45 }}> 
                 <Button text={'Сохранить'} onPress={() => navigation.navigate('LoginScreen')}  margin/>
             </View>
         </View>
