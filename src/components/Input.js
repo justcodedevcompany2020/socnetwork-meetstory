@@ -8,12 +8,29 @@ import DatePicker from "react-native-date-picker";
 import moment from "moment";
 
 
-export default function Input({ labelText, inputType, value, setValue, minLengthPass, error, data,placeholder }) {
+export default function Input({ labelText, inputType, value, setValue, minLengthPass, error, data, placeholder, loading, dropdownRef }) {
 
     const [open, setOpen] = useState(false)
     const [openDatePicker, setOpenDatePicker] = useState(false)
     const [date, setDate] = useState(new Date())
     const [isOpenEye, setIsOpenEye] = useState(false)
+
+    function formatPhone(value) {
+        let x = value
+            .replace(/\D/g, '')
+            .match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+        let myPhone = !x[2]
+            ? '+7 ' + (x[1] != '7' ? x[1] : '')
+            : !x[3]
+                ? '+7 (' + x[2]
+                : '+7 (' +
+                x[2] +
+                ') ' +
+                (x[3] ? x[3] : '') +
+                (x[4] ? ' - ' + x[4] : '') +
+                (x[5] ? ' - ' + x[5] : '');
+        setValue(myPhone);
+    }
 
     return <View style={styles.container}>
         {labelText && <View style={Styles.flexRowJustifyBetween}>
@@ -23,15 +40,15 @@ export default function Input({ labelText, inputType, value, setValue, minLength
         {inputType == 'dropdown' ?
             <SelectDropdown
                 data={data}
+                ref={dropdownRef}
+                buttonTextAfterSelection={selectedItem => selectedItem.value}
+                rowTextForSelection={item => item.value}
                 onBlur={() => setOpen(false)}
                 onFocus={() => setOpen(true)}
-                onSelect={(selectedItem, index) => {
-                    console.log(selectedItem, index)
-                    setValue(selectedItem)
-                }}
+                onSelect={(el, i) => setValue(el.id)}
+                disabled={loading}
                 defaultButtonText={placeholder}
-                defaultValue={value}
-                buttonStyle={[styles.inputContainer, { paddingHorizontal: 5, width: '100%', marginBottom: 10 }, error && { borderColor: 'red' }, open && { borderRadius: 0 }]}
+                buttonStyle={[styles.inputContainer, { paddingHorizontal: 5, width: '100%', marginBottom: 10 }, error && { borderColor: AppColors.RED_COLOR, borderWidth: 1 }, open && { borderRadius: 0 }]}
                 dropdownStyle={{ marginTop: -26, backgroundColor: AppColors.FIRST_SNOW_COLOR, }}
                 buttonTextStyle={[Styles.darkRegular15, { textAlign: 'left' }]}
                 rowTextStyle={[Styles.darkRegular15, { textAlign: 'left' }]}
@@ -42,7 +59,7 @@ export default function Input({ labelText, inputType, value, setValue, minLength
                     style={[
                         styles.container,
                         styles.inputContainer,
-                        {marginBottom: 0}
+                        { marginBottom: 0 }
                     ]} onPress={() => setOpenDatePicker(true)}>
                     <Text style={styles.input}>{value ? moment(date).format('D.M.YYYY') : 'Неограниченно'}</Text>
                     <DatePicker
@@ -64,15 +81,15 @@ export default function Input({ labelText, inputType, value, setValue, minLength
                         }}
                     />
                 </TouchableOpacity>
-                : <View style={[Styles.flexRow, styles.inputContainer, !labelText && {marginTop: 0}]}>
+                : <View style={[Styles.flexRow, styles.inputContainer, !labelText && { marginTop: 0 }, error && { borderWidth: 1, borderColor: AppColors.RED_COLOR }]}>
                     <TextInput
                         style={[styles.input, inputType == 'pass' && { width: '88%' }]}
                         value={value}
-                        onChangeText={setValue}
-                        maxLength={inputType == 'code' ? 6 : 50}
+                        onChangeText={inputType == 'phone' ? formatPhone : setValue}
+                        maxLength={inputType == 'code' ? 4 : inputType == 'phone' ? 22 : 50}
                         secureTextEntry={inputType === 'pass' && !isOpenEye ? true : false}
                         keyboardType={inputType == 'phone' || inputType == 'code' || inputType == 'age' ? 'numeric' : 'ascii-capable'}
-                        placeholder ={placeholder}
+                        placeholder={placeholder}
                     />
                     {inputType === 'pass' && (isOpenEye ?
                         <TouchableOpacity onPress={() => setIsOpenEye(false)} style={styles.eyeContainer}>

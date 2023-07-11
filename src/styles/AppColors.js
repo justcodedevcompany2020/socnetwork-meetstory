@@ -12,5 +12,6 @@ export const AppColors = {
   LAVENDER_COLOR: '#EAE6FB',
   BITTERSWEET_COLOR: '#F36A6A',
   SKY_BLUE_COLOR:'#66A2CF',
-  CORNFLOWER_COLOR: '#9abdde'
+  CORNFLOWER_COLOR: '#9abdde',
+  RED_COLOR: '#FF0000'
 };
