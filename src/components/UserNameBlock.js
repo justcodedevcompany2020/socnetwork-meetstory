@@ -3,8 +3,11 @@ import { MessageSvg } from "../assets/svgs/UserSvgs"
 import { AppColors } from "../styles/AppColors"
 import { Styles } from "../styles/Styles"
 import { MoneyIcon } from "../assets/svgs/ProfileSvgs"
+import { useNavigation } from "@react-navigation/native"
 
 export const UserNameBlock = ({ userInfo, myProfile }) => {
+
+    const navigation = useNavigation()
     return <View style={[Styles.flexRowJustifyBetween, { width: '90%', marginTop: 30 }]}>
         <View style={Styles.flexRow}>
             <View style={styles.imgContainer}>
@@ -23,7 +26,7 @@ export const UserNameBlock = ({ userInfo, myProfile }) => {
                 </View>}
         </View>
         {myProfile ?
-            <TouchableOpacity >
+            <TouchableOpacity onPress={() => navigation.navigate('BalanceScreen')}>
                 <MoneyIcon />
             </TouchableOpacity>
             : <TouchableOpacity >

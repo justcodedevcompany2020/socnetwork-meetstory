@@ -32,7 +32,7 @@ export default function MyProfileScreen({ navigation }) {
             </View>
         </View>
         <View style={Styles.whiteContainer}>
-            <ScrollView style={{ marginTop: 30 }} showsVerticalScrollIndicator={false}>
+            <ScrollView style={{ marginTop: 20 }} showsVerticalScrollIndicator={false}>
                 <HorizontalBlock text={'Анкета'} backImagePath={require('../../assets/pngs/BlockBack18.png')} Icon={UserIcon} onPress={() => navigation.navigate('ApplicationFormScreen')} />
                 <HorizontalBlock text={'Моя стена'} backImagePath={require('../../assets/pngs/BlockBack23.png')} Icon={WallSvg} onPress={() => navigation.navigate('MyFeedScreen')} />
                 <View style={Styles.flexRowJustifyBetween}>

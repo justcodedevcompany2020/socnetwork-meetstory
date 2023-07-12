@@ -22,7 +22,7 @@ export const UserScreen = ({ navigation }) => {
             <UserNameBlock />
             <View style={styles.textBlock}>
                 <Text style={Styles.whiteRegular13}><Text style={Styles.whiteSemiBold13}>Дата регистрации:</Text> 24 апреля 2022 </Text>
-                <Text style={Styles.whiteRegular13}><Text style={Styles.whiteSemiBold13}>Забыйтый</Text> персонаж из твоей сказки</Text>
+                <Text style={Styles.whiteRegular13}><Text style={Styles.whiteSemiBold13}>Статус:</Text> Забыйтый персонаж из твоей сказки</Text>
             </View>
             <View style={[Styles.whiteContainer, { paddingVertical: 15 }]}>
                 <HorizontalBlock

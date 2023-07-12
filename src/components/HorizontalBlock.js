@@ -4,9 +4,9 @@ import { Styles } from "../styles/Styles";
 import { WhiteArrowRight } from "../assets/svgs/HomeSvgs";
 
 
-export default function HorizontalBlock({ Icon, text, backImagePath, onPress, thin, width }) {
+export default function HorizontalBlock({ Icon, text, backImagePath, onPress, thin, width, height }) {
     return <TouchableOpacity onPress={onPress} style={width && { width: width }}>
-        <ImageBackground source={backImagePath} style={[Styles.flexRowJustifyBetween, thin ? styles.thinBlockContainer : styles.blockContainer,]} borderRadius={15}>
+        <ImageBackground source={backImagePath} style={[Styles.flexRowJustifyBetween, thin ? styles.thinBlockContainer : styles.blockContainer, height && {height: height}]} borderRadius={15}>
             <View style={thin ? Styles.flexRow : !Icon ? {alignSelf: 'flex-end', paddingBottom: 10} : { alignSelf: 'center' }}>
                 {Icon && <Icon />}
                 <Text style={[Styles.whiteSemiBold16, thin && { marginLeft: 10 }, {marginBottom: 5}]}>{text}</Text>

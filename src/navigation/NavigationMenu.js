@@ -11,7 +11,6 @@ import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import NotificationsScreen from '../screens/notifications/NotificationsScreen';
 import Header from './Header';
 import { SearchNavigator } from './SearchNavigator';
-import { BalanceNavigator } from './BalanceNavigator';
 import { ProfileNavigator } from './ProfileNavigation';
 
 const Tab = createBottomTabNavigator();

@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Container from '../../components/Container';
-import {View, ScrollView} from 'react-native';
-import {Styles} from '../../styles/Styles';
+import { View, ScrollView } from 'react-native';
+import { Styles } from '../../styles/Styles';
 import Input from '../../components/Input';
 import AcceptField from '../../components/AcceptField';
+import Button from '../../components/Button';
 
 export default function AdvancedSearchScreen() {
   const [name, setName] = useState();
@@ -15,16 +16,19 @@ export default function AdvancedSearchScreen() {
 
   return (
     <Container goBack headerTitle={'Расширенный поиск'}>
-      <View style={[Styles.whiteContainer, {marginTop: 30, paddingTop: 30}]}>
+      <View style={[Styles.whiteContainer, { marginTop: 30, paddingTop: 30 }]}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <Input labelText={'Найти'} value={name} setValue={setName} placeholder={'Имя'}/>
-          <Input labelText={'Возраст'} value={name} setValue={setName} placeholder={'От'} inputType={'age'}/>
-          <Input value={name} setValue={setName} placeholder={'До'} inputType={'age'}/>
+          <Input labelText={'Найти'} value={name} setValue={setName} placeholder={'Имя'} />
+          <Input labelText={'Возраст'} value={name} setValue={setName} placeholder={'От'} inputType={'age'} />
+          <Input value={name} setValue={setName} placeholder={'До'} inputType={'age'} />
           <Input labelText={'Выберите страну'} value={selectedCountry} setValue={setSelectedCountry} inputType={'dropdown'} data={countries} placeholder={'Выберите страну'} />
           <Input labelText={'Выберите область'} value={selectedCountry} setValue={setSelectedCountry} inputType={'dropdown'} data={countries} placeholder={'Выберите область'} />
-          <AcceptField text={'Сейчас онлайн'} accepted={isOnline} setAccepted={setIsOnline}/>
-          <AcceptField text={'Только с фотографией'} accepted={withPhoto} setAccepted={setWithPhoto}/>
-          <AcceptField text={'Не показывать старые'} accepted={dontShowOlds} setAccepted={setDontShowOlds}/>
+          <AcceptField text={'Сейчас онлайн'} accepted={isOnline} setAccepted={setIsOnline} />
+          <AcceptField text={'Только с фотографией'} accepted={withPhoto} setAccepted={setWithPhoto} />
+          <AcceptField text={'Не показывать старые'} accepted={dontShowOlds} setAccepted={setDontShowOlds} />
+          <View style={{ marginTop: 30 }}>
+            <Button text={'Поиск'} margin />
+          </View>
         </ScrollView>
       </View>
     </Container>

@@ -20,14 +20,14 @@ export default function LoginScreen({ navigation }) {
     })
 
     function onPressLogin() {
-        let myPhone = phone.replace(/\D/g, '')
+        let myPhone = '+' + phone.replace(/\D/g, '')
         setLoading(true)
         setError(false)
 
         let isValidInfo = validateData();
         isValidInfo ?
             postRequest('login', {
-                phone: phone,
+                phone: myPhone,
                 password: pass,
             }).then(([status, data]) => {
                 console.log(status, data);

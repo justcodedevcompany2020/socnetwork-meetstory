@@ -88,7 +88,7 @@ export default function Input({ labelText, inputType, value, setValue, minLength
                         onChangeText={inputType == 'phone' ? formatPhone : setValue}
                         maxLength={inputType == 'code' ? 4 : inputType == 'phone' ? 22 : 50}
                         secureTextEntry={inputType === 'pass' && !isOpenEye ? true : false}
-                        keyboardType={inputType == 'phone' || inputType == 'code' || inputType == 'age' ? 'numeric' : 'ascii-capable'}
+                        keyboardType={inputType == 'phone' || inputType == 'code' || inputType == 'age' || inputType == 'num' ? 'numeric' : 'ascii-capable'}
                         placeholder={placeholder}
                     />
                     {inputType === 'pass' && (isOpenEye ?

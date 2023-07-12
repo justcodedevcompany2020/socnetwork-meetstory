@@ -19,7 +19,7 @@ export const ChangeTemaScreen = () => {
     {text: 'Кофе'},
   ]);
   return (
-    <Container headerTitle={'Аккаунт и безопастность'} goBack>
+    <Container headerTitle={'Тема оформления'} goBack>
       <View
         style={[Styles.whiteContainer, {marginTop: 30, paddingVertical: 20}]}>
         <ScrollView showsVerticalScrollIndicator={false}>
