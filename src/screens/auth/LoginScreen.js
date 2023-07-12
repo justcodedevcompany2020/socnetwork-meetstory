@@ -22,7 +22,6 @@ export default function LoginScreen({ navigation }) {
     function onPressLogin() {
         let myPhone = '+' + phone.replace(/\D/g, '')
         setLoading(true)
-        setError(false)
 
         let isValidInfo = validateData();
         isValidInfo ?
@@ -34,6 +33,7 @@ export default function LoginScreen({ navigation }) {
                 if (status === 200) {
                     //dispatch token
                     navigation.navigate('Menu')
+                    clearData()
                 } else if (status === 401 || status === 400) {
                     setError('Неверный ввод данных. Повторите попытку.');
                 }
@@ -47,15 +47,25 @@ export default function LoginScreen({ navigation }) {
         let error = false;
 
         myErrors.pass = !pass
-        myErrors.phone = !phone
+        myErrors.phone = !phone || phone == '+7 '
 
         if (pass && phone && (pass.length < 8 || phone.length < 22)) {
             setError(true)
-        }
+        } else setError(false)
 
         error = !pass || !phone || pass.length < 8 || phone.length < 22 ? true : false
         setErrors(myErrors);
         return !error;
+    }
+
+    function clearData() {
+        setErrors({
+            pass: false,
+            phone: false,
+        })
+        setError(false)
+        setPhone(null)
+        setPass(null)
     }
 
     return <Container>
@@ -69,7 +79,7 @@ export default function LoginScreen({ navigation }) {
             <View style={{ marginVertical: 45 }}>
                 {error && <Text style={[Styles.darkRegular12, { color: AppColors.RED_COLOR, marginBottom: 10, textAlign: 'center' }]}>Неверный ввод данных. Повторите попытку.</Text>}
                 <Button text={'Войти'} onPress={onPressLogin} margin loading={loading} />
-                <Text style={[Styles.darkMedium14, { textAlign: 'center', marginTop: 10 }]}>Нет аккаунта? <Text onPress={() => navigation.navigate('RegisterScreen')} style={{ color: AppColors.STEEL_BLUE_COLOR }}> Зарегистрироваться </Text> </Text>
+                <Text style={[Styles.darkMedium14, { textAlign: 'center', marginTop: 10 }]}>Нет аккаунта? <Text onPress={() => { navigation.navigate('RegisterScreen'); clearData()}} style={{ color: AppColors.STEEL_BLUE_COLOR }}> Зарегистрироваться </Text> </Text>
             </View>
         </ScrollView>
     </Container>

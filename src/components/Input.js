@@ -90,6 +90,7 @@ export default function Input({ labelText, inputType, value, setValue, minLength
                         secureTextEntry={inputType === 'pass' && !isOpenEye ? true : false}
                         keyboardType={inputType == 'phone' || inputType == 'code' || inputType == 'age' || inputType == 'num' ? 'numeric' : 'ascii-capable'}
                         placeholder={placeholder}
+                        placeholderTextColor={AppColors.DARK_CHARCOAL_COLOR}
                     />
                     {inputType === 'pass' && (isOpenEye ?
                         <TouchableOpacity onPress={() => setIsOpenEye(false)} style={styles.eyeContainer}>

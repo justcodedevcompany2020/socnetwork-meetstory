@@ -17,7 +17,7 @@ export const HistoryBlock = ({ img, title, type, price }) => {
         </View>
       </View>
       <View style={{ alignItems: 'flex-start', justifyContent: 'flex-start' }}>
-        <Text style={[price[0] === '-' ? styles.bittersweetSemiBold12 : styles.darkBlueMedium12]}>{price}</Text>
+        <Text style={[price[0] === '-' ? styles.bittersweetSemiBold13 : styles.darkBlueMedium13]}>{price}</Text>
       </View>
     </Shadow>
   );
@@ -26,24 +26,24 @@ export const HistoryBlock = ({ img, title, type, price }) => {
 const styles = StyleSheet.create({
   block: {
     width: '100%',
-    padding: 7,
+    padding: 10,
     justifyContent: 'space-between',
     flexDirection: 'row',
     borderRadius: 6,
   },
   img: {
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
   },
   titleBlocK: {
     marginHorizontal: 20,
   },
-  bittersweetSemiBold12: {
+  bittersweetSemiBold13: {
     color: AppColors.BITTERSWEET_COLOR,
-    fontSize: 12
+    fontSize: 13
   },
-  darkBlueMedium12: {
+  darkBlueMedium13: {
     color: AppColors.LOCHMARA_COLOR,
-    fontSize: 12,
+    fontSize: 13,
   }
 });

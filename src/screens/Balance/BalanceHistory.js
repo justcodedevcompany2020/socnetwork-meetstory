@@ -5,6 +5,7 @@ import {Styles} from '../../styles/Styles';
 import BalanceBlock from './BalanceBlock';
 import { useState } from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { AppColors } from '../../styles/AppColors';
 
 export const BalanceHistory = () => {
   const [activeDate,setActiveDate] = useState(0)
@@ -70,9 +71,10 @@ export const BalanceHistory = () => {
       <ScrollView showsVerticalScrollIndicator={false} style={{marginVertical: 10}}>
         {data1.map((elm, index) => (
           <View key={index}>
-            <Text style={Styles.darkMedium15}>
+            {/* todo orn u amisy arandznacnel */}
+            <Text style={{fontSize: 15, color: AppColors.DARK_CHARCOAL_COLOR}}>
               {elm.date}
-            </Text>
+            </Text> 
             {elm.item.map((e, i) => (
               <HistoryBlock
                 key={i}

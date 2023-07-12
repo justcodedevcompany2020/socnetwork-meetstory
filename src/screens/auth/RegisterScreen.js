@@ -32,7 +32,7 @@ export default function RegisterScreen({ navigation }) {
 
     const dropdownRef = useRef({});
 
-    const [emailError, setEmailError] = useState(false)
+    const [phoneError, setPhoneError] = useState(false)
     const [errors, setErrors] = useState({
         gender: false,
         country: false,
@@ -84,9 +84,9 @@ export default function RegisterScreen({ navigation }) {
     }
 
     function register() {
-        validate()
         let myPhone = '+' + phone.replace(/\D/g, '')
         setLoading(true)
+
 
         let isValidInfo = validate();
         isValidInfo ?
@@ -103,7 +103,8 @@ export default function RegisterScreen({ navigation }) {
                     console.log('200');
                     navigation.navigate('VerificationScreen', { phone: myPhone })
                 } else if (status === 400 && data.message.phone[0] == 'The phone has already been taken.') {
-                    setEmailError(true)
+                    setPhoneError(true)
+                    // setErrors({...errors, phoneMsg: 'Этот телефон уже зарегистрирован.'})
                 } else if (status === 422) {
                     //timer
                 } else if (status === 421) {
@@ -116,19 +117,7 @@ export default function RegisterScreen({ navigation }) {
     function validate() {
         let items = { ...errors };
         let error = false;
-        setErrors({
-            gender: false,
-            country: false,
-            city: false,
-            phone: false,
-            pass: false,
-            confirmPass: false,
-            confirmPassMsg: false,
-            passMsg: false,
-            phoneMsg: false,
-            accept: false
-        })
-        setEmailError(false)
+
 
         if (typeof selectedGender !== 'number') {
             items.gender = true;
@@ -200,6 +189,24 @@ export default function RegisterScreen({ navigation }) {
         return !error
     }
 
+
+    function clearData() {
+
+        setErrors({
+            gender: false,
+            country: false,
+            city: false,
+            phone: false,
+            pass: false,
+            confirmPass: false,
+            confirmPassMsg: false,
+            passMsg: false,
+            phoneMsg: false,
+            accept: false
+        })
+        setPhoneError(false)
+    }
+
     return <Container>
         <ScrollView style={Styles.whiteContainer} showsVerticalScrollIndicator={false}>
             <Text style={[Styles.blackSemiBold28, { marginVertical: 30 }]}>Регистрация</Text>
@@ -209,7 +216,7 @@ export default function RegisterScreen({ navigation }) {
                     Введите корректный номер телефона.
                 </Text>
             )}
-            {emailError && (
+            {phoneError && (
                 <Text style={Styles.redRegular12}>
                     Этот телефон уже зарегистрирован.
                 </Text>
@@ -231,7 +238,7 @@ export default function RegisterScreen({ navigation }) {
             <AcceptField accepted={accepted} onPressAccept={onPressAccept} text={'Я согласен с политикой'} error={errors.accept} />
             <View style={{ marginVertical: 45 }}>
                 <Button text={'Зарегистрироваться'} onPress={register} margin loading={loading} />
-                <Text style={[Styles.darkMedium15, { textAlign: 'center', marginTop: 10 }]}>Есть аккаунт? <Text onPress={() => navigation.navigate('LoginScreen')} style={{ color: AppColors.STEEL_BLUE_COLOR }} suppressHighlighting> Войти </Text> </Text>
+                <Text style={[Styles.darkMedium15, { textAlign: 'center', marginTop: 10 }]}>Есть аккаунт? <Text onPress={() => { navigation.navigate('LoginScreen'); clearData() }} style={{ color: AppColors.STEEL_BLUE_COLOR }} suppressHighlighting> Войти </Text> </Text>
             </View>
         </ScrollView>
     </Container>

@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     block:{
         backgroundColor:AppColors.SKY_BLUE_COLOR,
         padding:7,
-        borderRadius:6,
+        borderRadius:8,
         justifyContent:'space-between',
         alignItems:'center',
         flexDirection:'row',

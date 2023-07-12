@@ -19,8 +19,8 @@ import { RaisingProfile } from '../screens/Balance/RaisingProfile';
 import { GiftYourself } from '../screens/Balance/GiftYourself';
 import { BalanceCongrats } from '../screens/Balance/BalanceCongrats';
 import MessagesScreen from '../screens/chat/MessagesScreen';
-import ChatScreen from '../screens/chat/Chat';
 import { UserScreen } from '../screens/user/UserScreen';
+import { NoBalance } from '../screens/Balance/NoBalance';
 
 const Stack = createNativeStackNavigator();
 
@@ -205,6 +205,13 @@ export const HomeNavigator = () => {
             <Stack.Screen
                 name="UserScreen"
                 component={UserScreen}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="NoBalance"
+                component={NoBalance}
                 options={{
                     headerShown: false
                 }}
