@@ -15,7 +15,7 @@ import { AppColors } from "../../styles/AppColors";
 export default function MyProfileScreen({ navigation }) {
     const [showPopup, setShowPopup] = useState(false)
 
-    return <Container headerTitle={'Мой профиль'} settingsIcon >
+    return <Container headerTitle={'Мой профиль'} settingsIcon>
         <UserNameBlock myProfile />
         <View style={{ width: '100%', paddingLeft: 20, marginVertical: 20 }}>
             <View style={Styles.flexRow}>

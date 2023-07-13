@@ -21,7 +21,7 @@ export default function Container(props) {
         {props.filterIcon && <TouchableOpacity style={{position: 'absolute', width: 35, height: 35, right: 10, top: 60, alignItems: 'center', justifyContent: 'center'}} onPress={props.onPressFilter}>
             <FilterIcon/>
         </TouchableOpacity> }
-        {props.settingsIcon && <TouchableOpacity style={{position: 'absolute', width: 35, height: 35, right: 10, top: 60, alignItems: 'center', justifyContent: 'center'}}>
+        {props.settingsIcon && <TouchableOpacity style={{position: 'absolute', width: 35, height: 35, right: 10, top: 60, alignItems: 'center', justifyContent: 'center'}} onPress={() => navigation.navigate('SettingScreen')}>
             <SettingsIcon/>
         </TouchableOpacity> }
         {props.children}

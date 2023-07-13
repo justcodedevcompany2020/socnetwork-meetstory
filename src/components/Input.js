@@ -52,7 +52,7 @@ export default function Input({ labelText, inputType, value, setValue, minLength
                 onFocus={() => setOpen(true)}
                 onSelect={(el, i) => setValue(el.id)}
                 disabled={loading}
-                defaultButtonText={placeholder}
+                defaultButtonText={data[value]?.value ?? placeholder}
                 buttonStyle={[styles.inputContainer, { paddingHorizontal: 5, width: '100%', marginBottom: 10 }, error && { borderColor: AppColors.RED_COLOR, borderWidth: 1 }, open && { borderRadius: 0 }]}
                 dropdownStyle={{ marginTop: -26, backgroundColor: AppColors.FIRST_SNOW_COLOR, }}
                 buttonTextStyle={[Styles.darkRegular15, { textAlign: 'left' }]}
