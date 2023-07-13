@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../../components/Container";
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { Styles } from "../../styles/Styles";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { postRequest } from "../../api/RequestHelpers";
+import { AppColors } from "../../styles/AppColors";
 
 
 export default function VerificationScreen({ navigation, route }) {
@@ -14,6 +15,12 @@ export default function VerificationScreen({ navigation, route }) {
 
     const [loading, setLoading] = useState(false)
     const { phone } = route.params
+
+    const [resendMinutes, setResendMinutes] = useState(null)
+    const [resendSeconds, setResendSeconds] = useState(null)
+    const [disableSendCode, setDisableSendCode] = useState(true)
+
+    const [tryLater, setTryLater] = useState(false)
 
     function verify() {
         setLoading(true)
@@ -38,13 +45,56 @@ export default function VerificationScreen({ navigation, route }) {
                 if (status === 200) {
                     //dispatch token
                     navigation.navigate('AddInfoScreen')
-                } else if (422) {
+                } else if (status === 422) {
                     setCodeError(true);
                     setShowErrorMsg('Неверный код');
                 }
                 setLoading(false)
             });
         }
+    }
+
+    useEffect(() => {
+        resendTimer(0, 59)
+    }, [])
+
+    function resendTimer(min, sec) {
+        setDisableSendCode(true)
+        setResendMinutes(min)
+        setResendSeconds(sec)
+        let seconds = sec
+        let minutes = min
+        const interval = setInterval(() => {
+            if (seconds === 0) {
+                console.log('resendSeconds === 0');
+                if (minutes === 0) {
+                    console.log('resendMinutes === 0');
+                    clearInterval(interval)
+                    setDisableSendCode(false)
+                    return;
+                }
+                seconds = 60;
+                minutes = minutes - 1
+                setResendMinutes(minutes)
+            }
+            seconds = seconds - 1
+            setResendSeconds(seconds);
+        }, 1000);
+        return interval
+    }
+
+    function resendCode() {
+        setTryLater(false)
+        postRequest('resend_code_registration', {
+            phone: phone
+        }).then(([status, body]) => {
+            console.log(body);
+            if (status === 200) {
+                resendTimer(0, 59)
+            } else if (body.message == 'Your Phone Blocked 10 minutes') {
+                resendTimer(9, 59)
+            } else setTryLater(true)
+        });
     }
 
     return <Container>
@@ -55,7 +105,15 @@ export default function VerificationScreen({ navigation, route }) {
             </View>
             <Input labelText={'Код подтверждения'} value={code} setValue={setCode} inputType={'code'} error={codeError} />
             {showErrorMsg && <Text style={Styles.redRegular12}>{showErrorMsg}</Text>}
+
             <View style={{ marginVertical: 45 }}>
+                {tryLater && (
+                    <Text style={[Styles.redRegular12, { textAlign: 'center' }]}>Попробуйте немного позже</Text>
+                )}
+                <TouchableOpacity style={[Styles.flexRow, { marginBottom: 15, alignSelf: 'center' }]} disabled={disableSendCode} onPress={resendCode}>
+                    <Text style={[Styles.blueSemiBold14, { textAlign: 'center' }]}>Отправить код повторно</Text>
+                    {(resendMinutes == 0 && resendSeconds == 0) ? null : (disableSendCode && <Text style={{ color: AppColors.STEEL_BLUE_COLOR, fontSize: 14, fontWeight: '500' }}>:  {resendMinutes < 10 ? '0' + resendMinutes : resendMinutes} : {resendSeconds < 10 ? '0' + resendSeconds : resendSeconds}</Text>)}
+                </TouchableOpacity>
                 <Button text={'Продолжить'} onPress={verify} margin loading={loading} />
             </View>
         </View>

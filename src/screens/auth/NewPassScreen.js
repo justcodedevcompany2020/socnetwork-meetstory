@@ -5,9 +5,10 @@ import { Styles } from "../../styles/Styles";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 
-export default function NewPassScreen({navigation}) {
+export default function NewPassScreen({navigation, route}) {
     const [pass, setPass] = useState()
     const [confirmPass, setConfirmPass] = useState()
+    // const {phone, code} = route.params
 
     return <Container goBack>
         <View style={Styles.whiteContainer}>

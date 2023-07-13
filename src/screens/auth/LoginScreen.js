@@ -6,6 +6,8 @@ import { Styles } from "../../styles/Styles";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { postRequest } from "../../api/RequestHelpers";
+import { useDispatch } from "react-redux";
+import { saveToken } from "../../store/actions/saveToken";
 
 
 export default function LoginScreen({ navigation }) {
@@ -18,6 +20,7 @@ export default function LoginScreen({ navigation }) {
         pass: false,
         phone: false,
     })
+    const dispatch = useDispatch()
 
     function onPressLogin() {
         let myPhone = '+' + phone.replace(/\D/g, '')
@@ -31,7 +34,7 @@ export default function LoginScreen({ navigation }) {
             }).then(([status, data]) => {
                 console.log(status, data);
                 if (status === 200) {
-                    //dispatch token
+                    dispatch(saveToken(data.token))
                     navigation.navigate('Menu')
                     clearData()
                 } else if (status === 401 || status === 400) {

@@ -1,6 +1,6 @@
 import {BalanceCongratsBlock} from './BalanceCongratsBlock';
 
-export const NoBalance = () => {
+export const NoBalance = ({navigation}) => {
   return (
     <BalanceCongratsBlock
       img={require('../../assets/pngs/NoBalance.png')}
@@ -10,6 +10,8 @@ export const NoBalance = () => {
       margin = {30}
       color
       close = {'Отменить'}
+      onPressBtn={() => navigation.navigate('BalanceScreen')}
+      onPressClose={() => navigation.goBack()}
     />
   );
 };

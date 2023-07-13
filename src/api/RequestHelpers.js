@@ -30,7 +30,11 @@ export async function postRequestAuth(api, token, body) {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(body),
-  }).then(response => response.json());
+  }).then(response => {
+    console.log(response.status);
+    return Promise.all([response.status, response.json()]);
+  })
+    .catch(error => console.log(error));
 }
 
 export async function getRequestAuth(api, token) {

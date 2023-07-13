@@ -30,7 +30,10 @@ export default function RegisterScreen({ navigation }) {
 
     const [accepted, setAccepted] = useState(false)
 
-    const dropdownRef = useRef({});
+    const dropdownRefCity = useRef({});
+    const dropdownRefCountry = useRef({});
+    const dropdownRefGender = useRef({});
+
 
     const [phoneError, setPhoneError] = useState(false)
     const [errors, setErrors] = useState({
@@ -45,6 +48,7 @@ export default function RegisterScreen({ navigation }) {
         phoneMsg: false,
         accept: false
     });
+    const [tryLater, setTryLater] = useState(false)
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
@@ -54,7 +58,7 @@ export default function RegisterScreen({ navigation }) {
     useEffect(() => {
         setCitiesLoading(true)
         setSelectedCity(null)
-        dropdownRef.current.reset()
+        dropdownRefCity.current.reset()
         selectedCountry && getCities()
     }, [selectedCountry])
 
@@ -87,7 +91,6 @@ export default function RegisterScreen({ navigation }) {
         let myPhone = '+' + phone.replace(/\D/g, '')
         setLoading(true)
 
-
         let isValidInfo = validate();
         isValidInfo ?
             postRequest('registration', {
@@ -100,16 +103,10 @@ export default function RegisterScreen({ navigation }) {
             }).then(([status, data]) => {
                 console.log(status, data);
                 if (status === 200) {
-                    console.log('200');
                     navigation.navigate('VerificationScreen', { phone: myPhone })
                 } else if (status === 400 && data.message.phone[0] == 'The phone has already been taken.') {
                     setPhoneError(true)
-                    // setErrors({...errors, phoneMsg: 'Этот телефон уже зарегистрирован.'})
-                } else if (status === 422) {
-                    //timer
-                } else if (status === 421) {
-                    //timer
-                }
+                } else setTryLater(true)
                 setLoading(false)
             }) : setLoading(false)
     }
@@ -117,7 +114,6 @@ export default function RegisterScreen({ navigation }) {
     function validate() {
         let items = { ...errors };
         let error = false;
-
 
         if (typeof selectedGender !== 'number') {
             items.gender = true;
@@ -184,14 +180,14 @@ export default function RegisterScreen({ navigation }) {
             items.confirmPass = false;
             items.confirmPassMsg = false;
         }
-
+        setTryLater(false)
+        setPhoneError(false)
         setErrors(items);
         return !error
     }
 
-
     function clearData() {
-
+        //errors
         setErrors({
             gender: false,
             country: false,
@@ -204,7 +200,19 @@ export default function RegisterScreen({ navigation }) {
             phoneMsg: false,
             accept: false
         })
+        setTryLater(false)
         setPhoneError(false)
+        //values
+        setPhone('')
+        setPass('')
+        setConfirmPass('')
+        setSelectedCity(null)
+        dropdownRefCity.current.reset()
+        setSelectedCountry(null)
+        dropdownRefCountry.current.reset()
+        setSelectedGender(null)
+        dropdownRefGender.current.reset()
+        setAccepted(false)
     }
 
     return <Container>
@@ -232,11 +240,13 @@ export default function RegisterScreen({ navigation }) {
                 <Text style={Styles.redRegular12}>Пароли не совпадают.</Text>
             )}
             <Input labelText={'Пол'} value={selectedGender} setValue={setSelectedGender} inputType={'dropdown'} data={genders} placeholder={' '} error={errors.gender} />
-            <Input labelText={'Страна'} value={selectedCountry} setValue={setSelectedCountry} inputType={'dropdown'} data={countries} placeholder={' '} loading={countriesLoading} error={errors.country} />
-            <Input labelText={'Город'} value={selectedCity} setValue={setSelectedCity} inputType={'dropdown'} data={cities} placeholder={' '} loading={citiesLoading} error={errors.city} dropdownRef={dropdownRef} />
-
+            <Input labelText={'Страна'} value={selectedCountry} setValue={setSelectedCountry} inputType={'dropdown'} data={countries} placeholder={' '} loading={countriesLoading} error={errors.country}  dropdownRef={dropdownRefCountry}/>
+            <Input labelText={'Город'} value={selectedCity} setValue={setSelectedCity} inputType={'dropdown'} data={cities} placeholder={' '} loading={citiesLoading} error={errors.city} dropdownRef={dropdownRefCity} />
             <AcceptField accepted={accepted} onPressAccept={onPressAccept} text={'Я согласен с политикой'} error={errors.accept} />
             <View style={{ marginVertical: 45 }}>
+                {tryLater && (
+                    <Text style={[Styles.redRegular12, { textAlign: 'center' }]}>Попробуйте немного позже</Text>
+                )}
                 <Button text={'Зарегистрироваться'} onPress={register} margin loading={loading} />
                 <Text style={[Styles.darkMedium15, { textAlign: 'center', marginTop: 10 }]}>Есть аккаунт? <Text onPress={() => { navigation.navigate('LoginScreen'); clearData() }} style={{ color: AppColors.STEEL_BLUE_COLOR }} suppressHighlighting> Войти </Text> </Text>
             </View>

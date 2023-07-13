@@ -1,1 +1,1 @@
-export const STATUS = 'STATUS';
+export const TOKEN = 'TOKEN';

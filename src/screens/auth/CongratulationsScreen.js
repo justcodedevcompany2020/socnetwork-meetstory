@@ -15,7 +15,7 @@ export default function CongratulationsScreen({navigation}) {
             <View style={{ alignSelf: 'center', width: 260, height: 260, marginBottom: 45 }}>
                 <Image source={require('../../assets/pngs/RegisterSuccess.png')} style={{ width: 260, height: 260 }} />
             </View>
-            <Button text={'Войти'} onPress={() => navigation.navigate('LoginScreen')} margin/>
+            <Button text={'Войти'} onPress={() => navigation.navigate('Menu')} margin/>
         </View>
     </Container>
 }

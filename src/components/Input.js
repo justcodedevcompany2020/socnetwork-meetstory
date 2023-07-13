@@ -12,7 +12,7 @@ export default function Input({ labelText, inputType, value, setValue, minLength
 
     const [open, setOpen] = useState(false)
     const [openDatePicker, setOpenDatePicker] = useState(false)
-    const [date, setDate] = useState(new Date())
+    const [date, setDate] = useState(subtractYears(new Date(), 16))
     const [isOpenEye, setIsOpenEye] = useState(false)
 
     function formatPhone(value) {
@@ -30,6 +30,11 @@ export default function Input({ labelText, inputType, value, setValue, minLength
                 (x[4] ? ' - ' + x[4] : '') +
                 (x[5] ? ' - ' + x[5] : '');
         setValue(myPhone);
+    }
+
+    function subtractYears(date, years) {
+        date.setFullYear(date.getFullYear() - years);
+        return date;
     }
 
     return <View style={styles.container}>
@@ -56,12 +61,8 @@ export default function Input({ labelText, inputType, value, setValue, minLength
             />
             : inputType == 'date' ?
                 <TouchableOpacity
-                    style={[
-                        styles.container,
-                        styles.inputContainer,
-                        { marginBottom: 0 }
-                    ]} onPress={() => setOpenDatePicker(true)}>
-                    <Text style={styles.input}>{value ? moment(date).format('D.M.YYYY') : 'Неограниченно'}</Text>
+                    style={[styles.inputContainer, error && { borderColor: AppColors.RED_COLOR, borderWidth: 1 }]} onPress={() => setOpenDatePicker(true)}>
+                    <Text style={styles.input}>{value}</Text>
                     <DatePicker
                         modal
                         mode="date"
@@ -70,10 +71,10 @@ export default function Input({ labelText, inputType, value, setValue, minLength
                         title={'Выберите дату'}
                         open={openDatePicker}
                         date={date}
-                        minimumDate={new Date()}
+                        maximumDate={subtractYears(new Date(), 16)}
                         onConfirm={date => {
                             setOpenDatePicker(false)
-                            setValue(date)
+                            setValue(moment(date).format('YYYY-MM-DD'))
                             setDate(date)
                         }}
                         onCancel={() => {

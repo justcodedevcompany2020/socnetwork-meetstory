@@ -3,7 +3,7 @@ import Button from '../../components/Button'
 import Container from "../../components/Container"
 import { Styles } from "../../styles/Styles"
 
-export const BalanceCongratsBlock = ({ text, text2, img, color, btnText, margin = 30, close, onPressBtn }) => {
+export const BalanceCongratsBlock = ({ text, text2, img, color, btnText, margin = 30, close, onPressBtn, onPressClose }) => {
     return <Container>
         <ScrollView style={Styles.whiteContainer}>
 
@@ -16,7 +16,7 @@ export const BalanceCongratsBlock = ({ text, text2, img, color, btnText, margin 
                 <Button margin={20} text={btnText} onPress={onPressBtn}/>
             </View>
             {close &&
-                <Button backgroundColor={'#F36A6A'} margin={20} text={close} />
+                <Button backgroundColor={'#F36A6A'} margin={20} text={close} onPress={onPressClose}/>
             } 
         </ScrollView>
     </Container>
