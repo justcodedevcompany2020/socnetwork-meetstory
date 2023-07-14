@@ -14,7 +14,7 @@ import AboutMeScreen from '../screens/applicationForm/AboutMeScreen';
 import PreferencesScreen from '../screens/applicationForm/PreferencesScreen';
 import AppearanceScreen from '../screens/applicationForm/AppearanceScreen';
 import { SettingScreen } from '../screens/settings/SettingScreen';
-import { AboutAs } from '../screens/settings/AboutAs';
+import { AboutUs } from '../screens/settings/AboutUs';
 import { NotificationScreen } from '../screens/settings/NotificationScreen';
 import { ChangePasswordScreen } from '../screens/settings/ChangePasswordScreen';
 import { PrivacyScreen } from '../screens/settings/PrivacyScreen';
@@ -147,8 +147,8 @@ export const ProfileNavigator = () => {
                 }}
             />
             <Stack.Screen
-                name="AboutAs"
-                component={AboutAs}
+                name="AboutUs"
+                component={AboutUs}
                 options={{
                     headerShown: false
                 }}

@@ -67,7 +67,7 @@ export const MoonSvg = () =>{
 </Svg>
 }
 
-export const AboutAsSvg = () =>{
+export const AboutUsSvg = () =>{
   return <Svg
   width={24}
   height={24}

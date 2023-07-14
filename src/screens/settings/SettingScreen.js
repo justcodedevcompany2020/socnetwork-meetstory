@@ -1,6 +1,6 @@
 import { View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-import { AboutAsSvg, LockSvg, MoonSvg, NotSvg, UserSvg } from '../../assets/svgs/SettingsSvg'
+import { AboutUsSvg, LockSvg, MoonSvg, NotSvg, UserSvg } from '../../assets/svgs/SettingsSvg'
 import Container from '../../components/Container'
 import HorizontalBlock from '../../components/HorizontalBlock'
 import { Styles } from '../../styles/Styles'
@@ -40,9 +40,9 @@ export const SettingScreen = ({ navigation }) => {
                         height={90}
                     />
                     <HorizontalBlock
-                        onPress={() => navigation.navigate('AboutAs')}
+                        onPress={() => navigation.navigate('AboutUs')}
                         text={'О нас'}
-                        Icon={AboutAsSvg}
+                        Icon={AboutUsSvg}
                         backImagePath={require('../../assets/pngs/BlockBack12.png')}
                         width={'49%'}
                         height={90}
