@@ -4,10 +4,11 @@ import { AboutAsSvg, LockSvg, MoonSvg, NotSvg, UserSvg } from '../../assets/svgs
 import Container from '../../components/Container'
 import HorizontalBlock from '../../components/HorizontalBlock'
 import { Styles } from '../../styles/Styles'
+
 export const SettingScreen = ({ navigation }) => {
     return <Container headerTitle='Настройки' goBack>
-        <View style={[Styles.whiteContainer, { marginTop: 30 }]}>
-            <ScrollView style={{ marginVertical: 25 }}>
+        <View style={[Styles.whiteContainer, { marginTop: 30, paddingTop: 30 }]}>
+            <ScrollView>
                 <HorizontalBlock
                     onPress={() => navigation.navigate('AccountAndSecurityScreen')}
                     text={'Аккаунт и безопастность'}

@@ -4,19 +4,38 @@ import { AppColors } from "../styles/AppColors"
 import { Styles } from "../styles/Styles"
 import { MoneyIcon } from "../assets/svgs/ProfileSvgs"
 import { useNavigation } from "@react-navigation/native"
+import { useSelector } from "react-redux"
+import { getRequestAuth, imgUrl } from "../api/RequestHelpers"
+import { useEffect, useState } from "react"
 
 export const UserNameBlock = ({ userInfo, myProfile }) => {
-
     const navigation = useNavigation()
+    const { token } = useSelector(state => state.auth)
+    const [user, setUser] = useState(null)
+
+    useEffect(() => {
+        getUserInfo()
+    }, [])
+    
+    function getUserInfo() {
+        getRequestAuth('get_auth_user_info', token).then(res => {
+            console.log(res);
+            if (res.status == true) {
+                setUser(res.data)
+            }
+        })
+    }
+
+
     return <View style={[Styles.flexRowJustifyBetween, { width: '90%', marginTop: 30 }]}>
         <View style={Styles.flexRow}>
             <View style={styles.imgContainer}>
-                <Image style={styles.img} source={require('../assets/pngs/ProfileDefault.png')} />
+                <Image style={styles.img} source={user ? { uri: `${imgUrl}${user.avatar}` } : require('../assets/pngs/ProfileDefault.png')} />
             </View>
             {myProfile ?
                 <View>
-                    <Text style={Styles.whiteSemiBold18}>John Smith</Text>
-                    <Text style={Styles.whiteRegular13}>@jsmith1</Text>
+                    <Text style={Styles.whiteSemiBold18}>{user?.name} {user?.surname}</Text>
+                    <Text style={Styles.whiteRegular13}>@{user?.nik_name}</Text>
                 </View>
                 :
                 <View>

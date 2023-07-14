@@ -20,6 +20,7 @@ export default function ForgotPassScreen({ navigation }) {
 
     function sendCode() {
         let myPhone = '+' + phone.replace(/\D/g, '')
+        // let myPhone = '+37443413413'
         setLoading(true)
 
         let isValidInfo = validate();

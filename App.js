@@ -1,23 +1,19 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
 import { store } from './src/store/configureStore';
-import AppNavigation from './src/navigation/AppNavigation';
-import SplashScreen from 'react-native-splash-screen';
-import { AppState } from 'react-native';
+import AuthScreen from './src/screens/auth/AuthScreen';
 
 function App() {
 
     // const appState = useRef(AppState.currentState);
     // const [appStateVisible, setAppStateVisible] = useState(appState.current);
 
-    useEffect(() => {
-        SplashScreen.hide()
-
-        // AppState.addEventListener("change", _handleAppStateChange);
-        // return () => {
-        //     AppState.removeEventListener("change", _handleAppStateChange);
-        // };
-    }, []);
+    // useEffect(() => {
+    //     AppState.addEventListener("change", _handleAppStateChange);
+    //     return () => {
+    //         AppState.removeEventListener("change", _handleAppStateChange);
+    //     };
+    // }, []);
 
     // const _handleAppStateChange = (nextAppState) => {
     //     if (
@@ -35,7 +31,7 @@ function App() {
 
     return (
         <Provider store={store}>
-            <AppNavigation />
+            <AuthScreen />
         </Provider>
     );
 }

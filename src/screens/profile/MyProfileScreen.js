@@ -4,16 +4,25 @@ import { UserNameBlock } from "../../components/UserNameBlock";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { Styles } from "../../styles/Styles";
 import HorizontalBlock from "../../components/HorizontalBlock";
-import { MessageIcon, MyFeedIcon, MyFriendsIcon, PhotoIcon, SettingsIcon, UserIcon } from "../../assets/svgs/ProfileSvgs";
+import { MessageIcon, MyFriendsIcon, PhotoIcon, SettingsIcon, UserIcon } from "../../assets/svgs/ProfileSvgs";
 import { GiftIcon } from "../../assets/svgs/HomeSvgs";
 import Button from "../../components/Button";
 import { WallSvg } from "../../assets/svgs/UserSvgs";
 import Popup from "../../components/Popup";
 import { AppColors } from "../../styles/AppColors";
+import { deleteToken } from "../../store/actions/saveToken";
+import { useDispatch } from "react-redux";
 
 
 export default function MyProfileScreen({ navigation }) {
     const [showPopup, setShowPopup] = useState(false)
+    const dispatch = useDispatch()
+
+    function logout() {
+        dispatch(deleteToken())
+        setShowPopup(false)
+        navigation.navigate('LoginScreen')
+    }
 
     return <Container headerTitle={'Мой профиль'} settingsIcon>
         <UserNameBlock myProfile />
@@ -49,7 +58,7 @@ export default function MyProfileScreen({ navigation }) {
                 </View>
             </ScrollView>
             <Popup showModal={showPopup} setShowModal={setShowPopup} title={'Вы действительно хотите выйти из аккаунта?'}>
-                <Button text={'Да'} margin marginBottom={8} onPress={() => navigation.navigate('LoginScreen')} />
+                <Button text={'Да'} margin marginBottom={8} onPress={logout} />
                 <Button text={'Нет'} margin marginBottom={30} backgroundColor={AppColors.BITTERSWEET_COLOR} onPress={() => setShowPopup(false)} />
             </Popup>
         </View>

@@ -6,6 +6,8 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { postRequest } from "../../api/RequestHelpers";
 import { AppColors } from "../../styles/AppColors";
+import { useDispatch } from "react-redux";
+import { saveToken } from "../../store/actions/saveToken";
 
 
 export default function VerificationScreen({ navigation, route }) {
@@ -21,6 +23,7 @@ export default function VerificationScreen({ navigation, route }) {
     const [disableSendCode, setDisableSendCode] = useState(true)
 
     const [tryLater, setTryLater] = useState(false)
+    const dispatch = useDispatch()
 
     function verify() {
         setLoading(true)
@@ -43,7 +46,7 @@ export default function VerificationScreen({ navigation, route }) {
             }).then(([status, body]) => {
                 console.log(body);
                 if (status === 200) {
-                    //dispatch token
+                    dispatch(saveToken(body.token))
                     navigation.navigate('AddInfoScreen')
                 } else if (status === 422) {
                     setCodeError(true);

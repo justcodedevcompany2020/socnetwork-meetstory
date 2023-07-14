@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import Container from "../../components/Container";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import Input from "../../components/Input";
 import { Styles } from "../../styles/Styles";
 import Button from "../../components/Button";
 import { AppColors } from "../../styles/AppColors";
-import { CheckedIcon, UncheckedIcon } from "../../assets/svgs/AuthSvgs";
 import AcceptField from "../../components/AcceptField";
 import { getRequest, postRequest } from "../../api/RequestHelpers";
 
@@ -207,11 +206,11 @@ export default function RegisterScreen({ navigation }) {
         setPass('')
         setConfirmPass('')
         setSelectedCity(null)
-        dropdownRefCity.current.reset()
+        dropdownRefCity.current?.reset()
         setSelectedCountry(null)
-        dropdownRefCountry.current.reset()
+        dropdownRefCountry.current?.reset()
         setSelectedGender(null)
-        dropdownRefGender.current.reset()
+        dropdownRefGender.current?.reset()
         setAccepted(false)
     }
 
@@ -229,7 +228,7 @@ export default function RegisterScreen({ navigation }) {
                     Этот телефон уже зарегистрирован.
                 </Text>
             )}
-            <Input labelText={'Пароль'} value={pass} setValue={setPass} inputType={'pass'} minLengthPass error={errors.pass || errors.passMsg || errors.confirmPassMsg} />
+            <Input labelText={'Пароль'} value={pass} setValue={setPass} inputType={'pass'} minLengthPass error={errors.pass || errors.passMsg} />
             {errors.passMsg && (
                 <Text style={Styles.redRegular12}>
                     Пароль должен содержать не менее 8 символов.
@@ -240,7 +239,7 @@ export default function RegisterScreen({ navigation }) {
                 <Text style={Styles.redRegular12}>Пароли не совпадают.</Text>
             )}
             <Input labelText={'Пол'} value={selectedGender} setValue={setSelectedGender} inputType={'dropdown'} data={genders} placeholder={' '} error={errors.gender} />
-            <Input labelText={'Страна'} value={selectedCountry} setValue={setSelectedCountry} inputType={'dropdown'} data={countries} placeholder={' '} loading={countriesLoading} error={errors.country}  dropdownRef={dropdownRefCountry}/>
+            <Input labelText={'Страна'} value={selectedCountry} setValue={setSelectedCountry} inputType={'dropdown'} data={countries} placeholder={' '} loading={countriesLoading} error={errors.country} dropdownRef={dropdownRefCountry} />
             <Input labelText={'Город'} value={selectedCity} setValue={setSelectedCity} inputType={'dropdown'} data={cities} placeholder={' '} loading={citiesLoading} error={errors.city} dropdownRef={dropdownRefCity} />
             <AcceptField accepted={accepted} onPressAccept={onPressAccept} text={'Я согласен с политикой'} error={errors.accept} />
             <View style={{ marginVertical: 45 }}>

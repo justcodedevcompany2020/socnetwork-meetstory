@@ -17,7 +17,7 @@ import Header from './Header';
 
 const Stack = createStackNavigator();
 
-const AppNavigation = () => {
+const AppNavigation = ({initialRouteName}) => {
   return (
     <NavigationContainer>
       <StatusBar
@@ -26,7 +26,7 @@ const AppNavigation = () => {
         backgroundColor={'transparent'}
       />
       <Stack.Navigator
-        initialRouteName={'LoginScreen'}
+        initialRouteName={initialRouteName}
         screenOptions={({ route }) => ({
           tabBarShowLabel: false,
         })}>

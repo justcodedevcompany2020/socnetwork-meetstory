@@ -1,53 +1,72 @@
-import React, { useState } from "react";
-import Container from "../../components/Container";
-import { Text, View } from "react-native";
-import { Styles } from "../../styles/Styles";
-import Input from "../../components/Input";
-import Button from "../../components/Button";
-import { postRequest } from "../../api/RequestHelpers";
+import { useState } from 'react'
+import { View, Text, ScrollView } from 'react-native'
+import Container from "../../components/Container"
+import Input from '../../components/Input'
+import { Styles } from '../../styles/Styles'
+import Button from '../../components/Button'
+import { postRequestAuth } from '../../api/RequestHelpers'
+import { useSelector } from 'react-redux'
 
-export default function NewPassScreen({ navigation, route }) {
+export const ChangePasswordScreen = ({navigation}) => {
+    const { token } = useSelector(state => state.auth)
     const [pass, setPass] = useState()
     const [confirmPass, setConfirmPass] = useState()
-    const {phone, code} = route.params
+    const [oldPass, setOldPass] = useState()
     const [errors, setErrors] = useState({
+        oldpass: false,
         pass: false,
         confirmPass: false,
-        confirmPassMsg: false,
+        oldPassMsg: false,
         passMsg: false,
+        confirmPassMsg: false,
     });
 
     const [tryLater, setTryLater] = useState(false)
     const [loading, setLoading] = useState(false)
 
-    function savePass() {
+    function changePassword() {
         setLoading(true)
 
         let isValidInfo = validate();
-        isValidInfo ?
-            postRequest('add_new_password_from_forgot_password', {
-                phone: phone,
-                code: code,
-                password: pass,
-                password_confirmation: confirmPass
-
-            }).then(([status, data]) => {
-                if (status == 200) {
-                    navigation.navigate('LoginScreen')
-                } else setTryLater(true)
-            })
-            : setLoading(false)
+        isValidInfo ? postRequestAuth('user_update_profile_password', token, {
+            old_password: oldPass,
+            password: pass,
+            password_confirmation: confirmPass
+        }).then(([status, data]) => {
+            if(status == 200){
+                navigation.goBack()
+            } else if(status == 400){
+                let items = { ...errors };
+                items.oldPassMsg = true
+                setErrors(items)
+            } else setTryLater(true)
+            setLoading(false)
+            console.log(data);
+        }) : setLoading(false)
     }
 
     function validate() {
-
         let items = { ...errors };
         let error = false;
+
+        if (!oldPass) {
+            items.oldpass = true;
+            items.oldPassMsg = false;
+            error = true;
+        } else if (oldPass.length < 8) {
+            items.oldpass = true;
+            items.oldPassMsg = true;
+            error = true;
+        } else {
+            items.oldpass = false;
+            items.oldPassMsg = false;
+        }
+
         if (!pass) {
             items.pass = true;
             items.passMsg = false;
             error = true;
-        } else if (pass && pass.length < 8) {
+        } else if (pass.length < 8) {
             items.pass = true;
             items.passMsg = true;
             error = true;
@@ -73,12 +92,18 @@ export default function NewPassScreen({ navigation, route }) {
         return !error
     }
 
-    return <Container goBack>
-        <View style={Styles.whiteContainer}>
+    return <Container goBack >
+        <ScrollView style={[Styles.whiteContainer, { marginTop: 30 }]}>
             <View style={{ marginVertical: 25 }}>
-                <Text style={Styles.blackSemiBold28}>Востоновление пароля</Text>
+                <Text style={Styles.blackSemiBold28}>Изменение пароля</Text>
                 <Text style={[Styles.darkRegular15, { marginTop: 15 }]}>Введите новый пароль для вашего аккаунта</Text>
             </View>
+            <Input labelText={'Старый пароль'} value={oldPass} setValue={setOldPass} inputType={'pass'} error={errors.oldpass || errors.oldPassMsg}/>
+            {errors.oldPassMsg && (
+                <Text style={Styles.redRegular12}>
+                    Неверный пароль.
+                </Text>
+            )}
             <Input labelText={'Новый пароль'} value={pass} setValue={setPass} inputType={'pass'} minLengthPass error={errors.pass || errors.passMsg} />
             {errors.passMsg && (
                 <Text style={Styles.redRegular12}>
@@ -89,12 +114,12 @@ export default function NewPassScreen({ navigation, route }) {
             {errors.confirmPassMsg && (
                 <Text style={Styles.redRegular12}>Пароли не совпадают.</Text>
             )}
-            <View style={{ marginVertical: 45 }}>
+            <View style={{ marginTop: 20 }}>
                 {tryLater && (
                     <Text style={[Styles.redRegular12, { textAlign: 'center' }]}>Попробуйте немного позже</Text>
                 )}
-                <Button text={'Сохранить'} onPress={savePass} margin loading={loading} />
+                <Button text={'Сохранить'} margin onPress={changePassword} loading={loading} marginBottom={30} />
             </View>
-        </View>
+        </ScrollView>
     </Container>
 }

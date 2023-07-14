@@ -13,12 +13,12 @@ export const AccountAndSecurityScreen = ({ navigation }) => {
         { value: '@jane', label: 'Имя пользователя', type: 'text', onPress: () => { } },
         { value: 'joe@me.com', label: 'Эл. почта', type: 'button', onPress: () => { } },
         { value: '+1 392-394-2013', label: 'Номер телефона', type: 'button', onPress: () => { } },
-        { value: 'Изменить пароль', label: 'Пароль', type: 'button', onPress: () => { navigation.navigate('ChnagePasswordScreen') } },
+        { value: 'Изменить пароль', label: 'Пароль', type: 'button', onPress: () => { navigation.navigate('ChangePasswordScreen') } },
 
     ])
     const [openPopup, setOpenPopUp] = useState(false)
     return <Container headerTitle={'Аккаунт и безопастность'} goBack>
-        <View style={[Styles.whiteContainer, { marginTop: 30, paddingVertical: 20 }]}>
+        <View style={[Styles.whiteContainer, { marginTop: 30, paddingTop: 30 }]}>
             <ScrollView showsVerticalScrollIndicator={false}>
                 {data.map((elm, i) => (
                     <BlueInput onPress={elm?.onPress} type={elm.type} key={i} labelText={elm.label} value={elm.value} />

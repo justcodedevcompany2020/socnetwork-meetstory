@@ -16,7 +16,7 @@ import AppearanceScreen from '../screens/applicationForm/AppearanceScreen';
 import { SettingScreen } from '../screens/settings/SettingScreen';
 import { AboutAs } from '../screens/settings/AboutAs';
 import { NotificationScreen } from '../screens/settings/NotificationScreen';
-import { ChnagePasswordScreen } from '../screens/settings/ChnagePasswordScreen';
+import { ChangePasswordScreen } from '../screens/settings/ChangePasswordScreen';
 import { PrivacyScreen } from '../screens/settings/PrivacyScreen';
 import { ChangeTemaScreen } from '../screens/settings/ChangeTemaScreen';
 import { AccountAndSecurityScreen } from '../screens/settings/AccountAndSecurityScreen';
@@ -161,8 +161,8 @@ export const ProfileNavigator = () => {
                 }}
             />
             <Stack.Screen
-                name="ChnagePasswordScreen"
-                component={ChnagePasswordScreen}
+                name="ChangePasswordScreen"
+                component={ChangePasswordScreen}
                 options={{
                     headerShown: false
                 }}

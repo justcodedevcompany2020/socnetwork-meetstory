@@ -1,4 +1,5 @@
 export const url = 'https://socnetworkbackend.justcode.am/';
+export const imgUrl = 'https://socnetworkbackend.justcode.am/uploads/'
 
 export async function postRequest(api, body) {
   return await fetch(`${url}api/${api}`, {
@@ -44,5 +45,12 @@ export async function getRequestAuth(api, token) {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
     },
+  }).then(response => response.json());
+}
+
+export async function getRequestPagination(url) {
+  return await fetch(url, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json', },
   }).then(response => response.json());
 }
