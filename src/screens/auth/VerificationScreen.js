@@ -47,7 +47,7 @@ export default function VerificationScreen({ navigation, route }) {
                 console.log(body);
                 if (status === 200) {
                     dispatch(saveToken(body.token))
-                    navigation.navigate('AddInfoScreen')
+                    navigation.navigate('CongratulationsScreen')
                 } else if (status === 422) {
                     setCodeError(true);
                     setShowErrorMsg('Неверный код');

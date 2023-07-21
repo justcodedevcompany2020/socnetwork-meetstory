@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { StyleSheet, View } from "react-native"
+import { View } from "react-native"
 import { ScrollView } from "react-native-gesture-handler"
 import BlueInput from "../../components/BlueInput"
 import Button from "../../components/Button"
@@ -7,22 +7,36 @@ import Container from "../../components/Container"
 import { Styles } from "../../styles/Styles"
 import { AppColors } from '../../styles/AppColors'
 import Popup from "../../components/Popup"
+import { useSelector } from "react-redux"
 
 export const AccountAndSecurityScreen = ({ navigation }) => {
-    const [data, setData] = useState([
-        { value: '@jane', label: 'Имя пользователя', type: 'text', onPress: () => { } },
-        { value: 'joe@me.com', label: 'Эл. почта', type: 'button', onPress: () => { } },
-        { value: '+1 392-394-2013', label: 'Номер телефона', type: 'button', onPress: () => { } },
-        { value: 'Изменить пароль', label: 'Пароль', type: 'button', onPress: () => { navigation.navigate('ChangePasswordScreen') } },
-
-    ])
+    const { user } = useSelector(state => state.auth)
     const [openPopup, setOpenPopUp] = useState(false)
+
+    function formatPhone(value) {
+        let x = value
+            .replace(/\D/g, '')
+            .match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+        let myPhone = !x[2]
+            ? '+7 ' + (x[1] != '7' ? x[1] : '')
+            : !x[3]
+                ? '+7 (' + x[2]
+                : '+7 (' +
+                x[2] +
+                ') ' +
+                (x[3] ? x[3] : '') +
+                (x[4] ? ' - ' + x[4] : '') +
+                (x[5] ? ' - ' + x[5] : '');
+        return myPhone
+    }
+
     return <Container headerTitle={'Аккаунт и безопастность'} goBack>
         <View style={[Styles.whiteContainer, { marginTop: 30, paddingTop: 30 }]}>
             <ScrollView showsVerticalScrollIndicator={false}>
-                {data.map((elm, i) => (
-                    <BlueInput onPress={elm?.onPress} type={elm.type} key={i} labelText={elm.label} value={elm.value} />
-                ))}
+                <BlueInput labelText={'Номер телефона'} value={formatPhone(user.phone)} />
+                <BlueInput arrow labelText={'Эл. почта'} value={user.email ?? 'Добавить эл. почту'} />
+                <BlueInput arrow labelText={'Пароль'} value={'Изменить пароль'} onPress={() => navigation.navigate('ChangePasswordScreen')} />
+
                 <View style={{ marginTop: 40 }}>
                     <Button onPress={() => setOpenPopUp(true)} backgroundColor={AppColors.BITTERSWEET_COLOR} text='Удалить аккаунт' margin />
                 </View>
@@ -34,7 +48,3 @@ export const AccountAndSecurityScreen = ({ navigation }) => {
         </Popup>
     </Container>
 }
-
-const style = StyleSheet.create({
-
-})

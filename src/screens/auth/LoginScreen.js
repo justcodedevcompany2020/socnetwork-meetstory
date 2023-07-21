@@ -32,10 +32,13 @@ export default function LoginScreen({ navigation }) {
                 phone: myPhone,
                 password: pass,
             }).then(([status, data]) => {
-                console.log(status, data);
                 if (status === 200) {
                     dispatch(saveToken(data.token))
-                    navigation.navigate('Menu')
+                    navigation.navigate('Menu', {
+                        screen: 'Home', params: {
+                            screen: 'HomeScreen'
+                        }
+                    });
                     clearData()
                 } else if (status === 401 || status === 400) {
                     setError('Неверный ввод данных. Повторите попытку.');
@@ -76,13 +79,13 @@ export default function LoginScreen({ navigation }) {
             <Text style={[Styles.blackSemiBold28, { marginVertical: 30 }]}>Вход</Text>
             <Input labelText={'Номер телефона'} value={phone} setValue={setPhone} inputType={'phone'} error={errors.phone} />
             <Input labelText={'Пароль'} value={pass} setValue={setPass} inputType={'pass'} error={errors.pass} />
-            <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={() => navigation.navigate('ForgotPassScreen')}>
+            <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={() => { navigation.navigate('ForgotPassScreen'); clearData() }}>
                 <Text style={[Styles.darkRegular15, { textDecorationLine: 'underline' }]}>Забыли пароль?</Text>
             </TouchableOpacity>
             <View style={{ marginVertical: 45 }}>
                 {error && <Text style={[Styles.darkRegular12, { color: AppColors.RED_COLOR, marginBottom: 10, textAlign: 'center' }]}>Неверный ввод данных. Повторите попытку.</Text>}
                 <Button text={'Войти'} onPress={onPressLogin} margin loading={loading} />
-                <Text style={[Styles.darkMedium14, { textAlign: 'center', marginTop: 10 }]}>Нет аккаунта? <Text onPress={() => { navigation.navigate('RegisterScreen'); clearData()}} style={{ color: AppColors.STEEL_BLUE_COLOR }}> Зарегистрироваться </Text> </Text>
+                <Text style={[Styles.darkMedium14, { textAlign: 'center', marginTop: 10 }]}>Нет аккаунта? <Text onPress={() => { navigation.navigate('RegisterScreen'); clearData() }} style={{ color: AppColors.STEEL_BLUE_COLOR }}> Зарегистрироваться </Text> </Text>
             </View>
         </ScrollView>
     </Container>

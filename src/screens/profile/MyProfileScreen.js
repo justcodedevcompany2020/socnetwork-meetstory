@@ -11,12 +11,13 @@ import { WallSvg } from "../../assets/svgs/UserSvgs";
 import Popup from "../../components/Popup";
 import { AppColors } from "../../styles/AppColors";
 import { deleteToken } from "../../store/actions/saveToken";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 
 export default function MyProfileScreen({ navigation }) {
     const [showPopup, setShowPopup] = useState(false)
     const dispatch = useDispatch()
+    
 
     function logout() {
         dispatch(deleteToken())
@@ -26,20 +27,6 @@ export default function MyProfileScreen({ navigation }) {
 
     return <Container headerTitle={'Мой профиль'} settingsIcon>
         <UserNameBlock myProfile />
-        <View style={{ width: '100%', paddingLeft: 20, marginVertical: 20 }}>
-            <View style={Styles.flexRow}>
-                <Text style={Styles.whiteMedium15}>Просмотров за день  </Text>
-                <TouchableOpacity onPress={() => navigation.navigate('ViewsPerDay')}>
-                    <Text style={{ fontSize: 15, color: AppColors.WHITE_COLOR, textDecorationLine: 'underline' }}>6</Text>
-                </TouchableOpacity>
-            </View>
-            <View style={Styles.flexRow}>
-                <Text style={Styles.whiteMedium15}>Просмотров за месяц  </Text>
-                <TouchableOpacity>
-                    <Text style={{ fontSize: 15, color: AppColors.WHITE_COLOR, textDecorationLine: 'underline' }}>234</Text>
-                </TouchableOpacity>
-            </View>
-        </View>
         <View style={Styles.whiteContainer}>
             <ScrollView style={{ marginTop: 20 }} showsVerticalScrollIndicator={false}>
                 <HorizontalBlock text={'Анкета'} backImagePath={require('../../assets/pngs/BlockBack18.png')} Icon={UserIcon} onPress={() => navigation.navigate('ApplicationFormScreen')} />

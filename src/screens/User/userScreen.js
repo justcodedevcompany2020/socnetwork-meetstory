@@ -20,10 +20,6 @@ export const UserScreen = ({ navigation }) => {
     return <ScrollView >
         <Container headerTitle='Профиль пользователя' goBack>
             <UserNameBlock />
-            <View style={styles.textBlock}>
-                <Text style={Styles.whiteRegular13}><Text style={Styles.whiteSemiBold13}>Дата регистрации:</Text> 24 апреля 2022 </Text>
-                <Text style={Styles.whiteRegular13}><Text style={Styles.whiteSemiBold13}>Статус:</Text> Забыйтый персонаж из твоей сказки</Text>
-            </View>
             <View style={[Styles.whiteContainer, { paddingVertical: 15 }]}>
                 <HorizontalBlock
                     backImagePath={require('../../assets/pngs/BlockBack18.png')}

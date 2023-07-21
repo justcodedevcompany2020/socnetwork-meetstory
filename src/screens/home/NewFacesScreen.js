@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, ScrollView, View } from "react-native";
+import { FlatList, View } from "react-native";
 import { Styles } from "../../styles/Styles";
-import UserBlock from "../../components/UserBlock";
-import { getRequestPagination } from "../../api/RequestHelpers";
+import { getRequestPaginationAuth } from "../../api/RequestHelpers";
 import Loading from "../../components/Loading";
+import UserBlock from "../../components/UserBlock";
+import { useSelector } from "react-redux";
 
 
 export default function NewFacesScreen() {
@@ -13,16 +14,16 @@ export default function NewFacesScreen() {
     const [nextUrl, setNextUrl] = useState('https://socnetworkbackend.justcode.am/api/new_registered_users')
     const firstPageUrl = 'https://socnetworkbackend.justcode.am/api/new_registered_users'
     const [isRefreshing, setIsRefreshing] = useState(false);
+    const { token } = useSelector(state => state.auth)
 
     useEffect(() => {
         getNewFaces()
     }, [])
 
     function getNewFaces(refresh) {
-        getRequestPagination(refresh ? firstPageUrl : nextUrl).then(res => {
-            console.log(res);
-
+        getRequestPaginationAuth(refresh ? firstPageUrl : nextUrl, token).then(res => {
             refresh ? setNewFaces(res.data.data) : setNewFaces([...newFaces, ...res.data.data]);
+
             setNextUrl(res.data.next_page_url)
             setIsRefreshing(false);
             setLoading(false);
@@ -53,7 +54,7 @@ export default function NewFacesScreen() {
     };
 
 
-    return <View style={[Styles.containerTopPadding,]}>
+    return <View style={Styles.containerTopPadding}>
         {loading ? (
             <Loading />
         ) : (
@@ -63,7 +64,7 @@ export default function NewFacesScreen() {
                 keyExtractor={(item, index) => index}
                 data={newFaces}
                 renderItem={({ item, index }) => {
-                    return <UserBlock chatIcon activityStatus userInfo={item} />
+                    return <UserBlock chatIcon activityStatus userInfo={item} moreIcon />
                 }}
                 onEndReached={handleLoadMore}
                 onEndReachedThreshold={0.1}

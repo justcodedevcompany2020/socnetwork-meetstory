@@ -38,6 +38,21 @@ export async function postRequestAuth(api, token, body) {
     .catch(error => console.log(error));
 }
 
+export async function postRequestAuthFile(api, token, body) {
+  return await fetch(`${url}api/${api}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${token}`,
+    },
+    body: body,
+  }).then(response => {
+    console.log(response.status);
+    return Promise.all([response.status, response.json()]);
+  })
+    .catch(error => console.log(error));
+}
+
 export async function getRequestAuth(api, token) {
   return await fetch(`${url}api/${api}`, {
     method: 'GET',
@@ -48,9 +63,12 @@ export async function getRequestAuth(api, token) {
   }).then(response => response.json());
 }
 
-export async function getRequestPagination(url) {
+export async function getRequestPaginationAuth(url, token) {
   return await fetch(url, {
     method: 'GET',
-    headers: { 'Content-Type': 'application/json', },
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
   }).then(response => response.json());
 }

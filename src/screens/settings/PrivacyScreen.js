@@ -1,79 +1,77 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
 import Container from "../../components/Container"
 import Input from '../../components/Input'
 import { Styles } from '../../styles/Styles'
 import { Arrow } from '../../assets/svgs/SettingsSvg';
 import CustomSwitch from '../../components/CustomSwitch'
-import { getRequestAuth, postRequestAuth } from '../../api/RequestHelpers'
-import { useSelector } from 'react-redux'
-import Loading from '../../components/Loading'
+import { postRequestAuth } from '../../api/RequestHelpers'
+import { useDispatch, useSelector } from 'react-redux'
+import { saveUser } from '../../store/actions/saveUser'
 
 export const PrivacyScreen = () => {
-    const { token } = useSelector(state => state.auth)
-    const [loading, setLoading] = useState(true)
-    const [statusVisibility, setStatusVisibility] = useState(null)
-    const [feedVisibility, setFeedVisibility] = useState(null)
-    const [whoCanMessage, setWhoCanMessage] = useState()
+    const { token, user } = useSelector(state => state.auth)
+    const dispatch = useDispatch()
     const [active, setactive] = useState(false)
-
-
     const options = [
         { id: 0, value: 'Только я' },
         { id: 1, value: 'Друзья' },
         { id: 2, value: 'Все' },
     ]
-    useEffect(() => {
-        getUserInfo()
-    }, [])
 
-    function getUserInfo() {
-        getRequestAuth('get_auth_user_info', token).then(res => {
-            console.log(res);
-            if (res.status == true) {
-                const index1 = options.findIndex(el => el.value == res.data.who_can_see_me_online_all)
-                const index2 = options.findIndex(el => el.value == res.data.who_can_see_my_wall_all)
-                const index3 = options.findIndex(el => el.value == res.data.who_can_write_to_me_all)
-                setStatusVisibility(index1)
-                setFeedVisibility(index2)
-                setWhoCanMessage(index3)
+    const [statusVisibility, setStatusVisibility] = useState(options.findIndex(el => el.id == user.activity_status))
+    const [feedVisibility, setFeedVisibility] = useState(options.findIndex(el => el.id == user.my_feed))
+    const [whoCanMessage, setWhoCanMessage] = useState(options.findIndex(el => el.id == user.message_me))
 
-                setLoading(false)
+    function changeStatusVisibility(value) {
+        setStatusVisibility(value)
+        postRequestAuth('update_privacy', token, {
+            activity_status: value
+        }).then(([status, body]) => {
+            console.log(body);
+            if (status == 200) {
+                dispatch(saveUser({
+                    ...user,
+                    activity_status: value
+                }))
             }
         })
     }
 
-    function changeStatusVisibility(value) {
-        setStatusVisibility(value)
-        postRequestAuth('update_profile', token, {
-            who_can_see_me_online_all: options[value].value
-        }).then(([status, body]) => {
-            console.log(body);
-        })
-    }
-    
     function changeWhoCanMessage(value) {
         setWhoCanMessage(value)
-        postRequestAuth('update_profile', token, {
-            who_can_write_to_me_all: options[value].value
+        postRequestAuth('update_privacy', token, {
+            message_me: value
         }).then(([status, body]) => {
             console.log(body);
+            if (status == 200) {
+                dispatch(saveUser({
+                    ...user,
+                    message_me: value
+                }))
+            }
         })
     }
 
     function changeFeedVisibility(value) {
         setFeedVisibility(value)
-        postRequestAuth('update_profile', token, {
-            who_can_see_my_wall_all: options[value].value
+        postRequestAuth('update_privacy', token, {
+            my_feed: value
         }).then(([status, body]) => {
             console.log(body);
+            if (status == 200) {
+                dispatch(saveUser({
+                    ...user,
+                    my_feed: value
+                }))
+            }
         })
     }
 
 
     return <Container headerTitle='Конфиденциальность' goBack >
         <View style={[Styles.whiteContainer, { marginTop: 30, paddingTop: 30 }]}>
-            {loading ? <Loading /> : <ScrollView>
+            <ScrollView>
                 <View style={[Styles.flexRowJustifyBetween]}>
                     <Text style={Styles.darkMedium15}>Невидимка (VIP Статус)</Text>
                     <CustomSwitch
@@ -94,7 +92,7 @@ export const PrivacyScreen = () => {
                     <Text style={Styles.darkMedium15}>Черный Список</Text>
                     <Arrow />
                 </TouchableOpacity>
-            </ScrollView>}
+            </ScrollView>
         </View>
     </Container>
 }

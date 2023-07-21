@@ -9,6 +9,9 @@ import AcceptField from "../../components/AcceptField";
 import { getRequest, postRequest } from "../../api/RequestHelpers";
 
 export default function RegisterScreen({ navigation }) {
+    const [name, setName] = useState('')
+    const [surname, setSurname] = useState('')
+    const [birthDate, setBirthDate] = useState('')
     const [phone, setPhone] = useState('')
     const [pass, setPass] = useState()
     const [confirmPass, setConfirmPass] = useState()
@@ -45,7 +48,9 @@ export default function RegisterScreen({ navigation }) {
         confirmPassMsg: false,
         passMsg: false,
         phoneMsg: false,
-        accept: false
+        accept: false,
+        name: false,
+        birthDate: false
     });
     const [tryLater, setTryLater] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -57,7 +62,7 @@ export default function RegisterScreen({ navigation }) {
     useEffect(() => {
         setCitiesLoading(true)
         setSelectedCity(null)
-        dropdownRefCity.current.reset()
+        dropdownRefCity.current?.reset()
         selectedCountry && getCities()
     }, [selectedCountry])
 
@@ -93,6 +98,9 @@ export default function RegisterScreen({ navigation }) {
         let isValidInfo = validate();
         isValidInfo ?
             postRequest('registration', {
+                name: name,
+                surname: surname,
+                date_of_birth: birthDate,
                 phone: myPhone,
                 password: pass,
                 password_confirmation: confirmPass,
@@ -113,6 +121,19 @@ export default function RegisterScreen({ navigation }) {
     function validate() {
         let items = { ...errors };
         let error = false;
+
+        if (!name) {
+            items.name = true;
+            error = true;
+        } else {
+            items.name = false;
+        }
+        if (!birthDate) {
+            items.birthDate = true;
+            error = true;
+        } else {
+            items.birthDate = false;
+        }
 
         if (typeof selectedGender !== 'number') {
             items.gender = true;
@@ -197,11 +218,15 @@ export default function RegisterScreen({ navigation }) {
             confirmPassMsg: false,
             passMsg: false,
             phoneMsg: false,
-            accept: false
+            accept: false,
+            name: false,
+            birthDate: false
         })
         setTryLater(false)
         setPhoneError(false)
         //values
+        setName('')
+        setBirthDate(null)
         setPhone('')
         setPass('')
         setConfirmPass('')
@@ -214,9 +239,19 @@ export default function RegisterScreen({ navigation }) {
         setAccepted(false)
     }
 
+    function set_birthdate(value) {
+        let items = { ...errors };
+        setBirthDate(value)
+        items.birthDate = false
+        setErrors((items))
+    }
+
     return <Container>
         <ScrollView style={Styles.whiteContainer} showsVerticalScrollIndicator={false}>
             <Text style={[Styles.blackSemiBold28, { marginVertical: 30 }]}>Регистрация</Text>
+            <Input labelText={'Имя'} value={name} setValue={setName} error={errors.name} />
+            <Input labelText={'Фамилия (опционально)'} value={surname} setValue={setSurname} />
+            <Input labelText={'Дата рождения'} value={birthDate} setValue={set_birthdate} inputType={'date'} error={errors.birthDate} />
             <Input labelText={'Номер телефона'} value={phone} setValue={setPhone} inputType={'phone'} error={errors.phone} />
             {errors.phoneMsg && (
                 <Text style={Styles.redRegular12}>
