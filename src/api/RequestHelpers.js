@@ -72,3 +72,18 @@ export async function getRequestPaginationAuth(url, token) {
     },
   }).then(response => response.json());
 }
+
+export async function postRequestPaginationAuth(url, token, body) {
+  return await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(body),
+  }).then(response => {
+    console.log(response.status);
+    return Promise.all([response.status, response.json()]);
+  })
+    .catch(error => console.log(error));
+}

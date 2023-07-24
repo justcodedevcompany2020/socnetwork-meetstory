@@ -12,7 +12,7 @@ export default function Container(props) {
     
     return <View style={{ flex: 1, backgroundColor: AppColors.STEEL_BLUE_COLOR, paddingTop: 60, alignItems: 'center' }} >
         {props.goBack &&
-            <TouchableOpacity style={{position: 'absolute', width: 35, height: 35, left: 10, top: 60, alignItems: 'center', justifyContent: 'center'}} onPress={() => navigation.goBack()} >
+            <TouchableOpacity style={{position: 'absolute', width: 35, height: 35, left: 10, top: 60, alignItems: 'center', justifyContent: 'center'}} onPress={props.onPressBack ? props.onPressBack : () => navigation.goBack()} >
                 <BackIcon />
             </TouchableOpacity>
         }

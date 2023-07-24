@@ -4,8 +4,8 @@ import { CheckedIcon, UncheckedIcon } from "../assets/svgs/AuthSvgs";
 import { Styles } from "../styles/Styles";
 import { AppColors } from "../styles/AppColors";
 
-export default function AcceptField({ accepted, onPressAccept, text, error }) {
-    return <TouchableOpacity style={[Styles.flexRow, { marginBottom: 10 }]} onPress={onPressAccept}>
+export default function AcceptField({ accepted, setAccepted, onPressAccept, text, error }) {
+    return <TouchableOpacity style={[Styles.flexRow, { marginBottom: 10 }]} onPress={onPressAccept ? onPressAccept : () => setAccepted(!accepted)}>
         {accepted ?
             <CheckedIcon />
             :

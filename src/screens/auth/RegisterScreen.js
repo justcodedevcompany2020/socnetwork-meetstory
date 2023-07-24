@@ -70,7 +70,7 @@ export default function RegisterScreen({ navigation }) {
         getRequest('country_and_city').then(res => {
             console.log(res);
             if (res.status) {
-                setCountries(res.data.map(el => ({ value: el.name, id: el.id })))
+                setCountries(res.data.map((el, i) => ({ value: el.name, country_id: el.id, id: i })))
                 setCountriesLoading(false)
             }
         })
@@ -81,6 +81,7 @@ export default function RegisterScreen({ navigation }) {
             console.log(res);
             if (res.status) {
                 setCities(res.data.map(el => ({ value: el.name, id: el.id })))
+                setCities(res.data.map((el, i) => ({ value: el.name, city_id: el.id, id: i })))
                 setCitiesLoading(false)
             }
         })
@@ -105,8 +106,8 @@ export default function RegisterScreen({ navigation }) {
                 password: pass,
                 password_confirmation: confirmPass,
                 gender: genders[selectedGender].value,
-                country_id: selectedCountry,
-                city_id: selectedCity
+                country_id: countries[selectedCountry].country_id,
+                city_id: cities[selectedCity].city_id
             }).then(([status, data]) => {
                 console.log(status, data);
                 if (status === 200) {

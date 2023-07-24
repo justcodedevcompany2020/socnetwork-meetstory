@@ -35,6 +35,7 @@ export function checkToken() {
     })
 
     if (isValid) {
+      console.log(token);
       await dispatch({
         type: TOKEN,
         payload: token,

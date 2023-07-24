@@ -6,7 +6,6 @@ import Header from './Header';
 import { UserPostsScreen } from '../screens/user/UserPostsScreen';
 import { UserPhotoScreen } from '../screens/user/UserPhotoScreen';
 import { UserFriends } from '../screens/user/UserFriends';
-import AdvancedSearchScreen from '../screens/search/AdvancedSearchScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -62,13 +61,7 @@ export const SearchNavigator = () => {
                     headerShown: false
                 }}
             />
-             <Stack.Screen
-                name="AdvancedSearchScreen"
-                component={AdvancedSearchScreen}
-                options={{
-                    headerShown: false
-                }}
-            />
+
         </Stack.Navigator>
     );
 };
