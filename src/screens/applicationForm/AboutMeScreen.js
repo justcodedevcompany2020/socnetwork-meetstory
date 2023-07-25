@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Container from "../../components/Container";
 import { Text, TextInput, View } from "react-native";
 import { Styles } from "../../styles/Styles";
@@ -16,6 +16,7 @@ export default function AboutMeScreen() {
     const [showSuccess, setShowSuccess] = useState(false)
     const [aboutMe, setAboutMe] = useState(user.about_me)
     const inputRef = useRef(null)
+    const [disabledBtn, setDisabledBtn] = useState(true)
 
     function updateProfile() {
         setBtnLoading(true)
@@ -27,7 +28,8 @@ export default function AboutMeScreen() {
             if (status == 200) {
                 setBtnLoading(false)
                 setShowSuccess(true)
-                dispatch(saveUser({...user, about_me: aboutMe}))
+                dispatch(saveUser({ ...user, about_me: aboutMe }))
+                setDisabledBtn(true)
                 setTimeout(() => {
                     setShowSuccess(false)
                 }, 3000);
@@ -35,12 +37,18 @@ export default function AboutMeScreen() {
         })
     }
 
+    useEffect(() => {
+        if (aboutMe !== user.about_me) {
+            setDisabledBtn(false)
+        } else setDisabledBtn(true)
+    }, [aboutMe])
+
     return <Container goBack headerTitle={'Обо мне'}>
         <View style={[Styles.whiteContainer, { marginTop: 30, paddingTop: 30 }]}>
             <Text style={Styles.darkMedium15}>Обо мне</Text>
             <TextInput ref={inputRef} multiline style={Styles.input} numberOfLines={10} value={aboutMe} onChangeText={setAboutMe} placeholder="Нет информации" placeholderTextColor={AppColors.DARK_CHARCOAL_COLOR} />
             {showSuccess && <Text style={[Styles.blueSemiBold14, { textAlign: 'center', marginBottom: 15 }]}>Изменения успешно сохранены</Text>}
-            <Button text={'Сохранить'} margin loading={btnLoading} onPress={updateProfile} />
+            <Button text={'Сохранить'} margin loading={btnLoading} onPress={updateProfile} disabled={disabledBtn}/>
         </View>
     </Container>
 }

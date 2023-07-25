@@ -64,7 +64,7 @@ export default function NewFacesScreen() {
                 keyExtractor={(item, index) => index}
                 data={newFaces}
                 renderItem={({ item, index }) => {
-                    return <UserBlock chatIcon activityStatus userInfo={item} moreIcon />
+                    return <UserBlock chatIcon activityStatus userInfo={item} />
                 }}
                 onEndReached={handleLoadMore}
                 onEndReachedThreshold={0.1}

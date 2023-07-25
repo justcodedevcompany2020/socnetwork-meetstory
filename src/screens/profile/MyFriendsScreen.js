@@ -11,13 +11,13 @@ export default function MyFriendsScreen() {
         <Text style={styles.whiteText}> <Text style={Styles.whiteMedium15}> Друзей: </Text> 45 (<Text style={Styles.whiteMedium15}>Онлайн</Text>6)</Text>
         <View style={Styles.whiteContainer}>
             <ScrollView style={{ marginTop: 20, }} showsVerticalScrollIndicator={false}>
-                <UserBlock moreIcon activityStatus friend />
-                <UserBlock moreIcon activityStatus selected friend />
-                <UserBlock moreIcon activityStatus friend />
-                <UserBlock moreIcon activityStatus friend />
-                <UserBlock moreIcon activityStatus friend />
-                <UserBlock moreIcon activityStatus friend />
-                <UserBlock moreIcon activityStatus friend />
+                <UserBlock moreIcon activityStatus />
+                <UserBlock moreIcon activityStatus selected />
+                <UserBlock moreIcon activityStatus />
+                <UserBlock moreIcon activityStatus />
+                <UserBlock moreIcon activityStatus />
+                <UserBlock moreIcon activityStatus />
+                <UserBlock moreIcon activityStatus />
             </ScrollView>
         </View>
     </Container>

@@ -30,7 +30,6 @@ export default function AddInfoScreen({ navigation }) {
         let myErrors = { ...errors }
         myErrors.name = !name
         myErrors.birthDate = !birthDate
-        console.log(myErrors);
 
         if (!name || !birthDate) {
             setErrors(myErrors)
@@ -43,10 +42,10 @@ export default function AddInfoScreen({ navigation }) {
             surname: surname,
             date_of_birth: birthDate
         }).then(([status, data]) => {
+            console.log(data);
             if(status == 200){
                 navigation.navigate('AddProfilePhoto')
             }
-            console.log(data);
             setLoading(false)
         })
     }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../../components/Container";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { Styles } from "../../styles/Styles";
@@ -33,6 +33,20 @@ export default function PersonalInformation({ navigation }) {
     const [specialization, setSpecialization] = useState(user.specialization)
     const [nickname, setNickname] = useState(user.nickname)
 
+    const [disabledBtn, setDisabledBtn] = useState(true)
+
+    useEffect(() => {
+        if (
+            familyStatuses.findIndex(el => el.value == user.family_status) != selectedFamilyStatus
+            || children.findIndex(el => el.value == user.children != hasChildren)
+            || education != user.education
+            || specialization != user.specialization
+            || nickname != user.nickname
+        )  setDisabledBtn(false)
+        else setDisabledBtn(true)
+
+    }, [selectedFamilyStatus, hasChildren, education, specialization, nickname])
+
     function updateProfile() {
         setBtnLoading(true)
         postRequestAuth('update_personal_data', token, {
@@ -54,6 +68,7 @@ export default function PersonalInformation({ navigation }) {
                     specialization: specialization,
                     nickname: nickname
                 }))
+                setDisabledBtn(true)
                 setTimeout(() => {
                     setShowSuccess(false)
                 }, 2000);
@@ -77,7 +92,7 @@ export default function PersonalInformation({ navigation }) {
                 <Input labelText={'Образование'} value={education} setValue={setEducation} />
                 <Input labelText={'Специализация'} value={specialization} setValue={setSpecialization} />
                 {showSuccess && <Text style={[Styles.blueSemiBold14, { textAlign: 'center', marginBottom: 15 }]}>Изменения успешно сохранены</Text>}
-                <Button text={'Сохранить'} margin onPress={updateProfile} loading={btnLoading} />
+                <Button text={'Сохранить'} margin onPress={updateProfile} loading={btnLoading} disabled={disabledBtn}/>
             </ScrollView>
         </View>
     </Container >

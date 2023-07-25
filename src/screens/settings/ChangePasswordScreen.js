@@ -6,8 +6,9 @@ import { Styles } from '../../styles/Styles'
 import Button from '../../components/Button'
 import { postRequestAuth } from '../../api/RequestHelpers'
 import { useSelector } from 'react-redux'
+import Popup from '../../components/Popup'
 
-export const ChangePasswordScreen = ({navigation}) => {
+export const ChangePasswordScreen = ({ navigation }) => {
     const { token } = useSelector(state => state.auth)
     const [pass, setPass] = useState()
     const [confirmPass, setConfirmPass] = useState()
@@ -23,9 +24,12 @@ export const ChangePasswordScreen = ({navigation}) => {
 
     const [tryLater, setTryLater] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [showPopup, setShowPopup] = useState(false)
+    const [oldPassErr, setOldPassErr] = useState(false)
 
     function changePassword() {
         setLoading(true)
+        setOldPassErr(false)
 
         let isValidInfo = validate();
         isValidInfo ? postRequestAuth('user_update_profile_password', token, {
@@ -33,15 +37,13 @@ export const ChangePasswordScreen = ({navigation}) => {
             password: pass,
             password_confirmation: confirmPass
         }).then(([status, data]) => {
-            if(status == 200){
-                navigation.goBack()
-            } else if(status == 400){
-                let items = { ...errors };
-                items.oldPassMsg = true
-                setErrors(items)
+            console.log(data);
+            if (status == 200) {
+                setShowPopup(true)
+            } else if (status == 400) {
+                setOldPassErr(true)
             } else setTryLater(true)
             setLoading(false)
-            console.log(data);
         }) : setLoading(false)
     }
 
@@ -98,13 +100,13 @@ export const ChangePasswordScreen = ({navigation}) => {
                 <Text style={Styles.blackSemiBold28}>Изменение пароля</Text>
                 <Text style={[Styles.darkRegular15, { marginTop: 15 }]}>Введите новый пароль для вашего аккаунта</Text>
             </View>
-            <Input labelText={'Старый пароль'} value={oldPass} setValue={setOldPass} inputType={'pass'} error={errors.oldpass || errors.oldPassMsg}/>
-            {errors.oldPassMsg && (
+            <Input labelText={'Старый пароль'} value={oldPass} setValue={setOldPass} inputType={'pass'} error={errors.oldpass || errors.oldPassMsg} />
+            {(errors.oldPassMsg || oldPassErr) && (
                 <Text style={Styles.redRegular12}>
                     Неверный пароль.
                 </Text>
             )}
-            <Input labelText={'Новый пароль'} value={pass} setValue={setPass} inputType={'pass'} minLengthPass error={errors.pass || errors.passMsg} />
+            <Input labelText={'Новый пароль'} value={pass} setValue={setPass} inputType={'pass'} minLengthPass error={errors.pass || errors.passMsg || errors.confirmPassMsg} />
             {errors.passMsg && (
                 <Text style={Styles.redRegular12}>
                     Пароль должен содержать не менее 8 символов.
@@ -121,5 +123,8 @@ export const ChangePasswordScreen = ({navigation}) => {
                 <Button text={'Сохранить'} margin onPress={changePassword} loading={loading} marginBottom={30} />
             </View>
         </ScrollView>
+        <Popup title={'Ваш пароль успешно изменен'} showModal={showPopup} setShowModal={setShowPopup} hideClose>
+            <Button text={'Ок'} margin marginBottom={10} onPress={() => navigation.goBack()} />
+        </Popup>
     </Container>
 }

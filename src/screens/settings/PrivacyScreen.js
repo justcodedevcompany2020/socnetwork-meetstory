@@ -72,7 +72,7 @@ export const PrivacyScreen = () => {
     return <Container headerTitle='Конфиденциальность' goBack >
         <View style={[Styles.whiteContainer, { marginTop: 30, paddingTop: 30 }]}>
             <ScrollView>
-                <View style={[Styles.flexRowJustifyBetween]}>
+                <View style={[Styles.flexRowJustifyBetween, { marginBottom: 20 }]}>
                     <Text style={Styles.darkMedium15}>Невидимка (VIP Статус)</Text>
                     <CustomSwitch
                         onSwitch={() => setactive(true)}

@@ -12,35 +12,69 @@ import moment from "moment";
 import { imgUrl, postRequestAuth } from "../api/RequestHelpers";
 import { useSelector } from "react-redux";
 
-export default function UserBlock({ userInfo, authorityMode, activityStatus, chatIcon, selected, rating, moveEnd, moreIcon, onPress, lastActionInfo, friend }) {
+export default function UserBlock({ userInfo, authorityMode, activityStatus, chatIcon, selected, rating, moveEnd, moreIcon, onPress, lastActionInfo }) {
     const [openPopUp, setOpenPopUp] = useState(false)
     const [showDeletePopup, setShowDeletePopup] = useState(false)
     const { token } = useSelector(state => state.auth)
     const navigation = useNavigation()
-    const [friendBtn, setFriendBtn] = useState(friend ? 'remove' : 'add')
+    const [friendBtn, setFriendBtn] = useState(userInfo?.friend_status)
     const [friendBtnLoading, setFriendBtnLoading] = useState(false)
+    const [friendRequestPopup, setFriendRequestPopup] = useState(false)
 
-    function addFriend() {
-        console.log(userInfo.id);
+    function addRemoveFriendRequest() {
         setFriendBtnLoading(true)
         postRequestAuth('add_user_in_my_friends', token, {
             user_id: userInfo.id
         }).then(([status, data]) => {
-            console.log(status, data);
+            console.log(data);
             if (status == 200) {
-                setFriendBtn('cancel')
                 setFriendBtnLoading(false)
             }
         })
     }
 
-    function cancelFriendRequest() {
-
-    }
-
     function removeFromFriends() {
-
+        setShowDeletePopup(false)
+        setFriendBtnLoading(true)
+        setOpenPopUp(true)
+        postRequestAuth('remove_user_from_friends', token, {
+            user_id: userInfo.id
+        }).then(([status, data]) => {
+            console.log(data);
+            if (status == 200) {
+                setFriendBtn('add')
+                setFriendBtnLoading(false)
+            }
+        })
     }
+
+    function confirm() {
+        setFriendRequestPopup(false);
+        setFriendBtnLoading(true)
+        setOpenPopUp(true)
+        postRequestAuth('confirm_friend_request', token, {
+            user_id: userInfo.id
+        }).then(([status, body]) => {
+            if (status == 200) {
+                setFriendBtn('remove')
+                setFriendBtnLoading(false)
+            }
+        })
+    }
+
+    function reject() {
+        setFriendRequestPopup(false);
+        setFriendBtnLoading(true)
+        postRequestAuth('reject_friend_request', token, {
+            user_id: userInfo.id
+        }).then(([status, body]) => {
+            if (status == 200) {
+                setFriendBtn('add')
+                setFriendBtnLoading(false)
+            }
+        })
+    }
+
 
     function getDeclensionByNumber(number) {
         const cases = [2, 0, 1, 1, 1, 2];
@@ -50,7 +84,6 @@ export default function UserBlock({ userInfo, authorityMode, activityStatus, cha
     }
 
     function openChat() {
-        console.log(userInfo?.avatar);
         navigation.navigate('ChatScreen', {
             img: userInfo?.avatar,
             username: userInfo?.name + ' ' + (userInfo?.surname ? userInfo?.surname : '')
@@ -105,14 +138,19 @@ export default function UserBlock({ userInfo, authorityMode, activityStatus, cha
             <Button margin marginBottom={10} onPress={() => { navigation.navigate('UserScreen'); setOpenPopUp(false) }} backgroundColor={AppColors.LOCHMARA_COLOR} text={'Открыть профиль'} />
             <Button marginBottom={10} margin onPress={() => { openChat(); setOpenPopUp(false) }} text={'Отправить сообщение'} />
             {friendBtn == 'add'
-                ? <Button backgroundColor={AppColors.SKY_BLUE_COLOR} text={'Добавить в друзья'} marginBottom={30} margin onPress={addFriend} loading={friendBtnLoading} />
-                : friendBtn == 'remove' ? <Button backgroundColor={AppColors.BITTERSWEET_COLOR} text={'Удалить из друзей'} marginBottom={30} margin onPress={() => { setShowDeletePopup(true); setOpenPopUp(false); removeFromFriends() }} loading={friendBtnLoading} />
-                    : friendBtn == 'cancel' && <Button backgroundColor={AppColors.SKY_BLUE_COLOR} text={'Отменить заявку'} marginBottom={30} margin onPress={cancelFriendRequest} loading={friendBtnLoading} />
+                ? <Button backgroundColor={AppColors.SKY_BLUE_COLOR} text={'Добавить в друзья'} marginBottom={30} margin onPress={() => { addRemoveFriendRequest(); setFriendBtn('cancel') }} loading={friendBtnLoading} />
+                : friendBtn == 'remove' ? <Button backgroundColor={AppColors.BITTERSWEET_COLOR} text={'Удалить из друзей'} marginBottom={30} margin onPress={() => { setShowDeletePopup(true); setOpenPopUp(false) }} loading={friendBtnLoading} />
+                    : friendBtn == 'cancel' ? <Button backgroundColor={AppColors.SKY_BLUE_COLOR} text={'Отменить заявку'} marginBottom={30} margin onPress={() => { addRemoveFriendRequest() }} loading={friendBtnLoading} />
+                        : friendBtn == 'request' && <Button text={'Запрос на добавление в друзья'} height={60} margin onPress={() => { setFriendRequestPopup(true) }} />
             }
         </Popup>
         <Popup title={'Вы действительно хотите удалить John Smith из друзей?'} showModal={showDeletePopup} setShowModal={setShowDeletePopup}>
-            <Button text={'Да'} backgroundColor={AppColors.BITTERSWEET_COLOR} margin marginBottom={10} onPress={() => setShowDeletePopup(false)} />
+            <Button text={'Да'} backgroundColor={AppColors.BITTERSWEET_COLOR} margin marginBottom={10} onPress={removeFromFriends} />
             <Button outLineColor={AppColors.BITTERSWEET_COLOR} text={'Нет'} backgroundColor={AppColors.WHITE_COLOR} margin onPress={() => setShowDeletePopup(false)} marginBottom={20} />
+        </Popup>
+        <Popup title={'Запрос на добавление в друзья'} showModal={friendRequestPopup} setShowModal={setFriendRequestPopup}>
+            <Button text={'Принять'} margin marginBottom={10} onPress={confirm} />
+            <Button text={'Отказаться'} backgroundColor={AppColors.BITTERSWEET_COLOR} margin onPress={reject} marginBottom={20} />
         </Popup>
     </Shadow>
 }

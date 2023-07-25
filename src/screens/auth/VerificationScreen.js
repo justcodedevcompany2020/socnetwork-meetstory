@@ -69,9 +69,7 @@ export default function VerificationScreen({ navigation, route }) {
         let minutes = min
         const interval = setInterval(() => {
             if (seconds === 0) {
-                console.log('resendSeconds === 0');
                 if (minutes === 0) {
-                    console.log('resendMinutes === 0');
                     clearInterval(interval)
                     setDisableSendCode(false)
                     return;

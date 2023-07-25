@@ -19,6 +19,7 @@ export default function HomeScreen({ navigation }) {
 
     useEffect(() => {
         if (token) {
+            setNewFacesLoading(true)
             getNewFaces()
             scrollRef.current?.scrollTo({ x: 0, y: 0 })
         }

@@ -81,13 +81,13 @@ export default function SearchScreen({ navigation, route }) {
       <Container headerTitle={'Поиск'} filterIcon onPressFilter={() => setModalVisible(true)}>
          <SearchBlock value={searchValue} setValue={onSearch} />
          <View style={Styles.whiteContainer}>
-            {typeof searchValue == 'string' && (loading ? (
+            {typeof searchValue == 'string' ? (loading ? (
                <Loading marginTop={20} />
             ) : users.length === 0 ? (
                <Text
                   style={[
-                     Styles.blackRegular14,
-                     { textAlign: 'center', marginTop: 20 },
+                     Styles.blackRegular15,
+                     { textAlign: 'center', marginTop: 50 },
                   ]}>
                   Ничего не найдено
                </Text>
@@ -96,13 +96,16 @@ export default function SearchScreen({ navigation, route }) {
                   showsVerticalScrollIndicator={false}
                   style={{ marginTop: 20, }}
                   data={users}
-                  renderItem={(item, i) => <UserBlock userInfo={item.item} moreIcon activityStatus selected onPress={() => navigation.navigate('UserScreen')} />}
+                  renderItem={(item, i) => <UserBlock userInfo={item.item} moreIcon activityStatus onPress={() => navigation.navigate('UserScreen')} />}
                   keyExtractor={item => item.id.toString()}
                   onEndReached={handleLoadMore}
                   onEndReachedThreshold={1}
                   ListFooterComponent={renderFooter}
                />
-            ))}
+            )) : <Text style={[
+               Styles.blackRegular15,
+               { textAlign: 'center', marginTop: 50 },
+            ]}>Найдите людей для новых знакомств.</Text>}
          </View>
       </Container>
       <FilterSearchPopup modalVisible={modalVisible} setModalVisible={setModalVisible} onSearch={(filterData) => onSearch(searchValue, filterData)} setFilterData={setFilterData} />

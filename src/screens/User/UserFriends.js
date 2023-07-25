@@ -20,7 +20,7 @@ export const UserFriends = ({ navigation }) => {
       <View style={Styles.whiteContainer}>
         <ScrollView showsVerticalScrollIndicator={false} style={{ marginVertical: 20 }}>
           {data.map((elm, i) => (
-            <UserBlock moreIcon activityStatus onPress={() => console.log(599)} key={i} />
+            <UserBlock moreIcon activityStatus key={i} />
           ))}
         </ScrollView>
       </View>

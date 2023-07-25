@@ -21,7 +21,6 @@ export default function FriendRequests() {
     function getFriendRequests(refresh) {
         getRequestPaginationAuth(refresh ? firstPageUrl : nextUrl, token).then(res => {
             refresh ? setRequestes(res.data.data) : setRequestes([...requests, ...res.data.data]);
-            console.log(res.data.data);
             setNextUrl(res.data.next_page_url)
             setIsRefreshing(false);
             setLoading(false);

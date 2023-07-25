@@ -43,7 +43,6 @@ export default function NotificationsScreen() {
                 initialLayout={{ width: layout.width }}
                 sceneContainerStyle={{ backgroundColor: AppColors.WHI, color: AppColors.STEEL_BLUE_COLOR }}
                 pagerStyle={{ backgroundColor: AppColors.WHITE_COLOR, color: AppColors.STEEL_BLUE_COLOR, elevation: 0 }}
-                onp
             />
         </View>
     );

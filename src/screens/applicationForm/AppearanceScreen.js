@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../../components/Container";
 import { ScrollView, Text, View } from "react-native";
 import { Styles } from "../../styles/Styles";
@@ -48,6 +48,8 @@ export default function AppearanceScreen() {
     ]
     const [hasTattoo, setHasTattoo] = useState(tattoo.findIndex(el => el.value == user.tattoos_piercings))
 
+    const [disabledBtn, setDisabledBtn] = useState(true)
+
     function updateProfile() {
         setBtnLoading(true)
         postRequestAuth('update_appearance', token, {
@@ -71,12 +73,24 @@ export default function AppearanceScreen() {
                     hair_color: hairColors[selectedHairColor]?.value,
                     tattoos_piercings: tattoo[hasTattoo]?.value,
                 }))
+                setDisabledBtn(true)
                 setTimeout(() => {
                     setShowSuccess(false)
                 }, 3000);
             }
         })
     }
+
+    useEffect(() => {
+        if (
+            bodyTypes.findIndex(el => el.value == user.body_type) != selectedBodyType
+            || eyeColors.findIndex(el => el.value == user.eye_color) != selectedEyeColor
+            || hairColors.findIndex(el => el.value == user.hair_color) != selectedHairColor
+            || tattoo.findIndex(el => el.value == user.tattoos_piercings) != hasTattoo
+        ) setDisabledBtn(false)
+        else setDisabledBtn(true)
+
+    }, [height, weight, selectedBodyType, selectedEyeColor, selectedHairColor, hasTattoo])
 
     return <Container goBack headerTitle={'Внешний вид'}>
         <View style={[Styles.whiteContainer, { marginTop: 30, paddingTop: 30 }]}>
@@ -88,7 +102,7 @@ export default function AppearanceScreen() {
                 <Input labelText={'Цвет волос'} value={selectedHairColor} setValue={setSelectedHairColor} data={hairColors} inputType={'dropdown'} placeholder={'Выбрать вариант'} />
                 <Input labelText={'Татуировки, пирсинг'} value={hasTattoo} setValue={setHasTattoo} data={tattoo} inputType={'dropdown'} placeholder={'Выбрать вариант'} />
                 {showSuccess && <Text style={[Styles.blueSemiBold14, { textAlign: 'center', marginBottom: 15 }]}>Изменения успешно сохранены</Text>}
-                <Button text={'Сохранить'} margin loading={btnLoading} onPress={updateProfile} />
+                <Button text={'Сохранить'} margin loading={btnLoading} onPress={updateProfile} disabled={disabledBtn} />
             </ScrollView>
         </View>
     </Container>

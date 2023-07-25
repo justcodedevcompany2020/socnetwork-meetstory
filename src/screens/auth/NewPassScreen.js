@@ -9,7 +9,7 @@ import { postRequest } from "../../api/RequestHelpers";
 export default function NewPassScreen({ navigation, route }) {
     const [pass, setPass] = useState()
     const [confirmPass, setConfirmPass] = useState()
-    const {phone, code} = route.params
+    const { phone, code } = route.params
     const [errors, setErrors] = useState({
         pass: false,
         confirmPass: false,
@@ -79,7 +79,7 @@ export default function NewPassScreen({ navigation, route }) {
                 <Text style={Styles.blackSemiBold28}>Востоновление пароля</Text>
                 <Text style={[Styles.darkRegular15, { marginTop: 15 }]}>Введите новый пароль для вашего аккаунта</Text>
             </View>
-            <Input labelText={'Новый пароль'} value={pass} setValue={setPass} inputType={'pass'} minLengthPass error={errors.pass || errors.passMsg} />
+            <Input labelText={'Новый пароль'} value={pass} setValue={setPass} inputType={'pass'} minLengthPass error={errors.pass || errors.passMsg || errors.confirmPassMsg} />
             {errors.passMsg && (
                 <Text style={Styles.redRegular12}>
                     Пароль должен содержать не менее 8 символов.

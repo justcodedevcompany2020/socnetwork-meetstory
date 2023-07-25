@@ -32,9 +32,9 @@ export default function RegisterScreen({ navigation }) {
 
     const [accepted, setAccepted] = useState(false)
 
-    const dropdownRefCity = useRef({});
-    const dropdownRefCountry = useRef({});
-    const dropdownRefGender = useRef({});
+    const dropdownRefCity = useRef();
+    const dropdownRefCountry = useRef();
+    const dropdownRefGender = useRef();
 
 
     const [phoneError, setPhoneError] = useState(false)
@@ -109,7 +109,7 @@ export default function RegisterScreen({ navigation }) {
                 country_id: countries[selectedCountry].country_id,
                 city_id: cities[selectedCity].city_id
             }).then(([status, data]) => {
-                console.log(status, data);
+                console.log(data);
                 if (status === 200) {
                     navigation.navigate('VerificationScreen', { phone: myPhone })
                 } else if (status === 400 && data.message.phone[0] == 'The phone has already been taken.') {
@@ -264,7 +264,7 @@ export default function RegisterScreen({ navigation }) {
                     Этот телефон уже зарегистрирован.
                 </Text>
             )}
-            <Input labelText={'Пароль'} value={pass} setValue={setPass} inputType={'pass'} minLengthPass error={errors.pass || errors.passMsg} />
+            <Input labelText={'Пароль'} value={pass} setValue={setPass} inputType={'pass'} minLengthPass error={errors.pass || errors.passMsg || errors.confirmPassMsg} />
             {errors.passMsg && (
                 <Text style={Styles.redRegular12}>
                     Пароль должен содержать не менее 8 символов.

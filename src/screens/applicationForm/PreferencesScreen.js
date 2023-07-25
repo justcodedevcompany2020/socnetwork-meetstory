@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Container from "../../components/Container";
 import { ScrollView, Text, TextInput, View } from "react-native";
 import { Styles } from "../../styles/Styles";
@@ -18,17 +18,18 @@ export default function PreferencesScreen() {
     const inputRef1 = useRef(null)
     const inputRef2 = useRef(null)
 
+    const [disabledBtn, setDisabledBtn] = useState(true)
 
     function updateProfile() {
         setBtnLoading(true)
         inputRef1.current?.blur()
         inputRef2.current?.blur()
 
-        postRequestAuth('update_profile', token, { //todo
+        postRequestAuth('update_preferences', token, {
             get_acquainted: getAcquainted,
             purpose_of_dating: purpose
         }).then(([status, body]) => {
-            console.log(body, 'body');
+            console.log(body);
             if (status == 200) {
                 setBtnLoading(false)
                 setShowSuccess(true)
@@ -37,6 +38,7 @@ export default function PreferencesScreen() {
                     get_acquainted: getAcquainted,
                     purpose_of_dating: purpose
                 }))
+                setDisabledBtn(true)
                 setTimeout(() => {
                     setShowSuccess(false)
                 }, 3000);
@@ -44,6 +46,10 @@ export default function PreferencesScreen() {
         })
     }
 
+    useEffect(() => {
+        if (getAcquainted != user.get_acquainted || purpose != user.purpose_of_dating) setDisabledBtn(false)
+        else setDisabledBtn(true)
+    }, [getAcquainted, purpose])
 
 
     return <Container goBack headerTitle={'Предпочтения'}>
@@ -54,7 +60,7 @@ export default function PreferencesScreen() {
                 <Text style={Styles.darkMedium15}>Цель знакомства</Text>
                 <TextInput ref={inputRef2} multiline style={[Styles.input, { height: 125 }]} value={purpose} onChangeText={setPurpose} numberOfLines={10} placeholder="Дружба, любовь, брак, встреча" />
                 {showSuccess && <Text style={[Styles.blueSemiBold14, { textAlign: 'center', marginBottom: 15 }]}>Изменения успешно сохранены</Text>}
-                <Button text={'Сохранить'} margin loading={btnLoading} onPress={updateProfile} />
+                <Button text={'Сохранить'} margin loading={btnLoading} onPress={updateProfile} disabled={disabledBtn} />
             </ScrollView>
         </View>
     </Container>

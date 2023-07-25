@@ -6,7 +6,7 @@ import { CrossIcon } from "../assets/svgs/AuthSvgs";
 import { Styles } from "../styles/Styles";
 
 
-export default function Popup({ showModal, setShowModal, title, hidePadding, children }) {
+export default function Popup({ showModal, setShowModal, title, hidePadding, children, hideClose }) {
     return <Modal visible={showModal} animationType="fade" transparent={true} >
         <BlurView
             style={styles.absolute}
@@ -15,9 +15,9 @@ export default function Popup({ showModal, setShowModal, title, hidePadding, chi
         />
         <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
             <View style={[styles.container, hidePadding && {paddingHorizontal: 5}]}>
-                <TouchableOpacity style={{ alignSelf: 'flex-end', marginBottom: 5 }} onPress={() => setShowModal(false)}>
+                {!hideClose && <TouchableOpacity style={{ alignSelf: 'flex-end', marginBottom: 5 }} onPress={() => setShowModal(false)}>
                     <CrossIcon />
-                </TouchableOpacity>
+                </TouchableOpacity>}
                 <Text style={[Styles.DarkSemiBold20, { marginBottom: 30, textAlign: 'center', }]}>{title}</Text>
                 {children}
             </View>
