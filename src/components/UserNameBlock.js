@@ -55,9 +55,9 @@ export const UserNameBlock = ({ myProfile, loading, userInfo }) => {
                 </TouchableOpacity>
             </View>
         </View> :
-             <View style={{ marginVertical: 20 }}>
-               {!loading && <Text style={{fontSize: 13, color: AppColors.WHITE_COLOR}}><Text style={Styles.whiteSemiBold13}>Дата регистрации:</Text>  { moment(userInfo?.user.created_at).locale('ru').format('D MMMM YYYY')} </Text>}
-                {/* <Text style={Styles.whiteRegular13}><Text style={Styles.whiteSemiBold13}>Статус:</Text> Забыйтый персонаж из твоей сказки</Text> */}
+            <View style={{ marginVertical: 20 }}>
+                {!loading && <Text style={{ fontSize: 13, color: AppColors.WHITE_COLOR }}><Text style={Styles.whiteSemiBold13}>Дата регистрации:</Text>  {moment(userInfo?.user.created_at).locale('ru').format('D MMMM YYYY')} </Text>}
+                {userInfo?.user.about_me && <Text style={Styles.whiteRegular13}><Text style={Styles.whiteSemiBold13}>Статус:</Text>  {userInfo?.user.about_me}</Text>}
             </View>
         }
     </View>

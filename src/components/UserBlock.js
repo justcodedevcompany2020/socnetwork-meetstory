@@ -90,8 +90,8 @@ export default function UserBlock({ userInfo, authorityMode, activityStatus, cha
         })
     }
 
-    function openUserProfile(){
-        navigation.navigate('UserScreen', {userId: userInfo.id})
+    function openUserProfile() {
+        navigation.navigate('UserScreen', { userId: userInfo.id })
     }
 
     return <Shadow distance={3} containerStyle={{ marginBottom: 10, marginHorizontal: 5, marginTop: 3 }} style={{ width: '100%', borderRadius: 6 }}>

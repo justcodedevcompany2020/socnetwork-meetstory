@@ -63,7 +63,7 @@ export const UserScreen = ({ navigation, route }) => {
                         Icon={Friends}
                         text={'Друзья'}
                         width={'49%'}
-                        onPress={() => navigation.navigate('UserFriends')}
+                        onPress={() => navigation.navigate('UserFriends', { userId: userId })}
                     />
                     <HorizontalBlock
                         backImagePath={require('../../assets/pngs/BlockBack12.png')}

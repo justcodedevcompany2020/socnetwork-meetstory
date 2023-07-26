@@ -21,6 +21,7 @@ import { BalanceCongrats } from '../screens/Balance/BalanceCongrats';
 import MessagesScreen from '../screens/chat/MessagesScreen';
 import { UserScreen } from '../screens/user/UserScreen';
 import { NoBalance } from '../screens/Balance/NoBalance';
+import { UserFriends } from '../screens/user/UserFriends';
 
 const Stack = createNativeStackNavigator();
 
@@ -211,6 +212,13 @@ export const HomeNavigator = () => {
             <Stack.Screen
                 name="NoBalance"
                 component={NoBalance}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="UserFriends"
+                component={UserFriends}
                 options={{
                     headerShown: false
                 }}

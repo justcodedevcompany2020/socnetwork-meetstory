@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import FriendRequestBlock from "./FriendRequestBlock";
-import { FlatList, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import { getRequestPaginationAuth } from "../../api/RequestHelpers";
 import { useSelector } from "react-redux";
 import Loading from "../../components/Loading";
+import { Styles } from "../../styles/Styles";
 
 export default function FriendRequests() {
     const { token } = useSelector(state => state.auth)
@@ -64,6 +65,13 @@ export default function FriendRequests() {
             onEndReached={handleLoadMore}
             onEndReachedThreshold={0.1}
             ListFooterComponent={renderFooter}
+            ListEmptyComponent={() => <Text
+                style={[
+                    Styles.blueMedium16,
+                    { alignSelf: 'center', width: '80%', textAlign: 'center' },
+                ]}>
+                У вас нет запросы на добавление в друзья
+            </Text>}
             refreshing={isRefreshing}
             onRefresh={handleRefresh}
         />

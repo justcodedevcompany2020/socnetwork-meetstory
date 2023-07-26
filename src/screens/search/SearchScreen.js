@@ -83,15 +83,7 @@ export default function SearchScreen({ navigation, route }) {
          <View style={Styles.whiteContainer}>
             {typeof searchValue == 'string' ? (loading ? (
                <Loading marginTop={20} />
-            ) : users.length === 0 ? (
-               <Text
-                  style={[
-                     Styles.blackRegular15,
-                     { textAlign: 'center', marginTop: 50 },
-                  ]}>
-                  Ничего не найдено
-               </Text>
-            ) : (
+            ) :
                <FlatList
                   showsVerticalScrollIndicator={false}
                   style={{ marginTop: 20, }}
@@ -101,9 +93,16 @@ export default function SearchScreen({ navigation, route }) {
                   onEndReached={handleLoadMore}
                   onEndReachedThreshold={1}
                   ListFooterComponent={renderFooter}
+                  ListEmptyComponent={() => <Text
+                     style={[
+                        Styles.blueMedium16,
+                        { textAlign: 'center', marginTop: 50 },
+                     ]}>
+                     Ничего не найдено
+                  </Text>}
                />
-            )) : <Text style={[
-               Styles.blackRegular15,
+            ) : <Text style={[
+               Styles.blueMedium16,
                { textAlign: 'center', marginTop: 50 },
             ]}>Найдите людей для новых знакомств.</Text>}
          </View>
