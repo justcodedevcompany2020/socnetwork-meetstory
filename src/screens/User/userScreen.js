@@ -10,16 +10,40 @@ import { AppColors } from '../../styles/AppColors'
 import { Styles } from '../../styles/Styles'
 import { GiftBlock } from '../home/GiftsScreen'
 import { MessageIcon } from '../../assets/svgs/ProfileSvgs'
-export const UserScreen = ({ navigation }) => {
+import { useEffect, useState } from 'react'
+import { postRequestAuth } from '../../api/RequestHelpers'
+import { useSelector } from 'react-redux'
+
+export const UserScreen = ({ navigation, route }) => {
     const items = [
         { id: 0, },
         { id: 1, },
         { id: 2, },
         { id: 3, },
     ];
+
+    const { userId } = route.params
+    const [loading, setLoading] = useState(true)
+    const [user, setUser] = useState()
+    const { token } = useSelector(state => state.auth)
+
+    useEffect(() => {
+        console.log(userId);
+        getUser()
+    }, [])
+
+    function getUser() {
+        postRequestAuth('get_user_info', token, {
+            user_id: userId
+        }).then(([status, data]) => {
+            setUser(data)
+            setLoading(false)
+        })
+    }
+
     return <ScrollView >
         <Container headerTitle='Профиль пользователя' goBack>
-            <UserNameBlock />
+            <UserNameBlock userInfo={user} loading={loading} setLoading={setLoading} />
             <View style={[Styles.whiteContainer, { paddingVertical: 15 }]}>
                 <HorizontalBlock
                     backImagePath={require('../../assets/pngs/BlockBack18.png')}

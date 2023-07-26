@@ -11,7 +11,7 @@ export default function MessagesScreen({navigation}) {
       <SearchBlock />
       <View style={[Styles.whiteContainer, {paddingTop: 20}]}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <UserBlock activityStatus lastActionInfo selected onPress={() => navigation.navigate('ChatScreen', {img: require('../../assets/pngs/postUser3.png'), username: 'John Smith'})}/>
+          <UserBlock activityStatus lastActionInfo selected/>
           <UserBlock activityStatus lastActionInfo />
           <UserBlock activityStatus lastActionInfo />
           <UserBlock activityStatus lastActionInfo />

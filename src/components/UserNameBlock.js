@@ -6,8 +6,11 @@ import { MoneyIcon } from "../assets/svgs/ProfileSvgs"
 import { useNavigation } from "@react-navigation/native"
 import Loading from "./Loading"
 import { useSelector } from "react-redux"
+import { imgUrl } from "../api/RequestHelpers"
+import moment from "moment"
+import 'moment/locale/ru'
 
-export const UserNameBlock = ({ myProfile, loading }) => {
+export const UserNameBlock = ({ myProfile, loading, userInfo }) => {
     const navigation = useNavigation()
     const { user } = useSelector(state => state.auth)
 
@@ -15,7 +18,7 @@ export const UserNameBlock = ({ myProfile, loading }) => {
         <View style={Styles.flexRowJustifyBetween}>
             {loading ? <Loading white /> : <View style={Styles.flexRow}>
                 <View style={styles.imgContainer}>
-                    <Image style={styles.img} source={user ? { uri: user.avatar } : require('../assets/pngs/ProfileDefault.png')} />
+                    <Image style={styles.img} source={myProfile ? { uri: user.avatar } : { uri: `${imgUrl}${userInfo.user.avatar}` }} />
                 </View>
                 {myProfile ?
                     <View>
@@ -25,16 +28,16 @@ export const UserNameBlock = ({ myProfile, loading }) => {
                     </View>
                     :
                     <View>
-                        <Text style={Styles.whiteSemiBold18}>Harper Anderson</Text>
-                        <Text style={Styles.whiteRegular13}>Мосвка, Россия </Text>
-                        <Text style={Styles.whiteRegular13}>ID: 45778899</Text>
+                        <Text style={Styles.whiteSemiBold18}>{userInfo?.user.name} {userInfo?.user.surname}</Text>
+                        <Text style={Styles.whiteRegular13}>{userInfo?.user.city.name}, {userInfo?.user.country.name} </Text>
+                        <Text style={Styles.whiteRegular13}>@{userInfo?.user.nickname}</Text>
                     </View>}
             </View>}
             {myProfile ?
                 <TouchableOpacity onPress={() => navigation.navigate('BalanceScreen')}>
                     <MoneyIcon />
                 </TouchableOpacity>
-                : <TouchableOpacity >
+                : <TouchableOpacity onPress={() => navigation.navigate('ChatScreen', { img: userInfo?.user.avatar, username: `${userInfo?.user.name} ${userInfo?.user.surname}`, id: userInfo?.user.id })}>
                     <MessageSvg />
                 </TouchableOpacity>}
         </View>
@@ -52,9 +55,9 @@ export const UserNameBlock = ({ myProfile, loading }) => {
                 </TouchableOpacity>
             </View>
         </View> :
-            <View style={{marginVertical: 20}}>
-                <Text style={Styles.whiteRegular13}><Text style={Styles.whiteSemiBold13}>Дата регистрации:</Text> 24 апреля 2022 </Text>
-                <Text style={Styles.whiteRegular13}><Text style={Styles.whiteSemiBold13}>Статус:</Text> Забыйтый персонаж из твоей сказки</Text>
+             <View style={{ marginVertical: 20 }}>
+               {!loading && <Text style={{fontSize: 13, color: AppColors.WHITE_COLOR}}><Text style={Styles.whiteSemiBold13}>Дата регистрации:</Text>  { moment(userInfo?.user.created_at).locale('ru').format('D MMMM YYYY')} </Text>}
+                {/* <Text style={Styles.whiteRegular13}><Text style={Styles.whiteSemiBold13}>Статус:</Text> Забыйтый персонаж из твоей сказки</Text> */}
             </View>
         }
     </View>

@@ -96,7 +96,7 @@ export default function SearchScreen({ navigation, route }) {
                   showsVerticalScrollIndicator={false}
                   style={{ marginTop: 20, }}
                   data={users}
-                  renderItem={(item, i) => <UserBlock userInfo={item.item} moreIcon activityStatus onPress={() => navigation.navigate('UserScreen')} />}
+                  renderItem={(item, i) => <UserBlock userInfo={item.item} moreIcon activityStatus />}
                   keyExtractor={item => item.id.toString()}
                   onEndReached={handleLoadMore}
                   onEndReachedThreshold={1}

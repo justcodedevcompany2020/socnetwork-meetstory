@@ -24,5 +24,5 @@ export function getUserInfo(token) {
       console.log('getUserInfo', res.data.name, res.data.id)
       await dispatch(saveUser({...res.data, avatar: `${imgUrl}${res.data.avatar}`}))
     })
-  };
+  }
 }

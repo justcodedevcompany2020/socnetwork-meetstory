@@ -12,7 +12,7 @@ import moment from "moment";
 import { imgUrl, postRequestAuth } from "../api/RequestHelpers";
 import { useSelector } from "react-redux";
 
-export default function UserBlock({ userInfo, authorityMode, activityStatus, chatIcon, selected, rating, moveEnd, moreIcon, onPress, lastActionInfo }) {
+export default function UserBlock({ userInfo, authorityMode, activityStatus, chatIcon, selected, rating, moveEnd, moreIcon, lastActionInfo }) {
     const [openPopUp, setOpenPopUp] = useState(false)
     const [showDeletePopup, setShowDeletePopup] = useState(false)
     const { token } = useSelector(state => state.auth)
@@ -75,7 +75,6 @@ export default function UserBlock({ userInfo, authorityMode, activityStatus, cha
         })
     }
 
-
     function getDeclensionByNumber(number) {
         const cases = [2, 0, 1, 1, 1, 2];
         const forms = ['год', 'года', 'лет'];
@@ -86,12 +85,17 @@ export default function UserBlock({ userInfo, authorityMode, activityStatus, cha
     function openChat() {
         navigation.navigate('ChatScreen', {
             img: userInfo?.avatar,
-            username: userInfo?.name + ' ' + (userInfo?.surname ? userInfo?.surname : '')
+            username: userInfo?.name + ' ' + (userInfo?.surname ? userInfo?.surname : ''),
+            id: userInfo?.id
         })
     }
 
+    function openUserProfile(){
+        navigation.navigate('UserScreen', {userId: userInfo.id})
+    }
+
     return <Shadow distance={3} containerStyle={{ marginBottom: 10, marginHorizontal: 5, marginTop: 3 }} style={{ width: '100%', borderRadius: 6 }}>
-        <TouchableOpacity onPress={onPress} style={[styles.container, Styles.flexRowJustifyBetween, selected && { borderWidth: 2, borderColor: AppColors.GOLD_COLOR, backgroundColor: AppColors.LEMON_COLOR }]}>
+        <TouchableOpacity onPress={lastActionInfo ? openChat : openUserProfile} style={[styles.container, Styles.flexRowJustifyBetween, selected && { borderWidth: 2, borderColor: AppColors.GOLD_COLOR, backgroundColor: AppColors.LEMON_COLOR }]} >
             <View style={[Styles.flexRowJustifyBetween, { width: '100%', alignItems: 'flex-start' }]}>
                 <View style={[Styles.flexRow]}>
                     <Image source={userInfo ? { uri: `${imgUrl}${userInfo.avatar}` } : require('../assets/pngs/ProfileDefault.png')} style={{ width: 60, height: 60, borderRadius: 4 }} resizeMode='stretch' />
