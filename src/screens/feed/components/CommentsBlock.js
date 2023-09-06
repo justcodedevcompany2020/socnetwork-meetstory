@@ -3,7 +3,6 @@ import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "rea
 import { Styles } from "../../../styles/Styles";
 import { AppColors } from "../../../styles/AppColors";
 import { CommentIcon16, CommentSettingsIcon, UnlikedIcon16 } from "../../../assets/svgs/FeedSvgs";
-import AddCommentBlock from "../../../components/AddCommentBlock";
 
 const comments = [
     {

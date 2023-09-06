@@ -1,32 +1,30 @@
 import React from "react";
-import { Dimensions, Image, StyleSheet, View, Text } from "react-native";
-import { Shadow } from "react-native-shadow-2";
+import { Dimensions, StyleSheet, View } from "react-native";
 import { Styles } from "../../../styles/Styles";
 import InfoAboutPostBlock from "./InfoAboutPostBlock";
 import { TextPostComponent } from "./TextPostComponent";
+import Slider from "../../../components/Slider";
 
 const { width } = Dimensions.get('screen')
 
-export default function PostComponent({ postInfo, navigation }) {
+export default function PostComponent({ postInfo, navigation, myAccount }) {
     return <View style={styles.container}>
-        {postInfo.img ?
-            <Image source={postInfo.img} style={styles.postImg} /> :
-            postInfo.text && <TextPostComponent text={postInfo.text} />
-        }
-        <InfoAboutPostBlock postInfo={postInfo} onPressComment={() => navigation.navigate('CommentsScreen', { postInfo })} />
+        {postInfo?.photo.length ? <Slider images={postInfo?.photo} postId={postInfo.id} /> : null}
+        {postInfo?.description ? <TextPostComponent text={postInfo?.description} postId={postInfo.id} /> : null}
+        <InfoAboutPostBlock postInfo={postInfo} onPressComment={() => navigation.navigate('PostSinglePage', { postInfo })} myAccount={myAccount} />
     </View>
 }
 
 const styles = StyleSheet.create({
     container: {
-        marginBottom: 20,
+        marginBottom: 30,
         alignItems: 'center',
     },
     postImg: {
         width: '100%',
         height: width - 40,
         borderRadius: 6,
-        marginBottom: 10
+        marginBottom: 5
     },
     profileImg: {
         width: 30,

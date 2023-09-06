@@ -9,7 +9,7 @@ import AddCommentBlock from "../../components/AddCommentBlock";
 
 const { width } = Dimensions.get('screen')
 
-export default function CommentsScreen({ navigation, route }) {
+export default function PostSinglePage({ navigation, route }) {
     const { postInfo } = route.params
 
     return <View style={{ flex: 1, backgroundColor: AppColors.WHITE_COLOR }}>

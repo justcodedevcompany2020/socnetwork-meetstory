@@ -24,7 +24,7 @@ export default function NavigationMenu() {
         // tabBarStyle:  { height: 80, borderTopWidth: 0, elevation: 0 },
         tabBarStyle: (() => {
           const routeName = getFocusedRouteNameFromRoute(route) ?? '';
-          if (routeName === 'CommentsScreen' || routeName === 'ForumSingle' || routeName === 'ChangeTemaScreen' || routeName === 'accountAndSecurityScreen' || routeName === 'PrivacyScreen' || routeName === 'ChatScreen' || routeName === 'SettingScreen' || routeName === 'AboutUs' || routeName === 'ChangePasswordScreen' || routeName === 'NotificationScreen') {
+          if (routeName === 'PostSinglePage' || routeName === 'ForumSingle' || routeName === 'ChangeTemaScreen' || routeName === 'accountAndSecurityScreen' || routeName === 'PrivacyScreen' || routeName === 'ChatScreen' || routeName === 'SettingScreen' || routeName === 'AboutUs' || routeName === 'ChangePasswordScreen' || routeName === 'NotificationScreen') {
             return {
               display: 'none',
               height: 0

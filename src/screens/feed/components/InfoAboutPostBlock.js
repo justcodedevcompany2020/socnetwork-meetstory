@@ -1,35 +1,33 @@
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Shadow } from "react-native-shadow-2";
 import { Styles } from "../../../styles/Styles";
-import { CommentIcon, LikedIcon, ShareIcon, UnlikedIcon } from "../../../assets/svgs/FeedSvgs";
+import { CommentIcon, LikedIcon, UnlikedIcon } from "../../../assets/svgs/FeedSvgs";
 import { AppColors } from "../../../styles/AppColors";
+import { imgUrl } from "../../../api/RequestHelpers";
+import { useNavigation } from "@react-navigation/native";
 
 
-export default function InfoAboutPostBlock({ postInfo, onPressComment }) {
-    return <View style={[Styles.flexRowJustifyBetween, {width: '100%', marginBottom: 10 }]}>
-        <View style={[Styles.flexRow, { width: '40%' }]}>
-            <Image source={postInfo.profileImg} style={styles.profileImg} />
+export default function InfoAboutPostBlock({ postInfo, onPressComment, myAccount }) {
+    const navigation = useNavigation()
+    return <View style={[Styles.flexRowJustifyBetween, { width: '100%', marginVertical: 10 }]}>
+        <TouchableOpacity style={[Styles.flexRow, { width: '40%' }]} onPress={() => myAccount ? navigation.navigate('Profile', { screen: 'MyProfileScreen' }) : navigation.navigate('UserScreen', { userId: postInfo.user_id })}>
+            <Image source={{ uri: `${imgUrl}${postInfo?.user.avatar}` }} style={styles.profileImg} />
             <View style={{ flexShrink: 1 }}>
-                <Text style={Styles.darkSemiBold14} numberOfLines={1}>{postInfo.name}</Text>
-                <Text style={Styles.darkRegular12}>{postInfo.username}</Text>
+                <Text style={Styles.darkSemiBold14} numberOfLines={1}>{postInfo?.user.name} {postInfo?.user.surname}</Text>
+                <Text style={Styles.darkRegular12}>@{postInfo.user.nickname}</Text>
             </View>
-        </View>
+        </TouchableOpacity>
         <View style={Styles.flexRow}>
-            {postInfo.liked ? <TouchableOpacity>
+            {postInfo?.like_auth_user.length ? <TouchableOpacity>
                 <LikedIcon />
             </TouchableOpacity> : <TouchableOpacity>
                 <UnlikedIcon />
             </TouchableOpacity>}
-            <Text style={styles.numbers}>{postInfo.likes}</Text>
+            <Text style={styles.numbers}>{postInfo?.like_count}</Text>
             <TouchableOpacity onPress={onPressComment}>
                 <CommentIcon />
             </TouchableOpacity>
-            <Text style={styles.numbers}>{postInfo.comments}</Text>
-            <TouchableOpacity>
-                <ShareIcon />
-            </TouchableOpacity>
-            <Text style={styles.numbers}>{postInfo.shares}</Text>
+            <Text style={styles.numbers}>{postInfo?.comment_count}</Text>
         </View>
     </View>
 }

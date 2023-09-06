@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import FriendRequestBlock from "./FriendRequestBlock";
-import { FlatList, Text, View } from "react-native";
+import { FlatList, RefreshControl, Text, View } from "react-native";
 import { getRequestPaginationAuth } from "../../api/RequestHelpers";
 import { useSelector } from "react-redux";
 import Loading from "../../components/Loading";
 import { Styles } from "../../styles/Styles";
+import { AppColors } from "../../styles/AppColors";
 
 export default function FriendRequests() {
     const { token } = useSelector(state => state.auth)
@@ -47,7 +48,6 @@ export default function FriendRequests() {
 
     const handleRefresh = () => {
         setIsRefreshing(true);
-        setRequestes([])
         getFriendRequests('refresh')
     };
 
@@ -72,8 +72,7 @@ export default function FriendRequests() {
                 ]}>
                 У вас нет запросы на добавление в друзья
             </Text>}
-            refreshing={isRefreshing}
-            onRefresh={handleRefresh}
+             refreshControl={<RefreshControl refreshing={isRefreshing} colors={[AppColors.STEEL_BLUE_COLOR]} onRefresh={handleRefresh} />}
         />
     )
 }

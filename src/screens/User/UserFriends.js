@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, RefreshControl } from 'react-native';
 import Container from '../../components/Container';
 import UserBlock from '../../components/UserBlock';
 import { Styles } from '../../styles/Styles';
@@ -57,7 +57,6 @@ export const UserFriends = ({ route }) => {
 
   const handleRefresh = () => {
     setIsRefreshing(true);
-    setFriends([])
     getUserFriends('refresh')
   };
 
@@ -79,7 +78,7 @@ export const UserFriends = ({ route }) => {
             style={{ marginTop: 20 }}
             keyExtractor={(item, index) => index}
             data={friends}
-            renderItem={({ item, index }) => {
+            renderItem={({ item }) => {
               return <UserBlock moreIcon activityStatus userInfo={item.user} />
             }}
             onEndReached={handleLoadMore}
@@ -92,8 +91,7 @@ export const UserFriends = ({ route }) => {
               ]}>
               Нет друзей
             </Text>}
-            refreshing={isRefreshing}
-            onRefresh={handleRefresh}
+            refreshControl={<RefreshControl refreshing={isRefreshing} colors={[AppColors.STEEL_BLUE_COLOR]} onRefresh={handleRefresh} />}
           />
         )}
       </View>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Container from "../../components/Container";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, RefreshControl, StyleSheet, Text, View } from "react-native";
 import { Styles } from "../../styles/Styles";
 import UserBlock from "../../components/UserBlock";
 import { AppColors } from "../../styles/AppColors";
@@ -53,7 +53,6 @@ export default function MyFriendsScreen() {
 
     const handleRefresh = () => {
         setIsRefreshing(true);
-        setFriends([])
         getMyFriends('refresh')
     };
 
@@ -89,8 +88,7 @@ export default function MyFriendsScreen() {
                         ]}>
                         Нет друзей
                     </Text>}
-                    refreshing={isRefreshing}
-                    onRefresh={handleRefresh}
+                     refreshControl={<RefreshControl refreshing={isRefreshing} colors={[AppColors.STEEL_BLUE_COLOR]} onRefresh={handleRefresh} />}
                 />
             )}
         </View>

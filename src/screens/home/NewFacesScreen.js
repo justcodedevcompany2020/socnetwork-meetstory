@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, View } from "react-native";
+import { FlatList, RefreshControl, View } from "react-native";
 import { Styles } from "../../styles/Styles";
 import { getRequestPaginationAuth } from "../../api/RequestHelpers";
 import Loading from "../../components/Loading";
 import UserBlock from "../../components/UserBlock";
 import { useSelector } from "react-redux";
+import { AppColors } from "../../styles/AppColors";
 
 
 export default function NewFacesScreen() {
@@ -49,7 +50,6 @@ export default function NewFacesScreen() {
 
     const handleRefresh = () => {
         setIsRefreshing(true);
-        setNewFaces([])
         getNewFaces('refresh')
     };
 
@@ -69,8 +69,7 @@ export default function NewFacesScreen() {
                 onEndReached={handleLoadMore}
                 onEndReachedThreshold={0.1}
                 ListFooterComponent={renderFooter}
-                refreshing={isRefreshing}
-                onRefresh={handleRefresh}
+                refreshControl={<RefreshControl refreshing={isRefreshing} colors={[AppColors.STEEL_BLUE_COLOR]} onRefresh={handleRefresh} />}
             />
         )}
     </View>

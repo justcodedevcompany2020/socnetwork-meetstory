@@ -10,7 +10,7 @@ import HelpScreen from '../screens/home/HelpScreen';
 import Top100OfSmth from '../screens/home/Top100ofSmth';
 import ChooseFriendScreen from '../screens/home/ChooseFriendScreen';
 import FeedScreen from '../screens/feed/FeedScreen';
-import CommentsScreen from '../screens/feed/CommentsScreen';
+import PostSinglePage from '../screens/feed/PostSinglePage';
 import ForumScreen from '../screens/forum/ForumScreen';
 import PopularTopics from '../screens/forum/PopularTopics';
 import ForumSingle from '../screens/forum/ForumSingle';
@@ -127,8 +127,8 @@ export const HomeNavigator = () => {
                 })}
             />
             <Stack.Screen
-                name="CommentsScreen"
-                component={CommentsScreen}
+                name="PostSinglePage"
+                component={PostSinglePage}
                 options={{
                     headerShown: false
                 }}
